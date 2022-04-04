@@ -37,5 +37,6 @@ function ReadData()
         }
     }
 ReadData();
+echo "Hello Azure";
 	
 ?>
