@@ -7,6 +7,7 @@
     <title>Document</title>
   </head>
   <body>
+      <p>this should work but idk why it's not working</p>
     <?php
 
 function OpenConnection()
@@ -22,7 +23,10 @@ function OpenConnection()
     sqlsrv_fetch_array($getAnimals, SQLSRV_FETCH_ASSOC)) {
     echo($row['species']); echo("<br />"); $animalCount++; }
     sqlsrv_free_stmt($getAnimals); sqlsrv_close($conn); } catch(Exception $e) {
-    echo("Error!"); } } ReadData(); echo "Hello Azure"; ?>
+    echo("Error!"); } } 
+    ReadData(); 
+    echo "Hello Azure"; 
+    ?>
     <h1>Hello world</h1>
   </body>
 </html>
