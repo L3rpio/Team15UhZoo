@@ -10,30 +10,17 @@
     <h1>Hello guys!</h1>
     <p>this should work but idk why it's not working</p>
     <?php 
-      function ReadData() {
-        try
-          {
-            $conn = OpenConnection();
-            $tsql = "SELECT [CompanyName] FROM SalesLT.Customer";
-            $getProducts = sqlsrv_query($conn, $tsql);
-            if ($getProducts == FALSE)
+      function OpenConnection()
+      {
+          $serverName = "cosc3380-zoo.database.windows.net";
+          $connectionOptions = array("Database"=>"UH_Zoo_Database",
+              "Uid"=>"dhphan3", "PWD"=>"K7EY2kh@ri*oJH9");
+          $conn = sqlsrv_connect($serverName, $connectionOptions);
+          if($conn == false)
               die(FormatErrors(sqlsrv_errors()));
-            $productCount = 0;
-            while($row = sqlsrv_fetch_array($getProducts, SQLSRV_FETCH_ASSOC))
-            {
-              echo($row['CompanyName']);
-              echo("<br/>");
-              $productCount++;
-            }
-            sqlsrv_free_stmt($getProducts);
-            sqlsrv_close($conn);
-          }
-          catch(Exception $e)
-          {
-            echo("Error!");
-          }
+  
+          return $conn;
       }
-      echo("hello world");
     ?>
   </body>
 </html>
