@@ -1,3 +1,15 @@
+function OpenConnection()
+    {
+        $serverName = "tcp:cosc3380-zoo.database.windows.net,1433";
+        $connectionOptions = array("Database"=>"ZooDB",
+            "Uid"=>"dhphan3", "PWD"=>"MyPassword");
+        $conn = sqlsrv_connect($serverName, $connectionOptions);
+        if($conn == false)
+            die(FormatErrors(sqlsrv_errors()));
+
+        return $conn;
+    }
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,18 +24,6 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <style>
-	<?php
-	$serverName="cosc3380-zoo.database.windows.net";
-	$connectionInfo =array("Database"=>"ZooDB");
-	$conn=sqlsrv_connect($serverName, $connectionInfo);
-	if ($conn){
-		echo "Connection established.<br />";
-	}
-	else{
-		echo "Connection could not be established.<br />";
-		die(print_r(sqlsrv_errors(), true));
-	}
-	?>
 	
 body {
 	color: #566787;
