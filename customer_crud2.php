@@ -1,19 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <?php
-        $serverName = "cosc3380-zoo.database.windows.net";
-        $connectionOptions = array("Database"=>"UH_Zoo_Database",
-            "Uid"=>"dhphan3", "PWD"=>"K7EY2kh@ri*oJH9");
-        $conn = sqlsrv_connect($serverName, $connectionOptions);
-        if($conn){
-            echo"Connection establsihed.<br />";
-        }
-        else{
-            echo "Connection could not be established.<br />";
-            die( print_r( sqlsrv_errors(), true));
-        }
-        ?>
-    </head>
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Customer Crud</h1>
+    <p>this should work but idk why it's not working</p>
+    <?php 
+      function OpenConnection()
+      {
+          $serverName = "cosc3380-zoo.database.windows.net";
+          $connectionOptions = array("Database"=>"UH_Zoo_Database",
+              "Uid"=>"dhphan3", "PWD"=>"K7EY2kh@ri*oJH9");
+          $conn = sqlsrv_connect($serverName, $connectionOptions);
+          if($conn == false){
+            die(FormatErrors(sqlsrv_errors()));
+          } else {
+            echo("Connection made");
+          }
+          return $conn;
+      }
+      OpenConnection();
+    ?>
+  </body>
 </html>
