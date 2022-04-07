@@ -2,9 +2,9 @@
 <html lang="en">
     <head>
         <?php
-        $serverName = "tcp:cosc3380-zoo.database.windows.net,1433";
-        $connectionOptions = array("Database"=>"ZooDB",
-            "Uid"=>"dhphan3", "PWD"=>"MyPassword");
+        $serverName = "cosc3380-zoo.database.windows.net";
+        $connectionOptions = array("Database"=>"UH_Zoo_Database",
+            "Uid"=>"dhphan3", "PWD"=>"K7EY2kh@ri*oJH9");
         $conn = sqlsrv_connect($serverName, $connectionOptions);
         if($conn){
             echo"Connection establsihed.<br />";
