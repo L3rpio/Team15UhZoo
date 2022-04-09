@@ -258,24 +258,7 @@ table.table .avatar {
 						<td>thomashardy@mail.com</td>
 						<td>(171) 555-2222</td> -->
 						<!-- were in query 7-->
-						<?php
-						$conn = OpenConnection();
-						$tsql = "SELECT * FROM Customer";
-						$getProducts = sqlsrv_query($conn, $tsql);
-						if ($getProducts == FALSE)
-							echo("nothing retrieved");
-							die(FormatErrors(sqlsrv_errors()));
-							
-						$productCount = 0;
-						while($row = sqlsrv_fetch_array($getProducts, SQLSRV_FETCH_ASSOC))
-						{
-							echo "<tr><td>$row[0]</td>>td>$row[1]<td></tr>";
-							echo("<br/>");
-							$productCount++;
-						}
-						sqlsrv_free_stmt($getProducts);
-						sqlsrv_close($conn);
-						?>
+						
 						
 						<td> 
 							<a href="#editCustomerModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
