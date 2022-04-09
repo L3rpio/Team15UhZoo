@@ -18,10 +18,11 @@
         try
         {
             $conn = OpenConnection();
-            $tsql = "SELECT [Fname,Lname,Phone_number] FROM dbo.Customer";
+            $tsql = "SELECT [*] FROM dbo.Customer";
             $getProducts = sqlsrv_query($conn, $tsql);
             if ($getProducts == FALSE)
                 die(FormatErrors(sqlsrv_errors()));
+				echo("nothing retrieved");
             $productCount = 0;
             while($row = sqlsrv_fetch_array($getProducts, SQLSRV_FETCH_ASSOC))
             {
