@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <?php 
       function OpenConnection()
@@ -10,12 +8,35 @@
           $conn = sqlsrv_connect($serverName, $connectionOptions);
           if($conn == false){
             die(FormatErrors(sqlsrv_errors()));
-          } else {
-            echo("Connection made");
+			echo("Connection could not be established");
           }
           return $conn;
       }
-      OpenConnection();
+    //   OpenConnection();
+	function ReadData()
+    {
+        try
+        {
+            $conn = OpenConnection();
+            $tsql = "SELECT [Fname,Lname,Phone_number] FROM dbo.Customer";
+            $getProducts = sqlsrv_query($conn, $tsql);
+            if ($getProducts == FALSE)
+                die(FormatErrors(sqlsrv_errors()));
+            $productCount = 0;
+            while($row = sqlsrv_fetch_array($getProducts, SQLSRV_FETCH_ASSOC))
+            {
+                echo "<tr><td>$row[0]</td>>td>$row[1]<td></tr>";
+                echo("<br/>");
+                $productCount++;
+            }
+            sqlsrv_free_stmt($getProducts);
+            sqlsrv_close($conn);
+        }
+        catch(Exception $e)
+        {
+            echo("Error!");
+        }
+    }
     ?>
 <html lang="en">
 <head>
@@ -231,10 +252,11 @@ table.table .avatar {
 				</thead>
 				<tbody>
 					<tr>
-						<td>Thomas Hardy</td>
+						<!-- <td>Thomas Hardy</td>
 						<td>thomashardy@mail.com</td>
-						<td>(171) 555-2222</td>
-						<td>
+						<td>(171) 555-2222</td> -->
+						$ReadData();
+						<td> 
 							<a href="#editCustomerModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
 						</td>
 					</tr>
