@@ -39,6 +39,7 @@
             echo("Error!");
         }
     }
+	ReadData();
     ?>
 <html lang="en">
 <head>
