@@ -19,8 +19,8 @@
       }
       echo "Connected succesfully";
       
+      $sql = "uh_zoo; SELECT * FROM Customer;";
       
-      $sql = "SELECT * FROM Customer";
       $result = mysqli_query($conn, $sql);
 
       if (mysqli_num_rows($result) > 0) {
