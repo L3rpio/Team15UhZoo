@@ -13,7 +13,7 @@
       $serverName = "uh-zoo-db.mysql.database.azure.com";
       $username ="zooadmin";
       $password= "Ab!2Xui5efd3!L&";
-      $conn = new mysqli($serverName, $username, $password,"uh_zoo");
+      $conn = new mysqli($serverName, $username, $password,'uh_zoo');
       if($conn == false){
         die("Connection failed: " . $conn->connect_error);
       }
