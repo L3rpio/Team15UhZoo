@@ -19,7 +19,7 @@
     <title>testing queries</title>
   </head>
   <body>
-    hi there 4 <br>
+    hi there 5 <br>
     <?php
       //OpenConnection();
        $conn = OpenConnection();
@@ -27,6 +27,7 @@
        $getProducts = sqlsrv_query($conn, $tsql); 
        $resultCheck=mysqli_num_rows($getProducts);
        if ($resultCheck > 0){
+         echo("entered the if statement");
          while ($row = mysqli_fetch_assoc($result)){
            echo $row['Customer_First_Name'] . "<br>";
         }
