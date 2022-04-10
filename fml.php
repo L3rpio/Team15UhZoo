@@ -21,11 +21,12 @@
       
       //$result = $conn->query("SELECT DATABASE('uh_zoo)");
       //$row = $result->fetch_row();
-      echo "Connected succesfully ->";
-      $sql = 'SELECT * FROM customer';
+     
+      $sql = 'SELECT * FROM customer;';
       $result = mysqli_query($conn, $sql);
       $customers = mysqli_fetch_all($result, MYSQLI_ASSOC);
       print_r($customers);
+      echo "Connected succesfully ->";
       //echo $row[0];
 //       mysql_select_db('uh_zoo') or die(mysql_error());
 // ;     $sql="SELECT * FROM Customer;";
