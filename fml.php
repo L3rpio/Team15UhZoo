@@ -19,7 +19,7 @@
     <title>testing queries</title>
   </head>
   <body>
-    hi there 6 <br>
+    hi there 7 <br>
     <?php
       //OpenConnection();
        $conn = OpenConnection();
@@ -28,12 +28,12 @@
        $resultCheck=mysqli_num_rows($getProducts);
        if ($resultCheck > 0){
          echo("entered the if statement");
-         while ($row = mysqli_fetch_assoc($result)){
-           echo $row['Customer_First_Name'] . "<br>";
-        }
+        // while ($row = mysqli_fetch_assoc($result)){
+          // echo $row['Customer_First_Name'] . "<br>";
+        //}
        }
       ?>
     
-    howdy changed database <br>
+    howdy changed commented while loop <br>
   </body>
 </html>
