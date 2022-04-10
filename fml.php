@@ -21,7 +21,8 @@
       
       $result = $conn->query("SELECT DATABASE()");
       $row = $result->fetch_row();
-      printf("Default database is %s.\n", $row[0]);
+      echo "Connected succesfully ->";
+      echo $row[0];
 //       mysql_select_db('uh_zoo') or die(mysql_error());
 // ;     $sql="SELECT * FROM Customer;";
 //       $result = mysqli_query($conn, $sql);
