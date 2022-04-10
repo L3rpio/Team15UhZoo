@@ -19,13 +19,14 @@
     <title>testing queries</title>
   </head>
   <body>
-    hi there 8 <br>
+    hi there 9 <br>
     <?php
       //OpenConnection();
        $conn = OpenConnection();
        $tsql = "SELECT * FROM dbo.Customer;";
        $getProducts = sqlsrv_query($conn, $tsql); 
        $resultCheck=mysqli_num_rows($getProducts);
+       $row = mysqli_fetch_assoc($result);
        echo $row['Customer_First_Name'] . "<br>";
        //if ($resultCheck > 0){
          //echo("entered the if statement");
