@@ -10,6 +10,7 @@
         echo("Connection could not be established");
         die(FormatErrors(sqlsrv_errors()));
       }
+      echo("Connection made if we made it at this point");
       return $conn;
   }
   ?>
