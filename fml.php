@@ -14,17 +14,10 @@
       $username ="zooadmin";
       $password= "Ab!2Xui5efd3!L&";
       $conn = new mysqli($serverName, $username, $password,"uh_zoo");
-      $sql = "INSERT INTO TABLE customer(first_name, lastname, username, password) VALUES('Leroy', 'Phan', 'leroyphan12', 'Dragon12');"
-//       if($conn->query($sql) === TRUE){
-//         echo "New record created";
-//       } else {
-//         echo "error";
-//       }
       if($conn == false){
         die("Connection failed: " . $conn->connect_error);
-      } else {
-        echo "Connected succesfully";
       }
+      echo "Connected succesfully";
       
       //$result = $conn->query("SELECT DATABASE('uh_zoo)");
       //$row = $result->fetch_row();
@@ -32,20 +25,21 @@
       //mysql_select_db("uh_zoo", $conn);
       $sql="SELECT * FROM Customer";
       $result = mysqli_query($conn, $sql);
-      die(mysqli_error($conn));
-      if (mysqli_num_rows($result) > 0) {
-      // output data of each row
-        while($row = mysqli_fetch_assoc($result)) {
-          echo $row[0];
-          }
-      } else {
-        echo "0 results";
-      }
+      $pizzas=mysqli_fetch_all($result, MYSQLI_ASSOC);
+      print_r($pizzas);
+      // if (mysqli_num_rows($result) > 0) {
+      // // output data of each row
+      //   while($row = mysqli_fetch_assoc($result)) {
+      //     echo $row[0];
+      //     }
+      // } else {
+      //   echo "0 results";
+      // }
       die(mysqli_error($conn));
     }
     OpenConnection();
   ?>
-  <h1>Hello there!</h1>
+  it finished <br>
   
 </body>
 </html>
