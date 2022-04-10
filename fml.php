@@ -28,11 +28,11 @@
        $resultCheck=mysqli_num_rows($getProducts);
        if ($resultCheck > 0){
          while ($row = mysqli_fetch_assoc($result)){
-           echo $row[0] . "<br>";
+           echo $row['Customer] . "<br>";
         }
        }
       ?>
     
-    howdy while loop check? <br>
+    howdy while loop check 2? <br>
   </body>
 </html>
