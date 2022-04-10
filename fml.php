@@ -24,10 +24,11 @@
       //OpenConnection();
        $conn = OpenConnection();
        $tsql = "SELECT * FROM dbo.Customer;";
-       $getProducts = sqlsrv_query($conn, $tsql); 
-       $resultCheck=mysqli_num_rows($getProducts);
-       $row = mysqli_fetch_assoc($result);
-       echo $row['Customer_First_Name'] . "<br>";
+       $getProducts = sqlsrv_query($conn, $tsql);
+       echo("were not retrieving the table idk why fml");
+       //$resultCheck=mysqli_num_rows($getProducts);
+       //$row = mysqli_fetch_assoc($result);
+       //echo $row['Customer_First_Name'] . "<br>";
        //if ($resultCheck > 0){
          //echo("entered the if statement");
         // while ($row = mysqli_fetch_assoc($result)){
