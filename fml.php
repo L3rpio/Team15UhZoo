@@ -19,7 +19,7 @@
     <title>testing queries</title>
   </head>
   <body>
-    hi there <br>
+    hi there 2 <br>
     <?php
       //OpenConnection();
        $conn = OpenConnection();
@@ -28,7 +28,7 @@
        $resultCheck=mysqli_num_rows($getProducts);
        if ($resultCheck > 0){
          while ($row = mysqli_fetch_assoc($result)){
-           echo $row['Customer] . "<br>";
+           echo $row['first_name'] . "<br>";
         }
        }
       ?>
