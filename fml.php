@@ -20,7 +20,6 @@
       } else {
         echo "error";
       }
-      $conn->close();
 //       if($conn == false){
 //         die("Connection failed: " . $conn->connect_error);
 //       }
