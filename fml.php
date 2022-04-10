@@ -7,8 +7,8 @@
           "Uid"=>"dhphan3", "PWD"=>"K7EY2kh@ri*oJH9");
       $conn = sqlsrv_connect($serverName, $connectionOptions);
       if($conn == false){
+        echo("Connection could not be established");
         die(FormatErrors(sqlsrv_errors()));
-  echo("Connection could not be established");
       }
       return $conn;
   }
