@@ -1,31 +1,34 @@
 <!DOCTYPE html>
+<?php
+  function OpenConnection()
+  {
+      $serverName = "cosc3380-zoo.database.windows.net";
+      $connectionOptions = array("Database"=>"UH_Zoo_Database",
+          "Uid"=>"dhphan3", "PWD"=>"K7EY2kh@ri*oJH9");
+      $conn = sqlsrv_connect($serverName, $connectionOptions);
+      if($conn == false){
+        die(FormatErrors(sqlsrv_errors()));
+  echo("Connection could not be established");
+      }
+      return $conn;
+  }
+  ?>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles.css">
-    <title>Document</title>
+    <title>testing queries</title>
   </head>
   <body>
-    <h1>Hello guys!</h1>
-    <p>this should work but idk why it's not working</p>
-    <?php 
-      function OpenConnection()
-      {
-          $serverName = "cosc3380-zoo.database.windows.net";
-          $connectionOptions = array("Database"=>"UH_Zoo_Database",
-              "Uid"=>"dhphan3", "PWD"=>"K7EY2kh@ri*oJH9");
-          $conn = sqlsrv_connect($serverName, $connectionOptions);
-          if($conn == false){
-            die(FormatErrors(sqlsrv_errors()));
-          } else {
-            echo("Connection made");
-          }
-          return $conn;
-      }
+    <?php
       OpenConnection();
-    ?>
+      // $conn = OpenConnection();
+      // $tsql = "SELECT * FROM Customer;";
+      // $getProducts = sqlsrv_query($conn, $tsql); 
+      // $resultCheck=mysqli_num_rows($getProducts);
+      // if ($resultCheck > 0){
+      //   while ($row = mysqli_fetch_assoc($result)){
+      //     echo $row[0] . "<br>";
+      //   }
+      // }
+      ?>
   </body>
 </html>
