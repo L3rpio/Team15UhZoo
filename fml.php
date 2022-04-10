@@ -19,14 +19,17 @@
       }
       echo "Connected succesfully";
       
-      $sql = "USE uh_zoo; SELECT * FROM Customer;";
+      $sql = "USE uh_zoo;";
+
       
+      $result = mysqli_query($conn, $sql);
+      $sql="SELECT * FROM Customer;";
       $result = mysqli_query($conn, $sql);
 
       if (mysqli_num_rows($result) > 0) {
       // output data of each row
         while($row = mysqli_fetch_assoc($result)) {
-          echo "id: " . $row[0]. "<br>";
+          echo $row[0];
           }
       } else {
         echo "0 results";
