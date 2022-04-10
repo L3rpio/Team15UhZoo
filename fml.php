@@ -19,7 +19,7 @@
       }
       echo "Connected succesfully";
       
-      $result = $conn->query("SELECT DATABASE()");
+      $result = $conn->query("SELECT DATABASE('uh_zoo)");
       $row = $result->fetch_row();
       echo "Connected succesfully ->";
       echo $row[0];
