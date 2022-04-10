@@ -16,8 +16,10 @@
       $conn = new mysqli($serverName, $username, $password,"uh_zoo");
       if($conn == false){
         die("Connection failed: " . $conn->connect_error);
+      } else {
+        echo "Connected succesfully";
       }
-      echo "Connected succesfully";
+      
       
       //$result = $conn->query("SELECT DATABASE('uh_zoo)");
       //$row = $result->fetch_row();
