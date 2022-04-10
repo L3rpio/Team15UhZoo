@@ -3,7 +3,7 @@
   function OpenConnection()
   {
       $serverName = "cosc3380-zoo.database.windows.net";
-      $connectionOptions = array("Database"=>"UH_Zoo_Database",
+      $connectionOptions = array("Database"=>"ZooDatabaseDump",
           "Uid"=>"dhphan3", "PWD"=>"K7EY2kh@ri*oJH9");
       $conn = sqlsrv_connect($serverName, $connectionOptions);
       if($conn == false){
@@ -19,7 +19,7 @@
     <title>testing queries</title>
   </head>
   <body>
-    hi there 3 <br>
+    hi there 4 <br>
     <?php
       //OpenConnection();
        $conn = OpenConnection();
@@ -33,6 +33,6 @@
        }
       ?>
     
-    howdy while loop check 2? <br>
+    howdy changed database <br>
   </body>
 </html>
