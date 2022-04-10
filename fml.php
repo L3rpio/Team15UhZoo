@@ -19,21 +19,22 @@
     <title>testing queries</title>
   </head>
   <body>
-    hi there 7 <br>
+    hi there 8 <br>
     <?php
       //OpenConnection();
        $conn = OpenConnection();
        $tsql = "SELECT * FROM dbo.Customer;";
        $getProducts = sqlsrv_query($conn, $tsql); 
        $resultCheck=mysqli_num_rows($getProducts);
-       if ($resultCheck > 0){
-         echo("entered the if statement");
+       echo $row['Customer_First_Name'] . "<br>";
+       //if ($resultCheck > 0){
+         //echo("entered the if statement");
         // while ($row = mysqli_fetch_assoc($result)){
           // echo $row['Customer_First_Name'] . "<br>";
         //}
        }
       ?>
     
-    howdy changed commented while loop <br>
+    howdy changed commented while loop and if <br>
   </body>
 </html>
