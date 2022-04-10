@@ -19,7 +19,7 @@
       }
       echo "Connected succesfully";
       
-      $sql = "uh_zoo; SELECT * FROM Customer;";
+      $sql = "USE uh_zoo; SELECT * FROM Customer;";
       
       $result = mysqli_query($conn, $sql);
 
