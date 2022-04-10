@@ -24,15 +24,15 @@
       //OpenConnection();
        $conn = OpenConnection();
        $tsql = "SELECT * FROM Customer;";
-//       $getProducts = sqlsrv_query($conn, $tsql); 
-//       $resultCheck=mysqli_num_rows($getProducts);
-//       if ($resultCheck > 0){
-//         while ($row = mysqli_fetch_assoc($result)){
-//           echo $row[0] . "<br>";
-//        }
-//      }
+       $getProducts = sqlsrv_query($conn, $tsql); 
+       $resultCheck=mysqli_num_rows($getProducts);
+       if ($resultCheck > 0){
+         while ($row = mysqli_fetch_assoc($result)){
+           echo $row[0] . "<br>";
+        }
+       }
       ?>
     
-    howdy ayo select all? <br>
+    howdy while loop check? <br>
   </body>
 </html>
