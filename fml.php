@@ -21,8 +21,8 @@
   <body>
     hi there <br>
     <?php
-      OpenConnection();
-//       $conn = OpenConnection();
+      //OpenConnection();
+       $conn = OpenConnection();
 //       $tsql = "SELECT * FROM Customer;";
 //       $getProducts = sqlsrv_query($conn, $tsql); 
 //       $resultCheck=mysqli_num_rows($getProducts);
