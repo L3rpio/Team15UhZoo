@@ -13,35 +13,27 @@
       $serverName = "uh-zoo-db.mysql.database.azure.com";
       $username ="zooadmin";
       $password= "Ab!2Xui5efd3!L&";
-      $conn = new mysqli($serverName, $username, $password,"uh_zoo");
+      $conn = new mysqli($serverName, $username, $password);
       if($conn == false){
         die("Connection failed: " . $conn->connect_error);
-      } else {
-        echo "Connected succesfully";
       }
-      
+      echo "Connected succesfully";
       
       //$result = $conn->query("SELECT DATABASE('uh_zoo)");
       //$row = $result->fetch_row();
-     
-      $sql = 'SELECT * FROM Customer;';
-      $result = mysqli_query($conn, $sql);
-      $customers = mysqli_fetch_all($result, MYSQLI_ASSOC);
-      print_r($customers);
-      echo "Connected succesfully ->";
       //echo $row[0];
-//       mysql_select_db('uh_zoo') or die(mysql_error());
-// ;     $sql="SELECT * FROM Customer;";
-//       $result = mysqli_query($conn, $sql);
+      mysql_select_db("uh_zoo", $conn);
+      $sql="SELECT * FROM Customer;";
+      $result = mysqli_query($conn, $sql);
 
-//       if (mysqli_num_rows($result) > 0) {
-//       // output data of each row
-//         while($row = mysqli_fetch_assoc($result)) {
-//           echo $row[0];
-//           }
-//       } else {
-//         echo "0 results";
-//       }
+      if (mysqli_num_rows($result) > 0) {
+      // output data of each row
+        while($row = mysqli_fetch_assoc($result)) {
+          echo $row[0];
+          }
+      } else {
+        echo "0 results";
+      }
     }
     OpenConnection();
   ?>
@@ -49,3 +41,4 @@
   
 </body>
 </html>
+
