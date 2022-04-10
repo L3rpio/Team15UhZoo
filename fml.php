@@ -23,7 +23,7 @@
     <?php
       //OpenConnection();
        $conn = OpenConnection();
-//       $tsql = "SELECT * FROM Customer;";
+       $tsql = "SELECT * FROM Customer;";
 //       $getProducts = sqlsrv_query($conn, $tsql); 
 //       $resultCheck=mysqli_num_rows($getProducts);
 //       if ($resultCheck > 0){
@@ -33,6 +33,6 @@
 //      }
       ?>
     
-    howdy <br>
+    howdy ayo select all? <br>
   </body>
 </html>
