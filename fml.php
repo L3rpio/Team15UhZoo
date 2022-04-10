@@ -19,11 +19,11 @@
     <title>testing queries</title>
   </head>
   <body>
-    hi there 5 <br>
+    hi there 6 <br>
     <?php
       //OpenConnection();
        $conn = OpenConnection();
-       $tsql = "SELECT * FROM Customer;";
+       $tsql = "SELECT * FROM dbo.Customer;";
        $getProducts = sqlsrv_query($conn, $tsql); 
        $resultCheck=mysqli_num_rows($getProducts);
        if ($resultCheck > 0){
