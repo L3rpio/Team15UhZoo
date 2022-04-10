@@ -21,13 +21,13 @@
     hi there <br>
     <?php
       OpenConnection();
-      $conn = OpenConnection();
-      $tsql = "SELECT * FROM Customer;";
-      $getProducts = sqlsrv_query($conn, $tsql); 
-      $resultCheck=mysqli_num_rows($getProducts);
-      if ($resultCheck > 0){
-        while ($row = mysqli_fetch_assoc($result)){
-          echo $row[0] . "<br>";
+//       $conn = OpenConnection();
+//       $tsql = "SELECT * FROM Customer;";
+//       $getProducts = sqlsrv_query($conn, $tsql); 
+//       $resultCheck=mysqli_num_rows($getProducts);
+//       if ($resultCheck > 0){
+//         while ($row = mysqli_fetch_assoc($result)){
+//           echo $row[0] . "<br>";
         }
       }
       ?>
