@@ -23,9 +23,9 @@
       //$row = $result->fetch_row();
       //echo $row[0];
       //mysql_select_db("uh_zoo", $conn);
-      $sql="SELECT * FROM Customer;";
+      $sql="SELECT * FROM Customer";
       $result = mysqli_query($conn, $sql);
-
+      die(mysqli_error($conn));
       if (mysqli_num_rows($result) > 0) {
       // output data of each row
         while($row = mysqli_fetch_assoc($result)) {
