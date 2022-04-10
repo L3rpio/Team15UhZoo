@@ -13,7 +13,7 @@
       $serverName = "uh-zoo-db.mysql.database.azure.com";
       $username ="zooadmin";
       $password= "Ab!2Xui5efd3!L&";
-      $conn = new mysqli($serverName, $username, $password);
+      $conn = new mysqli($serverName, $username, $password,"uh_zoo");
       if($conn == false){
         die("Connection failed: " . $conn->connect_error);
       }
@@ -22,7 +22,7 @@
       //$result = $conn->query("SELECT DATABASE('uh_zoo)");
       //$row = $result->fetch_row();
       //echo $row[0];
-      mysql_select_db("uh_zoo", $conn);
+      //mysql_select_db("uh_zoo", $conn);
       $sql="SELECT * FROM Customer;";
       $result = mysqli_query($conn, $sql);
 
@@ -34,6 +34,7 @@
       } else {
         echo "0 results";
       }
+      die(mysqli_error($conn));
     }
     OpenConnection();
   ?>
