@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>CRUD Data Table for Database with Modal Form</title>
+<title>Manange Customer Accounts</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -206,8 +206,6 @@ table.table .avatar {
 				<thead>
 					<tr>
 						<th>Name</th>
-						<th>Email</th>
-						<th>Phone</th>
 						<th>Actions</th>
 					</tr>
 				</thead>
@@ -223,9 +221,10 @@ table.table .avatar {
 						}
 						$sql="SELECT * FROM Customer";
 						$qry = mysqli_query($conn,$sql);
-				  
-						while($reslt=mysqli_fetch_array($qry)){
-						  echo $reslt["first_name"] . " " . $rslt["last_name"] . "<br />";
+						if($qry->rows > 0){
+							while($reslt=mysqli_fetch_array($qry)){
+							echo "<tr><td>" . $reslt["first_name"] . " " . $rslt["last_name"] . "</td></tr>";
+							}
 						}
 						mysqli_close($conn);
 						die(mysqli_error($conn));
