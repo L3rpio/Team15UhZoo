@@ -266,7 +266,7 @@ table.table .avatar {
 						<label>User name</label>
 						<input type="user_name" class="form-control" required>
 					</div>
-          <div class="form-group">
+          			<div class="form-group">
 						<label>Password</label>
 						<input type="pass_word" class="form-control" required>
 					</div>
