@@ -205,7 +205,9 @@ table.table .avatar {
 			<table class="table table-striped table-hover">
 				<thead>
 					<tr>
-						<th>Name</th>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>User name</th>
 						<th>Actions</th>
 					</tr>
 				</thead>
@@ -221,11 +223,11 @@ table.table .avatar {
 						}
 						$sql="SELECT * FROM Customer";
 						$result = $conn-> query($sql);
-            if ($result-> num_rows > 0){
-              while($row= $result-> fetch_assoc()){
-                echo "<tr><td>" . $row["first_name"] . "</td><td>" . $row["last_name"] . "</td></tr>";
-              }
-            }
+           				if ($result-> num_rows > 0){
+              				while($row= $result-> fetch_assoc()){
+                				echo "<tr><td>" . $row["first_name"] . "</td><td>" . $row["last_name"] . "</td><td>" . $row["user_name"] . "</td></tr>";
+              					}
+            			}
 						// if($qry->rows > 0){
 						// 	while($reslt=mysqli_fetch_array($qry)){
 						// 	echo $reslt[0];
