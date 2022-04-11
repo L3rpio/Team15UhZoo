@@ -42,7 +42,7 @@ else{
     header("location:/..GuestSignUp.php");
     exit();
 }
-
+ob_end_clean();
 
 // <!-- Cust ID
 // first_name

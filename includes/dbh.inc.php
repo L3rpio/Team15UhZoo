@@ -22,6 +22,7 @@ die(FormatErrors(sqlsrv_errors()));
 } else {
 echo("Connection made");
 }
+ob_end_clean();
 
 // function OpenConnection(){
 //     $serverName = "cosc3380-zoo.database.windows.net";

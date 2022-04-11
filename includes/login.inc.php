@@ -31,3 +31,4 @@ if(isset($_POST["submit"])){
 else{
     header("location: LoginPage.php");
 }
+ob_end_clean();

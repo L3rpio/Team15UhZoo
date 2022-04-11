@@ -6,3 +6,4 @@ session_destroy();
 
 header("location:../index.php?msg=loggedout");
 exit();
+ob_end_clean();
