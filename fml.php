@@ -32,5 +32,6 @@
       // }
       die(mysqli_error($conn));
     }
+    OpenConnection();
   ?>
 
