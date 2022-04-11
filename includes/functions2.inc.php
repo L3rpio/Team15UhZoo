@@ -50,12 +50,12 @@ function mismatchpassword($pass, $pwdrepeat) {
 
 echo "5";
 function login2($conn, $user, $pass){
-    $query = "SELECT * FROM Customer WHERE user_name='{$user}' AND pass_word='{$pass_word}';";
-    $result = mysqli_query($conn, $query);  
+    $query = "SELECT * FROM [dbo].[Customer] WHERE user_name='{$user}' AND pass_word='{$pass}';";
+    $result = sqlsrv_query($conn, $query);  
     if($result === false){
-        die("Connection failed: " . $conn->connect_error);
+    die( print_r( sqlsrv_errors(), true));
     }
-    if(mysqli_num_rows($result) != 1)
+    if(sqlsrv_has_rows($result) != 1)
     {
         header("location: LoginPage.php?error=wronglogin");
     }
@@ -65,9 +65,9 @@ function login2($conn, $user, $pass){
         #creates sessions
         session_start();
         echo "1";
-        $rows=mysqli_fetch_array($result);
+        $rows=sqlsrv_fetch_array($result);
         $_SESSION['id'][] = $rows['customer_id'];
-        $_SESSION['first_name'][] = $rows['first_name'];//not sure if this section has been translated to mysql properly
+        $_SESSION['first_name'][] = $rows['first_name'];
         $_SESSION['last_name'][] = $rows['last_name'];
         $_SESSION['user_name'][] = $rows['user_name'];
             // $_SESSION['id'] = $row['customer_id'];
@@ -101,12 +101,12 @@ echo "7";
 function createUser2($conn, $fname, $lname, $user, $pass, $email){
     //$sql = "INSERT INTO [dbo].[Customer] (first_name, last_name, user_name, pass_word, Email) VALUES (?, ?, ?, ?, ?) ";
     //$sql = "INSERT INTO [dbo].[Customer] (first_name, last_name, user_name, pass_word, Email) VALUES ($fname, $lname, $user, $pass, $email) ";
-    $sql = "INSERT INTO Customer ([first_name],
+    $sql = "INSERT INTO [dbo].[Customer] ([first_name],
     [last_name], 
     [user_name],
     [pass_word], 
     [Email]) VALUES ('$fname', '$lname', '$user', '$pass', '$email');";
-    $result = mysqli_query($conn, $sql);
+    $result = sqlsrv_query($conn, $sql);
 
     if($result){ echo "Data insertion success!";}
     else{ echo "Insertion Error!";}
