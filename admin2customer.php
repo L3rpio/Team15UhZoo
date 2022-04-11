@@ -199,7 +199,8 @@ table.table .avatar {
 					<div class="col-sm-6">
 						<h2>Manage <b>Customer Account</b></h2>
 					</div>
-					
+					<a href="#addCustomerModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Customer</span></a>
+<!--           <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>	 -->
 				</div>
 			</div>
 			<table class="table table-striped table-hover">
@@ -225,7 +226,8 @@ table.table .avatar {
 						$result = $conn-> query($sql);
            				if ($result-> num_rows > 0){
               				while($row= $result-> fetch_assoc()){
-                				echo "<tr><td>" . $row["first_name"] . "</td><td>" . $row["last_name"] . "</td><td>" . $row["user_name"] . "</td></tr>";
+                				echo "<tr><td>" . $row["first_name"] . "</td><td>" . $row["last_name"] . "</td><td>" . $row["user_name"] . "</td>";
+                        echo '<td> <a href="#editCustomerModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a> ' . " " . '<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a> </td> </tr>';
               					}
             			}
 						// if($qry->rows > 0){
@@ -241,7 +243,6 @@ table.table .avatar {
 						<td>thomashardy@mail.com</td>
 						<td>(171) 555-2222</td>
 						<td> -->
-						<a href="#editCustomerModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
 					
 				</tbody>
 			</table>
@@ -256,20 +257,20 @@ table.table .avatar {
 				<div class="modal-body">					
 					<div class="form-group">
 						<label> First Name</label>
-						<input type="first_name" class="form-control" required>
+						<input type="text" class="form-control" required>
 					</div>
 					<div class="form-group">
 						<label>Last Name</label>
 						<input type="last_name" class="form-control" required>
 					</div>
-					<!-- <div class="form-group">
+					<div class="form-group">
 						<label>User name</label>
 						<input type="user_name" class="form-control" required>
 					</div>
-          			<div class="form-group">
+          <div class="form-group">
 						<label>Password</label>
 						<input type="pass_word" class="form-control" required>
-					</div> -->
+					</div>
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
