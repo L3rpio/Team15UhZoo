@@ -1,19 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
 <?php
   function OpenConnection()
   {
       $serverName = "uh-zoo-db.mysql.database.azure.com";
       $username ="zooadmin";
       $password= "Ab!2Xui5efd3!L&";
-      $conn = new mysqli($serverName, $username, $password,'uh_zoo');
+      $conn = new mysqli($serverName, $username, $password,"uh_zoo");
       if($conn == false){
         die("Connection failed: " . $conn->connect_error);
       }
@@ -25,6 +16,9 @@
       $sql="SELECT * FROM Customer";
       $result = mysqli_query($conn, $sql);
       $pizzas=mysqli_fetch_all($result, MYSQLI_ASSOC);
+      while($rslt=mysqli_fetch_array($result)){
+            echo $rslt["first_name"];
+      }
       mysqli_free_result($result);
       mysqli_close($conn);
       print_r($pizzas);
@@ -40,6 +34,15 @@
     }
     OpenConnection();
   ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
 </body>
 </html>
 
