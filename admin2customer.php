@@ -249,23 +249,27 @@ table.table .avatar {
 	</div>        
 </div>
 <!-- Edit Modal HTML -->
-<!-- <div id="addEmployeeModal" class="modal fade"> -->
+< <div id="addCustomerModal" class="modal fade"> 
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<form>
 				<div class="modal-body">					
 					<div class="form-group">
-						<label>Name</label>
-						<input type="text" class="form-control" required>
-					</div>
-<!-- 					<div class="form-group">
-						<label>Email</label>
-						<input type="email" class="form-control" required>
+						<label> First Name</label>
+						<input type="first_name" class="form-control" required>
 					</div>
 					<div class="form-group">
-						<label>Phone</label>
-						<input type="text" class="form-control" required>
-					</div>					 -->
+						<label>Last Name</label>
+						<input type="last_name" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label>User name</label>
+						<input type="user_name" class="form-control" required>
+					</div>
+          <div class="form-group">
+						<label>Password</label>
+						<input type="pass_word" class="form-control" required>
+					</div>
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
@@ -281,21 +285,25 @@ table.table .avatar {
 		<div class="modal-content">
 			<form>
 				<div class="modal-header">						
-					<h4 class="modal-title">Edit Customer/h4>
+					<h4 class="modal-title">Edit Customer</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">					
 					<div class="form-group">
-						<label>Name</label>
+						<label>First Name</label>
+						<input type="text" class="form-control" required>
+					</div>
+          <div class="form-group">
+						<label> Last Name</label>
 						<input type="text" class="form-control" required>
 					</div>
 					<div class="form-group">
-						<label>Email</label>
+						<label>User name</label>
 						<input type="email" class="form-control" required>
 					</div>
 		
 					<div class="form-group">
-						<label>Phone</label>
+						<label>Password</label>
 						<input type="text" class="form-control" required>
 					</div>					
 				</div>
