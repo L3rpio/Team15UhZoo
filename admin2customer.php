@@ -225,7 +225,7 @@ table.table .avatar {
 						$qry = mysqli_query($conn,$sql);
 				  
 						while($reslt=mysqli_fetch_array($qry)){
-						  echo "<td>" . $reslt["first_name"] . " " . $rslt["last_name"] . "</td>";
+						  echo "<td>" . $reslt["first_name"] . " " . $rslt["last_name"] . "</td>" . "<br>";
 						}
 						mysqli_close($conn);
 						die(mysqli_error($conn));
