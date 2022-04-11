@@ -56,7 +56,7 @@ function login2($conn, $user, $pass){
     }
     if(sqlsrv_has_rows($result) != 1)
     {
-        header("location:../LoginPage.php?error=wronglogin");
+        header("location: LoginPage.php?error=wronglogin");
     }
     else
     {
@@ -72,7 +72,7 @@ function login2($conn, $user, $pass){
             $_SESSION['user_name'] = $row['user_name'];
         }
         #redirects user
-        header("Location: ../?msg=loggedin");
+        header("Location: index.php?msg=loggedin");
     }
 }
 echo "6";
