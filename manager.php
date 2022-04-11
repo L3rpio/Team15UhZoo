@@ -96,7 +96,7 @@
                   $employeeEmail = $employee["employee_email"];
                   $wage = $employee["hourly_wage"];
                   $hoursWorked = $employee["hours_worked"];
-                  echo "<td>" . $employeeFirstName . " " . $employeeLastName."<td>";
+                  echo "<td>" . $employeeFirstName . " " . $employeeLastName."</td>";
                   echo "<td>" . $employeeEmail . "</td>";
                   echo "<td>" . $employeeAddr . "</td>";
                   echo "<td>" . $wage . "</td>";
