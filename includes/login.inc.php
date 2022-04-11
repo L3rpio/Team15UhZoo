@@ -1,7 +1,7 @@
 <?php
 
 if(isset($_POST["submit"])){
-    //echo "User logging in...";
+    echo "User logging in";
 
     $user = $_POST["username"];
     $pass = $_POST["password"];
@@ -13,7 +13,8 @@ if(isset($_POST["submit"])){
         header("location: ../LoginPage.php?error=emptyinput");
         exit();
     }
-
+    echo "</br>";
+    echo "<User logging in.>";
 
     login2($conn,$user, $pass);
     header("Location: ../?msg=loggedin");
