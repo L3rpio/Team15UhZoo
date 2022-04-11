@@ -16,8 +16,9 @@ if(isset($_POST["submit"])){
 
 
     login2($conn,$user, $pass);
+    header("Location: ../?msg=loggedin");
 
 }
 else{
-    header("location:/..LoginPage.php");
+    header("location:../LoginPage.php");
 }
