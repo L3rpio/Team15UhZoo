@@ -227,7 +227,7 @@ table.table .avatar {
 							}
 						}
 						mysqli_close($conn);
-						die(mysqli_error($conn));
+						//die(mysqli_error($conn));
 						?>
 						<!--
 						<td>Thomas Hardy</td>
