@@ -197,7 +197,7 @@ table.table .avatar {
 			<div class="table-title">
 				<div class="row">
 					<div class="col-sm-6">
-						<h2>Manage <b>Your Customer Account</b></h2>
+						<h2>Manage <b>Customer Account</b></h2>
 					</div>
 					
 				</div>
@@ -225,7 +225,7 @@ table.table .avatar {
 						$qry = mysqli_query($conn,$sql);
 				  
 						while($reslt=mysqli_fetch_array($qry)){
-						  echo "<td>" . $reslt["first_name"] . " " . $rslt["last_name"] . "</td>" . "<br />";
+						  echo $reslt["first_name"] . " " . $rslt["last_name"] . "<br />";
 						}
 						mysqli_close($conn);
 						die(mysqli_error($conn));
