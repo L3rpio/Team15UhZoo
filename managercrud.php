@@ -11,6 +11,8 @@
    $result = mysqli_query($conn, $sql);
    $employees = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
+   
+   echo "hello there";
 
    mysqli_close($conn);
    die(mysqli_error($conn));
