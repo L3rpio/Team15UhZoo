@@ -71,7 +71,7 @@
     <!-- Header-->
     <header class="bg-dark py-5">
       <div class="container px-5">
-        Last changed 12:31am apr11
+        Last changed 12:37am apr11
         <div class="row gx-5 justify-content-center">
           <div class="col-lg-6">
             <div class="text-center my-5">
@@ -79,6 +79,7 @@
                 Welcome to the Zoo of the University of Houston
                 <?php
                             ob_start();
+                            session_start();
                             if(isset($_GET["msg"])){
                               if($_GET["msg"] == "loggedout"){
                                   echo "</br>";
