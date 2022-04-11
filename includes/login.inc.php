@@ -7,6 +7,7 @@ if(isset($_POST["submit"])){
     $pass = $_POST["password"];
 
     require_once 'dbh.inc.php';
+    echo "User logging in.";
     require_once 'functions.inc.php';
 
     if(emptyInputLogin($user, $pass) !== false){
@@ -14,7 +15,7 @@ if(isset($_POST["submit"])){
         exit();
     }
     echo "</br>";
-    echo "<User logging in.>";
+    echo "<User logging in..>";
 
     login2($conn,$user, $pass);
     header("Location: ../?msg=loggedin");

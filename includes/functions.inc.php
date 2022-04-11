@@ -1,6 +1,6 @@
 <?php
 
-
+echo "1";
 function emptyInputSignup($email, $fname, $lname,$user, $pass,$pwdrepeat)
 {
     $result;
@@ -11,7 +11,7 @@ function emptyInputSignup($email, $fname, $lname,$user, $pass,$pwdrepeat)
     else{ $result = false;}
     return $result;
 }
-
+echo "2";
 function invalidUID($user){
     $result;
     if(!preg_match("/^[a-zA-Z0-9]*$/", $user)){
@@ -22,7 +22,7 @@ function invalidUID($user){
     }
     return $result;
 }
-
+echo "3";
 function bademail($email) {
     $result;
     if (!filter_var($email, FILTER_VALIDATE_EMAIL))
@@ -34,7 +34,7 @@ function bademail($email) {
     }
     return $result;
 }
-
+echo "4";
 function mismatchpassword($pass, $pwdrepeat) {
     $result;
     if ($pass!== $pwdrepeat)
@@ -47,7 +47,7 @@ function mismatchpassword($pass, $pwdrepeat) {
     return $result;
 }
 
-
+echo "5";
 function login2($conn, $user, $pass){
     $query = "SELECT * FROM [dbo].[Customer] WHERE user_name='{$user}' AND pass_word='{$pass}';";
     $result = sqlsrv_query($conn, $query);  
@@ -75,7 +75,7 @@ function login2($conn, $user, $pass){
         header("Location: ../?msg=loggedin");
     }
 }
-
+echo "6";
 // function usertaken2($conn, $user, $email){
 //     $sql = "SELECT * FROM Customer WHERE user_name = ? OR Email = ?;";
 //     $resultData = sqlsrv_query($conn, $sql); 
@@ -86,7 +86,7 @@ function login2($conn, $user, $pass){
 // }
 
 
-
+echo "7";
 function createUser2($conn, $fname, $lname, $user, $pass, $email){
     //$sql = "INSERT INTO [dbo].[Customer] (first_name, last_name, user_name, pass_word, Email) VALUES (?, ?, ?, ?, ?) ";
     //$sql = "INSERT INTO [dbo].[Customer] (first_name, last_name, user_name, pass_word, Email) VALUES ($fname, $lname, $user, $pass, $email) ";
@@ -113,7 +113,7 @@ function createUser2($conn, $fname, $lname, $user, $pass, $email){
     // }
 }
 
-
+echo "8";
 function emptyInputLogin($user, $pass)
 {
     $result;
