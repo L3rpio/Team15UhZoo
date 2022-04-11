@@ -14,9 +14,7 @@
   </body>
 </html>
  -->
- <?php 
-      session_start();
-      ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -71,7 +69,7 @@
     <!-- Header-->
     <header class="bg-dark py-5">
       <div class="container px-5">
-        Last changed 12:37am apr11
+        Last changed 12:56am apr11
         <div class="row gx-5 justify-content-center">
           <div class="col-lg-6">
             <div class="text-center my-5">
@@ -101,13 +99,13 @@
                               echo "</br>";
                               echo "<p>Hello! You have logged in!</p>";
                               echo "Username: ";
-                              echo $_SESSION['user_name'];
+                              echo $_SESSION['user_name'][0];
                               echo "</br>";
                               echo "First Name: ";
-                              echo $_SESSION['first_name'];
+                              echo $_SESSION['first_name'][0];
                               echo "</br>";
                               echo "Last Name: ";
-                              echo $_SESSION['last_name'];
+                              echo $_SESSION['last_name'][0];
                               echo "</br>";
                               echo "<a href='profile.php'>Profile Page</a>";
                               echo "</br>";

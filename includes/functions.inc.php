@@ -62,16 +62,24 @@ function login2($conn, $user, $pass){
     else
     {
         echo "User and password matched!";
-    
         #creates sessions
         session_start();
         echo "1";
-        while($row = sqlsrv_fetch_array($result)){
-            $_SESSION['id'] = $row['customer_id'];
-            $_SESSION['first_name'] = $row['first_name'];
-            $_SESSION['last_name'] = $row['last_name'];
-            $_SESSION['user_name'] = $row['user_name'];
-        }
+        $rows=sqlsrv_fetch_array($result);
+        $_SESSION['id'][] = $rows['customer_id'];
+        $_SESSION['first_name'][] = $rows['first_name'];
+        $_SESSION['last_name'][] = $rows['last_name'];
+        $_SESSION['user_name'][] = $rows['user_name'];
+            // $_SESSION['id'] = $row['customer_id'];
+            // $_SESSION['first_name'] = $row['first_name'];
+            // $_SESSION['last_name'] = $row['last_name'];
+            // $_SESSION['user_name'] = $row['user_name'];
+        // while($row = sqlsrv_fetch_array($result)){
+        //     $_SESSION['id'] = $row['customer_id'];
+        //     $_SESSION['first_name'] = $row['first_name'];
+        //     $_SESSION['last_name'] = $row['last_name'];
+        //     $_SESSION['user_name'] = $row['user_name'];
+        // }
         echo "2";
         #redirects user
         header("Location: ../index.php?msg=loggedin");
