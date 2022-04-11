@@ -12,7 +12,7 @@ if(isset($_POST["submit"])){
     echo "User logging in..";
 
     if(emptyInputLogin($user, $pass) !== false){
-        header("location: ../LoginPage.php?error=emptyinput");
+        header("location: /LoginPage.php?error=emptyinput");
         exit();
     }
     echo "</br>";
