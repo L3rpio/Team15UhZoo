@@ -1,8 +1,8 @@
 <?php
 
 
-
-if(isset($_POST["submit"])){
+if(isset($_POST["submit"]))
+{
     echo "Creating customer account...";
     sleep(1);
     $email = $_POST["email"];
@@ -15,30 +15,27 @@ if(isset($_POST["submit"])){
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';
 
-    if(emptyInputSignup($fname, $lname,$user, $pass,$pwdrepeat) !== false){
-        header("location:/..GuestSignUp.php?error=emptyinput");
+    if(emptyInputSignup($email, $fname, $lname,$user, $pass,$pwdrepeat) !== false){
+        header("location:../GuestSignUp.php?error=emptyinput");
         exit();
     }
     if(invalidUID($user) !== false){
-        header("location:/..GuestSignUp.php?error=invalidUID");
+        header("location:../GuestSignUp.php?error=invalidUID");
         exit();
     }
     if(bademail($email) !== false){
-        header("location:/..GuestSignUp.php?error=bademail");
+        header("location:../GuestSignUp.php?error=bademail");
         exit();
     }
     if(mismatchpassword($pass, $pwdrepeat) !== false){
-        header("location:/..GuestSignUp.php?error=pwdmissmatch");
+        header("location:../GuestSignUp.php?error=pwdmissmatch");
         exit();
     }
-    if(usertaken($conn, $user) !== false){
-        header("location:/..GuestSignUp.php?error=useralreadyexists");
-        exit();
-    }
-    createUser($conn,$fname, $lname,$user,$pass);
-
-
-
+    // if(usertaken($conn, $user, $email) !== false){
+    //     header("location:/..GuestSignUp.php?error=useralreadyexists");
+    //     exit();
+    // }
+    createUser2($conn, $fname, $lname, $user, $pass, $email);
 
 }
 else{

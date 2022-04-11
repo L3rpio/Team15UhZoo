@@ -1,17 +1,4 @@
-<?php
-    function OpenConnection(){
-        $serverName = "cosc3380-zoo.database.windows.net";
-        $connectionOptions = array("Database"=>"UH_Zoo_Database",
-            "Uid"=>"dhphan3", "PWD"=>"K7EY2kh@ri*oJH9");
-        $conn = sqlsrv_connect($serverName, $connectionOptions);
-        if($conn == false){
-        die(FormatErrors(sqlsrv_errors()));
-        } else {
-        echo("Connection made");
-        }
-        return $conn;
-    }
-?>
+
 Team 15 Zoo Sign Up Portal
 <br/>
 <br/>
@@ -32,11 +19,31 @@ Team 15 Zoo Sign Up Portal
         user_name
         pass_word -->
 
+
     </form>
+    <?php
+            if(isset($_GET["error"])){
+                if($_GET["error"] == "emptyinput"){
+                    echo "<p>You left one of the fields empty!</p>";
+                }
+                else if($_GET["error"] == "invalidUID"){
+                    echo "<p>Your username has invalid characters!</p>";
+                }
+                else if($_GET["error"] == "bademail"){
+                    echo "<p>Your email is not valid!</p>";
+                }
+                else if($_GET["error"] == "pwdmissmatch"){
+                    echo "<p>Your two passwords do not match!</p>";
+                }
+                else if($_GET["error"] == "none"){
+                    echo "<p>You have signed up!</p>";
+                }
+            }
+        ?>
 </section>
 <br />
 <br />
-<a class="btn btn-outline-light btn-lg px-4" href="index.html">Click here to go back to the main website</a>
+<a class="btn btn-outline-light btn-lg px-4" href="index.php">Click here to go back to the main website</a>
 
 <?php
     // OpenConnection();

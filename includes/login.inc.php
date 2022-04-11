@@ -1,12 +1,23 @@
 <?php
 
 if(isset($_POST["submit"])){
-    echo "User logging in...";
-    sleep(1);
-    $name = $_POST["username"];
-    $name = $_POST["password"];
+    //echo "User logging in...";
+
+    $user = $_POST["username"];
+    $pass = $_POST["password"];
+
+    require_once 'dbh.inc.php';
+    require_once 'functions.inc.php';
+
+    if(emptyInputLogin($user, $pass) !== false){
+        header("location: ../LoginPage.php?error=emptyinput");
+        exit();
+    }
+
+
+    login2($conn,$user, $pass);
 
 }
 else{
-    header("location:/..GuestSignUp.php");
+    header("location:/..LoginPage.php");
 }
