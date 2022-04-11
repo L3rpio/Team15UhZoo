@@ -210,7 +210,7 @@ table.table .avatar {
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
+					
 						<?php
 						$serverName = "zoodbteam15-server.mysql.database.azure.com";
 						$username ="zooadmin";
@@ -220,12 +220,17 @@ table.table .avatar {
 						  die("Connection failed: " . $conn->connect_error);
 						}
 						$sql="SELECT * FROM Customer";
-						$qry = mysqli_query($conn,$sql);
-						if($qry->rows > 0){
-							while($reslt=mysqli_fetch_array($qry)){
-							echo "<tr><td>" . $reslt["first_name"] . " " . $rslt["last_name"] . "</td></tr>";
-							}
-						}
+						$result = $conn-> query($sql);
+            if ($result-> num_rows > 0){
+              while($row= $result-> fetch_assoc()){
+                echo "<tr><td>" . $row["first_name"] . "</td><td>" . $row["last_name"] . "</td></tr>";
+              }
+            }
+						// if($qry->rows > 0){
+						// 	while($reslt=mysqli_fetch_array($qry)){
+						// 	echo $reslt[0];
+						// 	}
+						// }
 						mysqli_close($conn);
 						//die(mysqli_error($conn));
 						?>
@@ -235,7 +240,7 @@ table.table .avatar {
 						<td>(171) 555-2222</td>
 						<td> -->
 						<a href="#editCustomerModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-					</tr>
+					
 				</tbody>
 			</table>
 		</div>
@@ -251,14 +256,14 @@ table.table .avatar {
 						<label>Name</label>
 						<input type="text" class="form-control" required>
 					</div>
-					<div class="form-group">
+<!-- 					<div class="form-group">
 						<label>Email</label>
 						<input type="email" class="form-control" required>
 					</div>
 					<div class="form-group">
 						<label>Phone</label>
 						<input type="text" class="form-control" required>
-					</div>					
+					</div>					 -->
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
