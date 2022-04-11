@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Testing Queries</title>
 </head>
 <body>
 <?php
@@ -13,7 +13,8 @@
       $serverName = "uh-zoo-db.mysql.database.azure.com";
       $username ="zooadmin";
       $password= "Ab!2Xui5efd3!L&";
-      $conn = new mysqli($serverName, $username, $password,'uh_zoo');
+      $db_name = 'uh_zoo';
+      $conn = new mysqli($serverName, $username, $password, $db_name);
       if($conn == false){
         die("Connection failed: " . $conn->connect_error);
       }
@@ -39,7 +40,7 @@
     }
     OpenConnection();
   ?>
-  it finished <br>
+  <h1>Hello world. This is where we'll be testing our queries</h1>
   
 </body>
 </html>
