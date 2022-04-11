@@ -30,6 +30,7 @@
       // }
       die(mysqli_error($conn));
     }
+	OpenConnection();
   ?>
 <!DOCTYPE html>
 <html lang="en">
