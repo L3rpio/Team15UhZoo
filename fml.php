@@ -1,6 +1,4 @@
 <?php
-  function OpenConnection()
-  {
       $serverName = "uh-zoo-db.mysql.database.azure.com";
       $username ="zooadmin";
       $password= "Ab!2Xui5efd3!L&";
@@ -31,7 +29,6 @@
       //   echo "0 results";
       // }
       die(mysqli_error($conn));
-    }
-    OpenConnection();
+    
   ?>
 
