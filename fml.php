@@ -1,7 +1,9 @@
 <?php
-      $serverName = "uh-zoo-db.mysql.database.azure.com";
+  function OpenConnection()
+  {
+      $serverName = "zoodbteam15-server.mysql.database.azure.com";
       $username ="zooadmin";
-      $password= "Ab!2Xui5efd3!L&";
+      $password= "Lovec++123";
       $conn = new mysqli($serverName, $username, $password,"uh_zoo");
       if($conn == false){
         die("Connection failed: " . $conn->connect_error);
@@ -12,13 +14,11 @@
       //echo $row[0];
       //mysql_select_db("uh_zoo", $conn);
       $sql="SELECT * FROM Customer";
-      $result = mysqli_query($conn, $sql);
-      $pizzas=mysqli_fetch_all($result, MYSQLI_ASSOC);
-      while($rslt=mysqli_fetch_array($result)){
-            echo $rslt["first_name"];
+      $qry = mysqli_query($conn,$sql);
+
+      while($reslt=mysqli_fetch_array($qry)){
+        echo $reslt["first_name"] . "<br />";
       }
-      mysqli_free_result($result);
-      print_r($pizza);
       mysqli_close($conn);
       // if (mysqli_num_rows($result) > 0) {
       // // output data of each row
@@ -29,6 +29,16 @@
       //   echo "0 results";
       // }
       die(mysqli_error($conn));
-    
+    }
   ?>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+</body>
+</html>
