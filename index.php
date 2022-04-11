@@ -92,6 +92,7 @@
               <h1 class="display-5 fw-bolder text-white mb-2">
                 Welcome to the Zoo of the University of Houston
                 <?php
+                          ob_end_clean();
                             if(isset($_GET["msg"])){
                               if($_GET["msg"] == "loggedout"){
                                   echo "</br>";
@@ -117,6 +118,7 @@
                               echo "</br>";
                               echo "<a href='includes/logout.inc.php'>Log Out</a>";
                             }
+                            ob_start();
                 ?>
               </h1>
               <p class="lead text-white-50 mb-4">
