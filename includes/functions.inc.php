@@ -72,7 +72,7 @@ function login2($conn, $user, $pass){
             $_SESSION['user_name'] = $row['user_name'];
         }
         #redirects user
-        header("Location: index.php?msg=loggedin");
+        header("Location: https://team15uhzoo.azurewebsites.net/index.php?msg=loggedin");
     }
 }
 echo "6";
