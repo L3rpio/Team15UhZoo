@@ -1,5 +1,6 @@
 <?php
 
+ob_start();
 echo "1";
 function emptyInputSignup($email, $fname, $lname,$user, $pass,$pwdrepeat)
 {
@@ -73,7 +74,7 @@ function login2($conn, $user, $pass){
         }
         echo "2";
         #redirects user
-        header("Location: https://team15uhzoo.azurewebsites.net/index.php?msg=loggedin");
+        header("Location: ../index.php?msg=loggedin");
         echo "3";
     }
 }

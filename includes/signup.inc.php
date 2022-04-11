@@ -1,6 +1,6 @@
 <?php
 
-
+ob_start();
 if(isset($_POST["submit"]))
 {
     echo "Creating customer account...";

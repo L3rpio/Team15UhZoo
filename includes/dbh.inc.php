@@ -1,5 +1,5 @@
 <?php
-
+ob_start();
 // $serverName = "cosc3380-zoo.database.windows.net";
 // $dBUsername = "dhphan3";
 // $dBPassword = "K7EY2kh@ri*oJH9";
