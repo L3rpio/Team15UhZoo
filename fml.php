@@ -18,6 +18,7 @@
             echo $rslt["first_name"];
       }
       mysqli_free_result($result);
+      print_r($pizza);
       mysqli_close($conn);
       // if (mysqli_num_rows($result) > 0) {
       // // output data of each row
