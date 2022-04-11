@@ -11,27 +11,12 @@
     <title>Document</title>
   </head>
   <body>
-    <?php 
-      session_start();
-      function OpenConnection()
-      {
-          $serverName = "cosc3380-zoo.database.windows.net";
-          $connectionOptions = array("Database"=>"UH_Zoo_Database",
-              "Uid"=>"dhphan3", "PWD"=>"K7EY2kh@ri*oJH9");
-          $conn = sqlsrv_connect($serverName, $connectionOptions);
-          if($conn == false){
-            die(FormatErrors(sqlsrv_errors()));
-          } else {
-            echo("Connection made");
-          }
-          return $conn;
-      }
-      //OpenConnection();
-    ?>
   </body>
 </html>
  -->
-
+ <?php 
+      session_start();
+      ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -86,20 +71,27 @@
     <!-- Header-->
     <header class="bg-dark py-5">
       <div class="container px-5">
-        Last changed 12:23am apr11
+        Last changed 12:31am apr11
         <div class="row gx-5 justify-content-center">
           <div class="col-lg-6">
             <div class="text-center my-5">
               <h1 class="display-5 fw-bolder text-white mb-2">
                 Welcome to the Zoo of the University of Houston
                 <?php
-                      //ob_end_clean();
-                      ob_start();
+                            ob_start();
                             if(isset($_GET["msg"])){
                               if($_GET["msg"] == "loggedout"){
                                   echo "</br>";
                                   echo "</br>";
                                   echo "<p>Hello! You have logged out!</p>";
+                                  echo "</br>";
+                              }
+                            }
+                            if(isset($_GET["msg"])){
+                              if($_GET["msg"] == "loggedin"){
+                                  echo "</br>";
+                                  echo "</br>";
+                                  echo "<p>Hello! You have logged in!</p>";
                                   echo "</br>";
                               }
                             }
@@ -120,8 +112,8 @@
                               echo "</br>";
                               echo "<a href='includes/logout.inc.php'>Log Out</a>";
                             }
-                            //ob_start();
-                            ob_end_clean();
+                            ob_flush();
+
                 ?>
               </h1>
               <p class="lead text-white-50 mb-4">

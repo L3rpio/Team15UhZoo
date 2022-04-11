@@ -24,7 +24,7 @@ if(isset($_POST["submit"])){
     echo "<User logging in...>";
 
     login2($conn,$user, $pass);
-    header("Location: https://team15uhzoo.azurewebsites.net/index.php?msg=loggedin");
+    //header("Location: https://team15uhzoo.azurewebsites.net/index.php?msg=loggedin");
     echo "<User logging in....>";
 
 }
