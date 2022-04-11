@@ -124,6 +124,7 @@ function emptyInputLogin($user, $pass)
     else{ $result = false;}
     return $result;
 }
+echo "9";
 
 // function usertaken($conn, $user, $email){  //SQLI
 //     $sql = "SELECT * FROM Customer WHERE user_name = ? OR Email = ?;";
