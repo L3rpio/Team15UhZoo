@@ -57,6 +57,7 @@ function login2($conn, $user, $pass){
     if(mysqli_num_rows($result) != 1)
     {
         header("location: LoginPage.php?error=wronglogin");
+        exit();
     }
     else
     {
@@ -93,6 +94,7 @@ function login2($conn, $user, $pass){
         #redirects user
         header("Location: ../index.php?msg=loggedin");
         echo "3";
+        exit();
     }
 }
 echo "6";
