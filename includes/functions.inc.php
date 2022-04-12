@@ -65,7 +65,7 @@ function login2($conn, $user, $pass){
         #creates sessions
         session_start();
         echo "1";
-        //$rows=mysqli_fetch_array($result);
+        $rows=mysqli_fetch_array($result);
 
         setcookie("id", "idcookie", time() + 1000000);
         setcookie("first_name", "fnamecookie", time() + 1000000);
@@ -76,14 +76,14 @@ function login2($conn, $user, $pass){
         // $_SESSION['last_name'][] = $rows['last_name'];
         // $_SESSION['user_name'][] = $rows['user_name'];
 
-            // $_SESSION['id'] = $row['customer_id'];
-            // $_SESSION['first_name'] = $row['first_name'];
-            // $_SESSION['last_name'] = $row['last_name'];
-            // $_SESSION['user_name'] = $row['user_name'];
-            $_SESSION['id'] = 'a';
-            $_SESSION['first_name'] = 'b';
-            $_SESSION['last_name'] = 'c';
-            $_SESSION['user_name'] = 'd';
+            $_SESSION['id'] = $rows['customer_id'];
+            $_SESSION['first_name'] = $rows['first_name'];
+            $_SESSION['last_name'] = $rows['last_name'];
+            $_SESSION['user_name'] = $rows['user_name'];
+            // $_SESSION['id'] = 'a';
+            // $_SESSION['first_name'] = 'b';
+            // $_SESSION['last_name'] = 'c';
+            // $_SESSION['user_name'] = 'd';
         // while($row = sqlsrv_fetch_array($result)){
         //     $_SESSION['id'] = $row['customer_id'];
         //     $_SESSION['first_name'] = $row['first_name'];
