@@ -23,13 +23,28 @@
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-    <link rel="stylesheet" href="managercrud.css" />
+    <link rel="stylesheet" href="../css/managercrud.css" />
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="../js/managercrud.js"></script>
   </head>
   <body>
+    <?php 
+      require_once 'process.php';
+
+      if(isset($_SESSION['message'])): 
+    ?>
+
+      <div class="alert alert-<?=$_SESSION['msg_type']?>">
+      <?php 
+        echo $_SESSION['message'];
+        unset($_SESSION['message']);
+      ?>
+      </div>
+      <?php endif ?>
+    
+    
     <div class="container-xl">
       <div class="table-responsive">
         <div class="table-wrapper">
@@ -46,24 +61,13 @@
                   ><i class="material-icons">&#xE147;</i>
                   <span>Add New Employee</span></a
                 >
-                <a
-                  href="#deleteEmployeeModal"
-                  class="btn btn-danger"
-                  data-toggle="modal"
-                  ><i class="material-icons">&#xE15C;</i> <span>Delete</span></a
-                >
               </div>
             </div>
           </div>
           <table class="table table-striped table-hover">
             <thead>
               <tr>
-                <th>
-                  <span class="custom-checkbox">
-                    <input type="checkbox" id="selectAll" />
-                    <label for="selectAll"></label>
-                  </span>
-                </th>
+                <th>ID</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Address</th>
@@ -74,43 +78,47 @@
             </thead>
             <tbody>
             <?php 
-              include_once "managercrud.php";
+              $serverName = "zoodbteam15-server.mysql.database.azure.com";
+              $username ="zooadmin";
+              $password= "Lovec++123";
+              $conn = new mysqli($serverName, $username, $password,"uh_zoo");
+              if($conn == false){
+                die("Connection failed: " . $conn->connect_error);
+              }
+           
+              $sql = "select * from employee";
+              $result = mysqli_query($conn, $sql);
+              $employees = mysqli_fetch_all($result, MYSQLI_ASSOC);
+              mysqli_close($conn);
               foreach ($employees as $employee){
             ?>
               <tr>
-                <td>
-                  <span class="custom-checkbox">
-                    <input
-                      type="checkbox"
-                      id="checkbox1"
-                      name="options[]"
-                      value="1"
-                    />
-                    <label for="checkbox1"></label>
-                  </span>
-                </td>
                 <?php 
+                  $employeeID  = $employee["employee_id"];
                   $employeeFirstName = $employee["employee_first_name"];
                   $employeeLastName = $employee["employee_last_name"];
                   $employeeAddr = $employee["employee_Address"];
                   $employeeEmail = $employee["employee_email"];
                   $wage = $employee["hourly_wage"];
                   $hoursWorked = $employee["hours_worked"];
-                  echo "<td>" . $employeeFirstName . " " . $employeeLastName."</td>";
+                  echo "<td>" . $employeeID . "</td>";
+                  echo "<td>" . $employeeFirstName . " " . $employeeLastName . "</td>";
                   echo "<td>" . $employeeEmail . "</td>";
                   echo "<td>" . $employeeAddr . "</td>";
-                  echo "<td>" . $wage . "</td>";
-                  echo "<td>" . $hoursWorked . "</td>";
+                  echo "<td>$" . $wage . "</td>";
+                  if($hoursWorked === NULL || $hoursWorked === 0){
+                    echo "<td>0</td>";
+                  } else {
+                    echo "<td>" . $hoursWorked . "</td>";
+                  }
+                  
                 ?>
-                  <a href="#editEmployeeModal" class="edit" data-toggle="modal"
-                    ><i
-                      class="material-icons"
-                      data-toggle="tooltip"
-                      title="Edit"
-                      >&#xE254;</i
-                    ></a
-                  >
-                  <a
+                <td>
+                  <!-- <a href="manager.php?edit=" class="btn btn-info">Edit</a> -->
+                  <a class="edit" href="#editEmployee<?php echo $employeeID; ?>" class="btn btn-info" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                  <a class="delete"href="process.php?delete=<?php echo $employeeID; ?>"class="btn btn-danger light-link"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+
+                  <!-- <a
                     href="#deleteEmployeeModal"
                     class="delete"
                     data-toggle="modal"
@@ -119,49 +127,52 @@
                       data-toggle="tooltip"
                       title="Delete"
                       >&#xE872;</i
-                    ></a
-                  >
+                    ></a> -->
                 </td>
               </tr>
+              <div id="editEmployee<?php echo $employeeID; ?>" class="modal fade">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <form action="process.php" method="post">
+                            <div class="modal-header">
+                              <h4 class="modal-title">Edit Employee</h4>
+                              <button
+                                type="button"
+                                class="close"
+                                data-dismiss="modal"
+                                aria-hidden="true"
+                              >
+                                &times;
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                            <div class="form-group hidden">
+                                <label>ID</label>
+                                <input type="number" name="id" value="<?php echo $employeeID; ?>" class="form-control" required />
+                              </div>
+                              <div class="form-group">
+                                <label>Hourly Wage</label>
+                                <input type="text" name="hourlywage" value="" class="form-control" required />
+                              </div>
+                              <div class="form-group">
+                                <label>Hours Worked</label>
+                                <input type="text" name="hoursworked" class="form-control" required />
+                              </div>
+                            </div>
+                            <div class="modal-footer">
+                              <input
+                                type="button"
+                                class="btn btn-default"
+                                data-dismiss="modal"
+                                value="Cancel"
+                              />
+                              <input type="submit" name="updateemployee" class="btn btn-info" value="Save" />
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
               <?php } ?>
-              <tr>
-                <td>
-                  <span class="custom-checkbox">
-                    <input
-                      type="checkbox"
-                      id="checkbox1"
-                      name="options[]"
-                      value="1"
-                    />
-                    <label for="checkbox1"></label>
-                  </span>
-                </td>
-                <td>Thomas Hardy</td>
-                <td>thomashardy@mail.com</td>
-                <td>89 Chiaroscuro Rd, Portland, USA</td>
-                <td>(171) 555-2222</td>
-                <td>
-                  <a href="#editEmployeeModal" class="edit" data-toggle="modal"
-                    ><i
-                      class="material-icons"
-                      data-toggle="tooltip"
-                      title="Edit"
-                      >&#xE254;</i
-                    ></a
-                  >
-                  <a
-                    href="#deleteEmployeeModal"
-                    class="delete"
-                    data-toggle="modal"
-                    ><i
-                      class="material-icons"
-                      data-toggle="tooltip"
-                      title="Delete"
-                      >&#xE872;</i
-                    ></a
-                  >
-                </td>
-              </tr>
             </tbody>
           </table>
           <div class="clearfix">
@@ -189,9 +200,9 @@
     <div id="addEmployeeModal" class="modal fade">
       <div class="modal-dialog">
         <div class="modal-content">
-          <form>
+          <form action="process.php" method="post">
             <div class="modal-header">
-              <h4 class="modal-title">Add Employee</h4>
+              <h4 class="modal-title">Add New Employee</h4>
               <button
                 type="button"
                 class="close"
@@ -202,25 +213,25 @@
               </button>
             </div>
             <div class="modal-body">
+            <div class="form-group">
+                <label>First Name</label>
+                <input type="text" name="firstname" class="form-control" required />
+              </div>
               <div class="form-group">
-                <label>Name</label>
-                <input type="text" class="form-control" required />
+                <label>Last Name</label>
+                <input type="text" name="lastname" class="form-control" required />
               </div>
               <div class="form-group">
                 <label>Email</label>
-                <input type="email" class="form-control" required />
+                <input type="email" name="email" class="form-control" required />
               </div>
               <div class="form-group">
                 <label>Address</label>
-                <textarea class="form-control" required></textarea>
+                <textarea name="address" class="form-control" required></textarea>
               </div>
               <div class="form-group">
                 <label>Hourly Wage</label>
-                <input type="number" class="form-control" required />
-              </div>
-              <div class="form-group">
-                <label>Hours Worked</label>
-                <input type="number" class="form-control" required />
+                <input type="text" name="hourlywage" class="form-control" required />
               </div>
             </div>
             <div class="modal-footer">
@@ -230,58 +241,7 @@
                 data-dismiss="modal"
                 value="Cancel"
               />
-              <input type="submit" class="btn btn-success" value="Add" />
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-    <!-- Edit Modal HTML -->
-    <div id="editEmployeeModal" class="modal fade">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <form>
-            <div class="modal-header">
-              <h4 class="modal-title">Edit Employee</h4>
-              <button
-                type="button"
-                class="close"
-                data-dismiss="modal"
-                aria-hidden="true"
-              >
-                &times;
-              </button>
-            </div>
-            <div class="modal-body">
-              <div class="form-group">
-                <label>Name</label>
-                <input type="text" class="form-control" required />
-              </div>
-              <div class="form-group">
-                <label>Email</label>
-                <input type="email" class="form-control" required />
-              </div>
-              <div class="form-group">
-                <label>Address</label>
-                <textarea class="form-control" required></textarea>
-              </div>
-              <div class="form-group">
-                <label>Hourly Wage</label>
-                <input type="text" class="form-control" required />
-              </div>
-              <div class="form-group">
-                <label>Hours Worked</label>
-                <input type="text" class="form-control" required />
-              </div>
-            </div>
-            <div class="modal-footer">
-              <input
-                type="button"
-                class="btn btn-default"
-                data-dismiss="modal"
-                value="Cancel"
-              />
-              <input type="submit" class="btn btn-info" value="Save" />
+              <input type="submit" name="addemployee" class="btn btn-success" value="Add" />
             </div>
           </form>
         </div>
@@ -304,7 +264,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <p>Are you sure you want to delete these employees?</p>
+              <p>Are you sure you want to delete this employee?</p>
               <p class="text-warning">
                 <small>This action cannot be undone.</small>
               </p>
