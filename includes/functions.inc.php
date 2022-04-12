@@ -1,6 +1,5 @@
 <?php
 
-ob_start();
 echo "1";
 function emptyInputSignup($email, $fname, $lname,$user, $pass,$pwdrepeat)
 {
@@ -50,7 +49,7 @@ function mismatchpassword($pass, $pwdrepeat) {
 
 echo "5";
 function login2($conn, $user, $pass){
-    $query = "SELECT * FROM Customer WHERE user_name='{$user}' AND pass_word='{$pass_word}';";
+    $query = "SELECT * FROM Customer WHERE user_name='{$user}' AND pass_word='{$pass}';";
     $result = mysqli_query($conn, $query);  
     if($result === false){
         die("Connection failed: " . $conn->connect_error);
@@ -136,7 +135,6 @@ function emptyInputLogin($user, $pass)
     return $result;
 }
 echo "9";
-ob_end_clean();
 // function usertaken($conn, $user, $email){  //SQLI
 //     $sql = "SELECT * FROM Customer WHERE user_name = ? OR Email = ?;";
 //     $stmt = mysqli_stmt_init($conn);

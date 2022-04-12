@@ -6,6 +6,8 @@ if(isset($_POST["submit"])){
     $user = $_POST["username"];
     $pass = $_POST["password"];
 
+
+    echo "Running dbh.inc.php";
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';
 

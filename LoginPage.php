@@ -2,7 +2,7 @@
 <br />
 Team 15 Zoo Login Portal<br />
 <br />
-Last changed: 12:56 am apr11
+Last changed: 10:20 pm apr11
 <br />
 <br />
 <section class="signup-form">
@@ -43,13 +43,13 @@ Example Logins for Database testing
         <td style="height: 21px">UserType</td>
     </tr>
     <tr>
-        <td style="height: 20px">renuk12</td>
-        <td style="height: 20px">ILoveCougars123</td>
+        <td style="height: 20px">renu01</td>
+        <td style="height: 20px">go cougars</td>
         <td style="height: 20px">Customer</td>
     </tr>
     <tr>
-        <td>SandyRhul</td>
-        <td>Apassword</td>
+        <td>james01</td>
+        <td>wetherockets</td>
         <td>Customer</td>
     </tr>
     <!-- <tr>
