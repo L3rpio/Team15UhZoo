@@ -94,6 +94,8 @@ function login2($conn, $user, $pass){
         #redirects user
         header("Location: ../index.php?msg=loggedin");
         echo "3";
+        session_regenerate_id(true);
+        session_write_close();
         exit();
     }
 }

@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!-- 
 
 <!DOCTYPE html>
@@ -80,8 +83,6 @@
                               setcookie("index2", "indexcookie2", time() + 1000000);
                             $_SESSION['sessioncookie2'] = 'sessioncookie2';
                             ob_start();
-                            session_start();
-
                             setcookie("index", "indexcookie", time() + 1000000);
                             $_SESSION['sessioncookie'] = 'sessioncookie';
 
