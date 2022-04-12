@@ -2,7 +2,7 @@
 <br />
 Team 15 Zoo Login Portal<br />
 <br />
-Last changed: 10:43 pm apr11
+Last changed: 10:48 pm apr11
 <br />
 <br />
 <section class="signup-form">
@@ -35,6 +35,13 @@ Last changed: 10:43 pm apr11
         ?>
 <br />
 <br />
+echo 'SESSION VarDump:' .var_dump($_SESSION);
+<br />
+<br />
+echo 'HelloC ' . htmlspecialchars($_COOKIE["id"]) . '!';
+<br />
+<br />
+
 Example Logins for Database testing
 <table class="nav-justified">
     <tr>

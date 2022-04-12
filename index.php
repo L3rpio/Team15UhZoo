@@ -16,6 +16,7 @@
  -->
 
 
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -69,15 +70,21 @@
     <!-- Header-->
     <header class="bg-dark py-5">
       <div class="container px-5">
-        Last changed 10:43pm apr11
+        Last changed 10:48pm apr11
         <div class="row gx-5 justify-content-center">
           <div class="col-lg-6">
             <div class="text-center my-5">
               <h1 class="display-5 fw-bolder text-white mb-2">
                 Welcome to the Zoo of the University of Houston
                 <?php
+                              setcookie("index2", "indexcookie2", time() + 1000000);
+                            $_SESSION['sessioncookie2'] = 'sessioncookie2';
                             ob_start();
                             session_start();
+
+                            setcookie("index", "indexcookie", time() + 1000000);
+                            $_SESSION['sessioncookie'] = 'sessioncookie';
+
                             if(isset($_GET["msg"])){
                               if($_GET["msg"] == "loggedout"){
                                   echo "</br>";
