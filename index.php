@@ -69,7 +69,7 @@
     <!-- Header-->
     <header class="bg-dark py-5">
       <div class="container px-5">
-        Last changed 10:37pm apr11
+        Last changed 10:43pm apr11
         <div class="row gx-5 justify-content-center">
           <div class="col-lg-6">
             <div class="text-center my-5">
@@ -94,7 +94,8 @@
                                   echo "</br>";
                               }
                             }
-                            echo $_SESSION['user_name'];
+                            echo 'HelloS ' . htmlspecialchars($_SESSION['user_name']) . '!';
+                            echo 'SESSION VarDump:' .var_dump($_SESSION);
                             if(isset($_SESSION['user_name'])){
                               echo "</br>";
                               echo "</br>";
@@ -112,7 +113,12 @@
                               echo "</br>";
                               echo "<a href='includes/logout.inc.php'>Log Out</a>";
                             }
-                            echo 'Hello ' . htmlspecialchars($_COOKIE["id"]) . '!';
+                            echo 'HelloC ' . htmlspecialchars($_COOKIE["id"]) . '!';
+                            echo "</br>";
+                            echo "</br>";
+                            echo "</br>";
+                            echo 'Cookie VarDump:' .var_dump($_COOKIE);
+                            var_dump($_COOKIE);
                             if(isset($_COOKIE['id'])){
                               echo "Hello, from cookies!";
 
