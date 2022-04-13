@@ -1,6 +1,5 @@
 <?php
 
-ob_start();
 echo "1";
 function emptyInputSignup($email, $fname, $lname,$user, $pass,$pwdrepeat)
 {
@@ -50,7 +49,7 @@ function mismatchpassword($pass, $pwdrepeat) {
 
 echo "5";
 function login2($conn, $user, $pass){
-    $query = "SELECT * FROM Customer WHERE user_name='{$user}' AND pass_word='{$pass_word}';";
+    $query = "SELECT * FROM Customer WHERE user_name='{$user}' AND pass_word='{$pass}';";
     $result = mysqli_query($conn, $query);  
     if($result === false){
         die("Connection failed: " . $conn->connect_error);
@@ -58,6 +57,7 @@ function login2($conn, $user, $pass){
     if(mysqli_num_rows($result) != 1)
     {
         header("location: LoginPage.php?error=wronglogin");
+        exit();
     }
     else
     {
@@ -66,14 +66,24 @@ function login2($conn, $user, $pass){
         session_start();
         echo "1";
         $rows=mysqli_fetch_array($result);
-        $_SESSION['id'][] = $rows['customer_id'];
-        $_SESSION['first_name'][] = $rows['first_name'];//not sure if this section has been translated to mysql properly
-        $_SESSION['last_name'][] = $rows['last_name'];
-        $_SESSION['user_name'][] = $rows['user_name'];
-            // $_SESSION['id'] = $row['customer_id'];
-            // $_SESSION['first_name'] = $row['first_name'];
-            // $_SESSION['last_name'] = $row['last_name'];
-            // $_SESSION['user_name'] = $row['user_name'];
+
+        setcookie("id", "idcookie", time() + 1000000);
+        setcookie("first_name", "fnamecookie", time() + 1000000);
+        setcookie("last_name", "lnamecookie", time() + 1000000);
+        setcookie("user_name", "unamecookie", time() + 1000000);
+        // $_SESSION['id'][] = $rows['customer_id'];
+        // $_SESSION['first_name'][] = $rows['first_name'];//not sure if this section has been translated to mysql properly
+        // $_SESSION['last_name'][] = $rows['last_name'];
+        // $_SESSION['user_name'][] = $rows['user_name'];
+
+            $_SESSION['id'] = $rows['customer_id'];
+            $_SESSION['first_name'] = $rows['first_name'];
+            $_SESSION['last_name'] = $rows['last_name'];
+            $_SESSION['user_name'] = $rows['user_name'];
+            // $_SESSION['id'] = 'a';
+            // $_SESSION['first_name'] = 'b';
+            // $_SESSION['last_name'] = 'c';
+            // $_SESSION['user_name'] = 'd';
         // while($row = sqlsrv_fetch_array($result)){
         //     $_SESSION['id'] = $row['customer_id'];
         //     $_SESSION['first_name'] = $row['first_name'];
@@ -84,6 +94,9 @@ function login2($conn, $user, $pass){
         #redirects user
         header("Location: ../index.php?msg=loggedin");
         echo "3";
+        session_regenerate_id(true);
+        session_write_close();
+        exit();
     }
 }
 echo "6";
@@ -136,7 +149,6 @@ function emptyInputLogin($user, $pass)
     return $result;
 }
 echo "9";
-ob_end_clean();
 // function usertaken($conn, $user, $email){  //SQLI
 //     $sql = "SELECT * FROM Customer WHERE user_name = ? OR Email = ?;";
 //     $stmt = mysqli_stmt_init($conn);

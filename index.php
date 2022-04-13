@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!-- 
 
 <!DOCTYPE html>
@@ -14,6 +17,7 @@
   </body>
 </html>
  -->
+
 
 
 <!DOCTYPE html>
@@ -69,15 +73,14 @@
     <!-- Header-->
     <header class="bg-dark py-5">
       <div class="container px-5">
-        Last changed 12:56am apr11
+        Last changed 11:11pm apr11
         <div class="row gx-5 justify-content-center">
           <div class="col-lg-6">
             <div class="text-center my-5">
               <h1 class="display-5 fw-bolder text-white mb-2">
                 Welcome to the Zoo of the University of Houston
                 <?php
-                            ob_start();
-                            session_start();
+
                             if(isset($_GET["msg"])){
                               if($_GET["msg"] == "loggedout"){
                                   echo "</br>";
@@ -86,31 +89,57 @@
                                   echo "</br>";
                               }
                             }
-                            if(isset($_GET["msg"])){
-                              if($_GET["msg"] == "loggedin"){
-                                  echo "</br>";
-                                  echo "</br>";
-                                  echo "<p>Hello! You have logged in!</p>";
-                                  echo "</br>";
-                              }
-                            }
+                            // if(isset($_GET["msg"])){
+                            //   if($_GET["msg"] == "loggedin"){
+                            //       echo "</br>";
+                            //       echo "</br>";
+                            //       echo "<p>Hello! You have logged in!</p>";
+                            //       echo "</br>";
+                            //   }
+                            // }
+                            // echo 'HelloS ' . htmlspecialchars($_SESSION['user_name']) . '!';
+                            // echo 'SESSION VarDump:' .var_dump($_SESSION);
                             if(isset($_SESSION['user_name'])){
                               echo "</br>";
                               echo "</br>";
                               echo "<p>Hello! You have logged in!</p>";
                               echo "Username: ";
-                              echo $_SESSION['user_name'][0];
+                              echo $_SESSION['user_name'];
                               echo "</br>";
                               echo "First Name: ";
-                              echo $_SESSION['first_name'][0];
+                              echo $_SESSION['first_name'];
                               echo "</br>";
                               echo "Last Name: ";
-                              echo $_SESSION['last_name'][0];
+                              echo $_SESSION['last_name'];
                               echo "</br>";
                               echo "<a href='profile.php'>Profile Page</a>";
                               echo "</br>";
                               echo "<a href='includes/logout.inc.php'>Log Out</a>";
                             }
+                            // echo 'HelloC ' . htmlspecialchars($_COOKIE["id"]) . '!';
+                            // echo "</br>";
+                            // echo "</br>";
+                            // echo "</br>";
+                            // echo 'Cookie VarDump:' .var_dump($_COOKIE);
+                            // var_dump($_COOKIE);
+                            // if(isset($_COOKIE['id'])){
+                            //   echo "Hello, from cookies!";
+
+                            //   echo "</br>";
+                            //   echo "<p>Hello! You have logged in!</p>";
+                            //   echo "Username: ";
+                            //   echo $_COOKIE['user_name'];
+                            //   echo "</br>";
+                            //   echo "First Name: ";
+                            //   echo $_COOKIE['first_name'];
+                            //   echo "</br>";
+                            //   echo "Last Name: ";
+                            //   echo $_COOKIE['last_name'];
+                            //   echo "</br>";
+                            //   echo "<a href='profile.php'>Profile Page</a>";
+                            //   echo "</br>";
+                            //   echo "<a href='includes/logout.inc.php'>Log Out</a>";
+                            // }
                             ob_flush();
 
                 ?>
