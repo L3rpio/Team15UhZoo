@@ -1,7 +1,6 @@
 <?php
 session_start();
 ?>
-<!-- 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,17 +8,92 @@ session_start();
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <title>UH Zoo</title>
   </head>
   <body>
+    <section class="showcase">
+      <header>
+        <h2 class="logo">UH Zoo</h2>
+        <div class="toggle"></div>
+      </header>
+      <video src="./resources/uhcourgars.mp4" muted loop autoplay></video>
+
+      <div class="overlay"></div>
+
+      <div class="text">
+        <h2>Welcome to the</h2>
+        <h3>UH Zoo</h3>
+        <p>
+          We are proud to annouce that we have offically opened up our zoo to
+          the public. Sign up for an account with us to get tickets to visit us
+          today!
+        </p>
+        <a href="LoginPage.php">Login</a>
+        <a href="GuestSignUp.php">Sign Up</a>
+      </div>
+      <ul class="social">
+        <li>
+          <a href="#"
+            ><img src="https://i.ibb.co/x7P24fL/facebook.png" alt=""
+          /></a>
+        </li>
+        <li>
+          <a href="#"
+            ><img src="https://i.ibb.co/Wnxq2Nq/twitter.png" alt=""
+          /></a>
+        </li>
+        <li>
+          <a href="#"
+            ><img src="https://i.ibb.co/ySwtH4B/instagram.png" alt=""
+          /></a>
+        </li>
+      </ul>
+    </section>
+
+    <div class="menu">
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Customer Portal</a></li>
+        <li><a href="#">Employee Portal</a></li>
+        <li><a href="#">Manager Portal</a></li>
+      </ul>
+    </div>
+
+    <script>
+      const menuToggle = document.querySelector(".toggle");
+      const showCase = document.querySelector(".showcase");
+
+      menuToggle.addEventListener("click", () => {
+        menuToggle.classList.toggle("active");
+        showCase.classList.toggle("active");
+      });
+    </script>
   </body>
 </html>
- -->
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Old index.php page below -->
+
+<!-- 
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -31,18 +105,14 @@ session_start();
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>UH Zoo</title>
-    <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-    <!-- Bootstrap icons-->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
       rel="stylesheet"
     />
-    <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
   </head>
   <body>
-    <!-- Responsive navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container px-5">
         <a class="navbar-brand" href="#!">University of Houston Zoo</a>
@@ -70,7 +140,6 @@ session_start();
         </div>
       </div>
     </nav>
-    <!-- Header-->
     <header class="bg-dark py-5">
       <div class="container px-5">
         Last changed 11:11pm apr11
@@ -161,7 +230,6 @@ session_start();
         </div>
       </div>
     </header>
-    <!-- Features section-->
     <section class="py-5 border-bottom" id="features">
       <div class="container px-5 my-5">
         <div class="row gx-5">
@@ -176,10 +244,6 @@ session_start();
               Here at the Zoo of UH, we have a wide array of animal exhibits for
               our customers to enjoy!
             </p>
-            <!-- <a class="text-decoration-none" href="#!">
-              Call to action
-              <i class="bi bi-arrow-right"></i>
-            </a> -->
           </div>
           <div class="col-lg-4 mb-5 mb-lg-0">
             <div
@@ -194,10 +258,6 @@ session_start();
               during your visit, and if you're wondering, Shasta's Cones will be
               served at our zoo!
             </p>
-            <!-- <a class="text-decoration-none" href="#!">
-              Call to action
-              <i class="bi bi-arrow-right"></i>
-            </a> -->
           </div>
           <div class="col-lg-4">
             <div
@@ -211,179 +271,10 @@ session_start();
               cougars! Whose house? Coug's House! Come visit Shasta the cougar
               and his friends!
             </p>
-            <!-- <a class="text-decoration-none" href="#!">
-              Call to action
-              <i class="bi bi-arrow-right"></i>
-            </a> -->
           </div>
         </div>
       </div>
     </section>
-    <!-- Pricing section-->
-    <!-- <section class="bg-light py-5 border-bottom">
-      <div class="container px-5 my-5">
-        <div class="text-center mb-5">
-          <h2 class="fw-bolder">Pay as you grow</h2>
-          <p class="lead mb-0">With our no hassle pricing plans</p>
-        </div>
-        <div class="row gx-5 justify-content-center">
-          Pricing card free
-          <div class="col-lg-6 col-xl-4">
-            <div class="card mb-5 mb-xl-0">
-              <div class="card-body p-5">
-                <div class="small text-uppercase fw-bold text-muted">Free</div>
-                <div class="mb-3">
-                  <span class="display-4 fw-bold">$0</span>
-                  <span class="text-muted">/ mo.</span>
-                </div>
-                <ul class="list-unstyled mb-4">
-                  <li class="mb-2">
-                    <i class="bi bi-check text-primary"></i>
-                    <strong>1 users</strong>
-                  </li>
-                  <li class="mb-2">
-                    <i class="bi bi-check text-primary"></i>
-                    5GB storage
-                  </li>
-                  <li class="mb-2">
-                    <i class="bi bi-check text-primary"></i>
-                    Unlimited public projects
-                  </li>
-                  <li class="mb-2">
-                    <i class="bi bi-check text-primary"></i>
-                    Community access
-                  </li>
-                  <li class="mb-2 text-muted">
-                    <i class="bi bi-x"></i>
-                    Unlimited private projects
-                  </li>
-                  <li class="mb-2 text-muted">
-                    <i class="bi bi-x"></i>
-                    Dedicated support
-                  </li>
-                  <li class="mb-2 text-muted">
-                    <i class="bi bi-x"></i>
-                    Free linked domain
-                  </li>
-                  <li class="text-muted">
-                    <i class="bi bi-x"></i>
-                    Monthly status reports
-                  </li>
-                </ul>
-                <div class="d-grid">
-                  <a class="btn btn-outline-primary" href="#!">Choose plan</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          Pricing card pro
-          <div class="col-lg-6 col-xl-4">
-            <div class="card mb-5 mb-xl-0">
-              <div class="card-body p-5">
-                <div class="small text-uppercase fw-bold">
-                  <i class="bi bi-star-fill text-warning"></i>
-                  Pro
-                </div>
-                <div class="mb-3">
-                  <span class="display-4 fw-bold">$9</span>
-                  <span class="text-muted">/ mo.</span>
-                </div>
-                <ul class="list-unstyled mb-4">
-                  <li class="mb-2">
-                    <i class="bi bi-check text-primary"></i>
-                    <strong>5 users</strong>
-                  </li>
-                  <li class="mb-2">
-                    <i class="bi bi-check text-primary"></i>
-                    5GB storage
-                  </li>
-                  <li class="mb-2">
-                    <i class="bi bi-check text-primary"></i>
-                    Unlimited public projects
-                  </li>
-                  <li class="mb-2">
-                    <i class="bi bi-check text-primary"></i>
-                    Community access
-                  </li>
-                  <li class="mb-2">
-                    <i class="bi bi-check text-primary"></i>
-                    Unlimited private projects
-                  </li>
-                  <li class="mb-2">
-                    <i class="bi bi-check text-primary"></i>
-                    Dedicated support
-                  </li>
-                  <li class="mb-2">
-                    <i class="bi bi-check text-primary"></i>
-                    Free linked domain
-                  </li>
-                  <li class="text-muted">
-                    <i class="bi bi-x"></i>
-                    Monthly status reports
-                  </li>
-                </ul>
-                <div class="d-grid">
-                  <a class="btn btn-primary" href="#!">Choose plan</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          Pricing card enterprise
-          <div class="col-lg-6 col-xl-4">
-            <div class="card">
-              <div class="card-body p-5">
-                <div class="small text-uppercase fw-bold text-muted">
-                  Enterprise
-                </div>
-                <div class="mb-3">
-                  <span class="display-4 fw-bold">$49</span>
-                  <span class="text-muted">/ mo.</span>
-                </div>
-                <ul class="list-unstyled mb-4">
-                  <li class="mb-2">
-                    <i class="bi bi-check text-primary"></i>
-                    <strong>Unlimited users</strong>
-                  </li>
-                  <li class="mb-2">
-                    <i class="bi bi-check text-primary"></i>
-                    5GB storage
-                  </li>
-                  <li class="mb-2">
-                    <i class="bi bi-check text-primary"></i>
-                    Unlimited public projects
-                  </li>
-                  <li class="mb-2">
-                    <i class="bi bi-check text-primary"></i>
-                    Community access
-                  </li>
-                  <li class="mb-2">
-                    <i class="bi bi-check text-primary"></i>
-                    Unlimited private projects
-                  </li>
-                  <li class="mb-2">
-                    <i class="bi bi-check text-primary"></i>
-                    Dedicated support
-                  </li>
-                  <li class="mb-2">
-                    <i class="bi bi-check text-primary"></i>
-                    <strong>Unlimited</strong>
-                    linked domains
-                  </li>
-                  <li class="text-muted">
-                    <i class="bi bi-check text-primary"></i>
-                    Monthly status reports
-                  </li>
-                </ul>
-                <div class="d-grid">
-                  <a class="btn btn-outline-primary" href="#!">Choose plan</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section> -->
-    <!-- Testimonials section-->
     <section class="py-5 border-bottom">
       <div class="container px-5 my-5 px-5">
         <div class="text-center mb-5">
@@ -392,7 +283,6 @@ session_start();
         </div>
         <div class="row gx-5 justify-content-center">
           <div class="col-lg-6">
-            <!-- Testimonial 1-->
             <div class="card mb-4">
               <div class="card-body p-4">
                 <div class="d-flex">
@@ -411,7 +301,6 @@ session_start();
                 </div>
               </div>
             </div>
-            <!-- Testimonial 2-->
             <div class="card">
               <div class="card-body p-4">
                 <div class="d-flex">
@@ -435,7 +324,6 @@ session_start();
         </div>
       </div>
     </section>
-    <!-- Contact section-->
     <section class="bg-light py-5" id="contact-us">
       <div class="container px-5 my-5 px-5">
         <div class="text-center mb-5">
@@ -447,15 +335,7 @@ session_start();
         </div>
         <div class="row gx-5 justify-content-center">
           <div class="col-lg-6">
-            <!-- * * * * * * * * * * * * * * *-->
-            <!-- * * SB Forms Contact Form * *-->
-            <!-- * * * * * * * * * * * * * * *-->
-            <!-- This form is pre-integrated with SB Forms.-->
-            <!-- To make this form functional, sign up at-->
-            <!-- https://startbootstrap.com/solution/contact-forms-->
-            <!-- to get an API token!-->
             <form id="contactForm" data-sb-form-api-token="API_TOKEN">
-              <!-- Name input-->
               <div class="form-floating mb-3">
                 <input
                   class="form-control"
@@ -469,7 +349,6 @@ session_start();
                   A name is required.
                 </div>
               </div>
-              <!-- Email address input-->
               <div class="form-floating mb-3">
                 <input
                   class="form-control"
@@ -486,7 +365,6 @@ session_start();
                   Email is not valid.
                 </div>
               </div>
-              <!-- Phone number input-->
               <div class="form-floating mb-3">
                 <input
                   class="form-control"
@@ -500,7 +378,6 @@ session_start();
                   A phone number is required.
                 </div>
               </div>
-              <!-- Message input-->
               <div class="form-floating mb-3">
                 <textarea
                   class="form-control"
@@ -518,10 +395,6 @@ session_start();
                   A message is required.
                 </div>
               </div>
-              <!-- Submit success message-->
-              <!---->
-              <!-- This is what your users will see when the form-->
-              <!-- has successfully submitted-->
               <div class="d-none" id="submitSuccessMessage">
                 <div class="text-center mb-3">
                   <div class="fw-bolder">Form submission successful!</div>
@@ -532,16 +405,11 @@ session_start();
                   >
                 </div>
               </div>
-              <!-- Submit error message-->
-              <!---->
-              <!-- This is what your users will see when there is-->
-              <!-- an error submitting the form-->
               <div class="d-none" id="submitErrorMessage">
                 <div class="text-center text-danger mb-3">
                   Error sending message!
                 </div>
               </div>
-              <!-- Submit Button-->
               <div class="d-grid">
                 <button
                   class="btn btn-primary btn-lg disabled"
@@ -556,7 +424,6 @@ session_start();
         </div>
       </div>
     </section>
-    <!-- Footer-->
     <footer class="py-5 bg-dark">
       <div class="container px-5">
         <p class="m-0 text-center text-white">
@@ -564,14 +431,10 @@ session_start();
         </p>
       </div>
     </footer>
-    <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
-    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-    <!-- * *                               SB Forms JS                               * *-->
-    <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
   </body>
 </html>
+
+ -->
