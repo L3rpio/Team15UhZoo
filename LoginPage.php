@@ -1,8 +1,18 @@
-
 <br />
-Team 15 Zoo Login Portal<br />
+TODO: Add employee login link below
 <br />
-Last changed 11:11pm apr11
+TODO: Hash the passwords
+<br />
+TODO: Add a login page template
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+Zoo Login Portal
+<br />
+<br />
 <br />
 <br />
 <section class="signup-form">
@@ -10,18 +20,17 @@ Last changed 11:11pm apr11
         <input type="text" name="username" placeholder="Username...">
         <input type="password" name="password" placeholder="Password...">
         <button type="submit" name="submit">Log in</button>
-        <!-- Cust ID
-        first_name
-        last_name
-        user_name
-        pass_word -->
-
     </form>
 </section>
+
+<a class="btn btn-outline-light btn-lg px-4" href="">Are you a partner? Click here for the employee login!</a>
+<br />
 <br />
 <br />
 <a class="btn btn-outline-light btn-lg px-4" href="index.php">Click here to go back to the main website</a>
 <br />
+
+
 <?php
             if(isset($_GET["error"])){
                 if($_GET["error"] == "emptyinput"){
@@ -31,60 +40,4 @@ Last changed 11:11pm apr11
                     echo "<p>Incorrect Login Information!</p>";
                 }
             }
-
-        ?>
-<br />
-<br />
-echo 'SESSION VarDump:' .var_dump($_SESSION);
-<br />
-<br />
-echo 'HelloC ' . htmlspecialchars($_COOKIE["id"]) . '!';
-<br />
-<br />
-
-Example Logins for Database testing
-<table class="nav-justified">
-    <tr>
-        <td style="height: 21px">Username</td>
-        <td style="height: 21px">Password</td>
-        <td style="height: 21px">UserType</td>
-    </tr>
-    <tr>
-        <td style="height: 20px">renu01</td>
-        <td style="height: 20px">go cougars</td>
-        <td style="height: 20px">Customer</td>
-    </tr>
-    <tr>
-        <td>james01</td>
-        <td>wetherockets</td>
-        <td>Customer</td>
-    </tr>
-    <!-- <tr>
-        <td>user3</td>
-        <td>3</td>
-        <td>Employee</td>
-    </tr>
-    <tr>
-        <td>user4</td>
-        <td>4</td>
-        <td>Employee</td>
-    </tr> -->
-</table>
-<br />
-
-<!-- 
-<?php
-//     function OpenConnection(){
-//         $serverName = "cosc3380-zoo.database.windows.net";
-//         $connectionOptions = array("Database"=>"UH_Zoo_Database",
-//             "Uid"=>"dhphan3", "PWD"=>"K7EY2kh@ri*oJH9");
-//         $conn = sqlsrv_connect($serverName, $connectionOptions);
-//         if($conn == false){
-//         die(FormatErrors(sqlsrv_errors()));
-//         } else {
-//         echo("Connection made");
-//         }
-//         return $conn;
-//     }
-// ?> 
--->
+?>

@@ -9,17 +9,11 @@ Team 15 Zoo Sign Up Portal
         <input type="text" name="fname" placeholder="First Name...">
         <input type="text" name="lname" placeholder="Last Name...">
         <input type="text" name="username" placeholder="Username...">
-        <input type="text" name="email" placeholder="Email...">
+        <!-- <input type="text" name="email" placeholder="Email..."> -->  
+        <!--We don't have email, for the above code -->
         <input type="password" name="password" placeholder="Password...">
         <input type="password" name="passwordrepeat" placeholder="Repeat password...">
         <button type="submit" name="submit">Sign Up</button>
-        <!-- Cust ID
-        first_name
-        last_name
-        user_name
-        pass_word -->
-
-
     </form>
     <?php
             if(isset($_GET["error"])){
@@ -34,6 +28,9 @@ Team 15 Zoo Sign Up Portal
                 }
                 else if($_GET["error"] == "pwdmissmatch"){
                     echo "<p>Your two passwords do not match!</p>";
+                }
+                else if($_GET["error"] == "useralreadyexists"){
+                    echo "<p>Your user name is taken! Try entering a different username.</p>";
                 }
                 else if($_GET["error"] == "none"){
                     echo "<p>You have signed up!</p>";
