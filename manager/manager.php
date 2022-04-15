@@ -114,7 +114,7 @@
             
               <div class="p-3 py-5">
                   <div class="d-flex justify-content-between align-items-center mb-3">
-                      <h4 class="text-right">Profile</h4>
+                      <h4 class="text-right">Manager Profile</h4>
                   </div>
                   <div class="row mt-2">
                       <div class="col-md-12">
@@ -153,7 +153,7 @@
                       </div>
                   </div>
                   <div class="mt-5 text-center">
-                    <input class="btn btn-primary profile-button" type="submit" name="savemanagerprofile" value="Save Profile">
+                    <input class="btn btn-success" type="submit" name="savemanagerprofile" value="Save Profile">
                   </div>
               </div>
             </form>
@@ -176,8 +176,7 @@
                   class="btn btn-success"
                   data-toggle="modal"
                   ><i class="material-icons">&#xE147;</i>
-                  <span>Add New Employee</span></a
-                >
+                  <span>Add New Employee</span></a>
               </div>
             </div>
           </div>
@@ -190,6 +189,8 @@
                 <th>Address</th>
                 <th>Hourly Wage</th>
                 <th>Hours Worked</th>
+                <th>Pay Check</th>
+                <th>Pay Status</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -209,34 +210,41 @@
                   $employeeAddr = $employee["employee_Address"];
                   $employeeEmail = $employee["employee_email"];
                   $wage = $employee["hourly_wage"];
+                  $paycheck = $employee["paycheck"];
                   $hoursWorked = $employee["hours_worked"];
+                  if($hoursWorked === NULL){
+                    $hoursWorked = 0;
+                  }
+                  $payStatus = $employee["paid_status"];
                   echo "<td>" . $employeeID . "</td>";
                   echo "<td>" . $employeeFirstName . " " . $employeeLastName . "</td>";
                   echo "<td>" . $employeeEmail . "</td>";
                   echo "<td>" . $employeeAddr . "</td>";
-                  echo "<td>$" . $wage . "</td>";
-                  if($hoursWorked === NULL || $hoursWorked === 0){
-                    echo "<td>0</td>";
+                  echo "<td>$$wage</td>";
+                  echo "<td>" . $hoursWorked . "</td>";
+                  if($paycheck === NULL || $paycheck === 0){
+                    echo "<td>$0</td>";
                   } else {
-                    echo "<td>" . $hoursWorked . "</td>";
+                    echo "<td>$" . $paycheck . "</td>";
+                  }
+
+                  if($payStatus == 0 || $payStatus === NULL){
+                    echo "<td class='badge bg-danger'>Unpaid</td>";
+                  } else if($payStatus == 1){
+                    echo "<td class='badge bg-success'>Paid</td>";
+                  } else if($payStatus == 2){
+                    echo "<td class='badge bg-warning text-dark'>Payment Pending</td>";
                   }
                   
                 ?>
                 <td>
                   <!-- <a href="manager.php?edit=" class="btn btn-info">Edit</a> -->
-                  <a class="edit" href="#editEmployee<?php echo $employeeID; ?>" class="btn btn-info" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                  <a class="delete"href="process.php?delete=<?php echo $employeeID; ?>"class="btn btn-danger light-link"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-
-                  <!-- <a
-                    href="#deleteEmployeeModal"
-                    class="delete"
-                    data-toggle="modal"
-                    ><i
-                      class="material-icons"
-                      data-toggle="tooltip"
-                      title="Delete"
-                      >&#xE872;</i
-                    ></a> -->
+                  <a class="edit" href="#editEmployee<?php echo $employeeID; ?>" class="btn btn-info" data-toggle="modal">
+                    <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
+                  </a>
+                  <a class="delete" href="#deleteEmployee<?php echo $employeeID; ?>" class="btn btn-danger light-link" data-toggle="modal">
+                    <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+                  </a>
                 </td>
               </tr>
               <div id="editEmployee<?php echo $employeeID; ?>" class="modal fade">
@@ -261,11 +269,19 @@
                               </div>
                               <div class="form-group">
                                 <label>Hourly Wage</label>
-                                <input type="text" name="hourlywage" value="" class="form-control" required />
+                                <input type="text" name="hourlywage" value="<?php echo $wage; ?>" class="form-control" required />
                               </div>
                               <div class="form-group">
                                 <label>Hours Worked</label>
-                                <input type="text" name="hoursworked" class="form-control" required />
+                                <input type="text" name="hoursworked" value="<?php echo $hoursWorked; ?>" class="form-control" required />
+                              </div>
+                              <div class="form-group">
+                                <label>Pay Status</label>
+                                <select name="paystatus" class="form-select" required>
+                                  <option selected value = 0>Unpaid</option>
+                                  <option value=2>Pending</option>
+                                  <option value=1>Paid</option>
+                                </select>
                               </div>
                             </div>
                             <div class="modal-footer">
@@ -280,9 +296,44 @@
                           </form>
                         </div>
                       </div>
+                  </div>
+                    <!-- Delete Modal HTML -->
+                    <div id="deleteEmployee<?php echo $employeeID; ?>" class="modal fade">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <form action="process.php" method="post">
+                          <input type="number" name="id" value="<?php echo $employeeID; ?>" class="form-control" required hidden/>
+                            <div class="modal-header">
+                              <h4 class="modal-title">Delete Employee</h4>
+                              <button
+                                type="button"
+                                class="close"
+                                data-dismiss="modal"
+                                aria-hidden="true">
+                                &times;
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <p>Are you sure you want to delete this employee?</p>
+                              <p class="text-warning">
+                                <small>This action cannot be undone.</small>
+                              </p>
+                            </div>
+                            <div class="modal-footer">
+                              <input
+                                type="button"
+                                class="btn btn-default"
+                                data-dismiss="modal"
+                                value="Cancel"
+                              />
+                              <input type="submit" name="deleteemployee" class="btn btn-danger" value="Delete" />
+                            </div>
+                          </form>
+                        </div>
+                      </div>
                     </div>
-              <?php } ?>
-            </tbody>
+                    <?php } ?>
+              </tbody>
           </table>
           <div class="clearfix">
             <!-- also not using total amount of entries -->
@@ -305,9 +356,6 @@
         </div>
       </div>
     </div>
-
-    
-    <!-- Edit Modal HTML -->
     <div id="addEmployeeModal" class="modal fade">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -353,41 +401,6 @@
                 value="Cancel"
               />
               <input type="submit" name="addemployee" class="btn btn-success" value="Add" />
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-    <!-- Delete Modal HTML -->
-    <div id="deleteEmployeeModal" class="modal fade">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <form>
-            <div class="modal-header">
-              <h4 class="modal-title">Delete Employee</h4>
-              <button
-                type="button"
-                class="close"
-                data-dismiss="modal"
-                aria-hidden="true"
-              >
-                &times;
-              </button>
-            </div>
-            <div class="modal-body">
-              <p>Are you sure you want to delete this employee?</p>
-              <p class="text-warning">
-                <small>This action cannot be undone.</small>
-              </p>
-            </div>
-            <div class="modal-footer">
-              <input
-                type="button"
-                class="btn btn-default"
-                data-dismiss="modal"
-                value="Cancel"
-              />
-              <input type="submit" class="btn btn-danger" value="Delete" />
             </div>
           </form>
         </div>

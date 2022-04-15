@@ -9,6 +9,7 @@ if($conn == false){
 
 session_start();
 
+// information processing for manager.php
 if(isset($_POST['savemanagerprofile'])){
   $id = $_POST['id'];
   $firstname = $_POST['firstname'];
@@ -30,8 +31,8 @@ if(isset($_POST['savemanagerprofile'])){
 }
 
 
-if(isset($_GET['delete'])){
-  $id = $_GET['delete'];
+if(isset($_POST['deleteemployee'])){
+  $id = $_POST['id'];
   $run = mysqli_query($conn, "delete from employee where employee_id = $id");
   $_SESSION['message'] = 'Employee has been deleted!';
   $_SESSION['msg_type'] = 'danger';
@@ -58,7 +59,9 @@ if(isset($_POST['updateemployee'])){
   $id = $_POST['id'];
   $wage = $_POST['hourlywage'];
   $hoursWorked = $_POST['hoursworked'];
-  $updateQuery = "update employee set hourly_wage=$wage, hours_worked=$hoursWorked where employee_id = $id";
+  $payStatus = $_POST['paystatus'];
+
+  $updateQuery = "update employee set hourly_wage=$wage, hours_worked=$hoursWorked, paid_status=$payStatus where employee_id = $id";
   $run = mysqli_query($conn, $updateQuery);
   $_SESSION['message'] = 'Employee updated!';
   $_SESSION['msg_type'] = 'warning';
@@ -66,4 +69,6 @@ if(isset($_POST['updateemployee'])){
 
 }
 mysqli_close($conn);
+
+// infomation processing for ticket.php
 ?>

@@ -23,8 +23,8 @@ session_start();
       <div class="overlay"></div>
 
       <div class="text">
-        <h2>Welcome to the</h2>
-        <h3>UH Zoo</h3>
+        <h3>Welcome to the</h3>
+        <h2>UH Zoo</h2>
         <p>
           We are proud to annouce that we have offically opened up our zoo to
           the public. Sign up for an account with us to get tickets to visit us
@@ -122,6 +122,8 @@ session_start();
         <li><a href="#">Customer Portal</a></li>
         <li><a href="#">Employee Portal</a></li>
         <li><a href="manager/manager.php">Manager Portal</a></li>
+        <li><a href="ticket.php">Reserve Tickets</a></li>
+        <li><a href="#">Preorder Food</a></li>
       </ul>
     </div>
 
