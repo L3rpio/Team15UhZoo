@@ -4,6 +4,16 @@ include 'config.php';
 session_start();
 $user_id = $_SESSION['user_id'];
 
+if (!isset($user_id)) {
+    header('location:Login.php');
+};
+
+if (isset($_GET['logout'])) {
+    unset($user_id);
+    session_destroy();
+    header('location:Login.php');
+}
+
 if (isset($_POST['update_profile'])) {
 
     $update_username = mysqli_real_escape_string($conn, $_POST['update_username']);
