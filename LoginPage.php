@@ -23,7 +23,7 @@ Zoo Login Portal
     </form>
 </section>
 
-<a class="btn btn-outline-light btn-lg px-4" href="">Are you a partner? Click here for the employee login!</a>
+<a class="btn btn-outline-light btn-lg px-4" href="./EmployeePortal/Login.php">Are you a partner? Click here for the employee login!</a>
 <br />
 <br />
 <br />
@@ -32,12 +32,12 @@ Zoo Login Portal
 
 
 <?php
-            if(isset($_GET["error"])){
-                if($_GET["error"] == "emptyinput"){
-                    echo "<p>You left one of the fields empty!</p>";
-                }
-                if($_GET["error"] == "wronglogin"){
-                    echo "<p>Incorrect Login Information!</p>";
-                }
-            }
+if (isset($_GET["error"])) {
+    if ($_GET["error"] == "emptyinput") {
+        echo "<p>You left one of the fields empty!</p>";
+    }
+    if ($_GET["error"] == "wronglogin") {
+        echo "<p>Incorrect Login Information!</p>";
+    }
+}
 ?>
