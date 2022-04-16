@@ -1,15 +1,4 @@
 <?php 
-// if(isset($_POST['submit'])){
-//   $firstname = $_POST['firstname'];
-//   $lastname = $_POST['lastname'];
-//   $email = $_POST['email'];
-//   $addr = $_POST['address'];
-//   $wage = $_POST['hourlywage'];
-//   $hoursworked = $_POST['hoursworked'];
-
-//   echo $firstname;
-// }
-
 $serverName = "zoodbteam15-server.mysql.database.azure.com";
 $username ="zooadmin";
 $password= "Lovec++123";
@@ -20,8 +9,30 @@ if($conn == false){
 
 session_start();
 
-if(isset($_GET['delete'])){
-  $id = $_GET['delete'];
+// information processing for manager.php
+if(isset($_POST['savemanagerprofile'])){
+  $id = $_POST['id'];
+  $firstname = $_POST['firstname'];
+  $lastname = $_POST['lastname'];
+  $addr = $_POST['address'];
+  $email = $_POST['email'];
+  $wage = $_POST['wage'];
+  $hoursWorked = $_POST['hoursworked'];
+  $updateManagerQuery = "update employee set 
+  employee_first_name = '$firstname', 
+  employee_last_name = '$lastname',
+  employee_Address = '$addr',
+  employee_email = '$email' where employee_id = $id;";
+
+  $run = mysqli_query($conn, $updateManagerQuery);
+  $_SESSION['message'] = 'Manager Updated';
+  $_SESSION['msg_type'] = 'info';
+  header('location: manager.php');
+}
+
+
+if(isset($_POST['deleteemployee'])){
+  $id = $_POST['id'];
   $run = mysqli_query($conn, "delete from employee where employee_id = $id");
   $_SESSION['message'] = 'Employee has been deleted!';
   $_SESSION['msg_type'] = 'danger';
@@ -48,12 +59,16 @@ if(isset($_POST['updateemployee'])){
   $id = $_POST['id'];
   $wage = $_POST['hourlywage'];
   $hoursWorked = $_POST['hoursworked'];
-  $updateQuery = "update employee set hourly_wage=$wage, hours_worked=$hoursWorked where employee_id = $id";
+  $payStatus = $_POST['paystatus'];
+
+  $updateQuery = "update employee set hourly_wage=$wage, hours_worked=$hoursWorked, paid_status=$payStatus where employee_id = $id";
   $run = mysqli_query($conn, $updateQuery);
   $_SESSION['message'] = 'Employee updated!';
-  $_SESSION['msg_type'] = 'success';
+  $_SESSION['msg_type'] = 'warning';
   header('location: manager.php');
 
 }
 mysqli_close($conn);
+
+// infomation processing for ticket.php
 ?>
