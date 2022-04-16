@@ -111,6 +111,7 @@ function login2($conn, $user, $pass){
         session_write_close();
         echo "5";
         ob_end_clean();
+        die();
         exit();
     }
 }

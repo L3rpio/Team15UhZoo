@@ -16,25 +16,30 @@ if(isset($_POST["submit"]))
      if(emptyInputSignup($email, $fname, $lname,$user, $pass,$pwdrepeat) !== false){
     //if(emptyInputSignup($fname, $lname,$user, $pass,$pwdrepeat) !== false){
         header("location:../GuestSignUp.php?error=emptyinput");
+        die();
         exit();
     }
     if(invalidUID($user) !== false){
         header("location:../GuestSignUp.php?error=invalidUID");
+        die();
         exit();
     }
 
     if(mismatchpassword($pass, $pwdrepeat) !== false){
         header("location:../GuestSignUp.php?error=pwdmissmatch");
+        die();
         exit();
     }
     if(usertaken($conn, $user) !== false){
         header("location:../GuestSignUp.php?error=useralreadyexists");
+        die();
         exit();
     }
     createUser2($conn, $fname, $lname, $user, $pass, $email);
 }
 else{
     header("location:/..GuestSignUp.php");
+    die();
     exit();
 }
 ob_end_clean();

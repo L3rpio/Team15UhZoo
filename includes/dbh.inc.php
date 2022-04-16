@@ -10,6 +10,7 @@ $database = "uh_zoo";
 $conn = new mysqli($serverName, $username, $password, $database);
 if($conn == false){
     die("Connection failed: " . $conn->connect_error);
+    exit();
 }
 else {
 //echo("Connection made");
