@@ -4,7 +4,7 @@ ob_start();
 echo "1";
 function emptyInputSignup($email, $fname, $lname, $user, $pass, $pwdrepeat)
 {
-    $result;
+    $result = false;
     if (empty($email) || empty($fname) || empty($lname) || empty($user) || empty($pass) || empty($pwdrepeat)) {
         $result = true;
     } else {
@@ -15,7 +15,7 @@ function emptyInputSignup($email, $fname, $lname, $user, $pass, $pwdrepeat)
 echo "2";
 function invalidUID($user)
 {
-    $result;
+    $result = false;
     if (!preg_match("/^[a-zA-Z0-9]*$/", $user)) {
         $result = true;
     } else {
@@ -26,7 +26,7 @@ function invalidUID($user)
 echo "3";
 function bademail($email)
 {
-    $result;
+    $result = false;
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $result = true;
     } else {
@@ -37,7 +37,7 @@ function bademail($email)
 echo "4";
 function mismatchpassword($pass, $pwdrepeat)
 {
-    $result;
+    $result = false;
     if ($pass !== $pwdrepeat) {
         $result = true;
     } else {
@@ -78,7 +78,7 @@ function login2($conn, $user, $pass)
         // }
         echo "2";
         #redirects user
-        header("Location: CustomerPortal/Home.php");
+        header("Location: ../index.php?msg=loggedin");
         echo "3";
     }
 }
@@ -127,7 +127,7 @@ function createUser2($conn, $fname, $lname, $user, $pass, $email)
 echo "8";
 function emptyInputLogin($user, $pass)
 {
-    $result;
+    $result = false;
     if (empty($user) || empty($pass)) {
         $result = true;
     } else {
