@@ -28,7 +28,7 @@
       </div>
     </nav>
     <div class="container rounded bg-white mt-5 mb-5">
-      <form action="process.php" method="post">
+      <form action="ticketProcessing.php" method="post">
       <div class="row">
           <div class="col border-right">
               <div class="p-3 py-5">
@@ -48,15 +48,15 @@
                   <div class="row mt-3">
                       <div class="col-md-12">
                         <label class="labels">Email</label>
-                        <input type="text" class="form-control" name="email">
+                        <input type="text" class="form-control" name="email" placeholder="Enter email...">
                       </div>
                       <div class="col-md-12">
                         <label class="labels">How Old Are You?</label>
-                        <input type="text" class="form-control" name="age">
+                        <input type="number" class="form-control" name="age" placeholder="Enter age...">
                       </div>
                   </div>
                   <div class="mt-5">
-                    <input class="btn btn-success" type="submit" name="" value="Reserve Your Ticket">
+                    <input class="btn btn-success" type="submit" name="reserveticket" value="Reserve Your Ticket">
                   </div>
               </div>
             </div>
