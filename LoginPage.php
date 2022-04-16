@@ -1,43 +1,64 @@
-<br />
-TODO: Add employee login link below
-<br />
-TODO: Hash the passwords
-<br />
-TODO: Add a login page template
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-Zoo Login Portal
-<br />
-<br />
-<br />
-<br />
-<section class="signup-form">
-    <form action="includes/login.inc.php" method="post">
-        <input type="text" name="username" placeholder="Username...">
-        <input type="password" name="password" placeholder="Password...">
-        <button type="submit" name="submit">Log in</button>
-    </form>
-</section>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UH Zoo: Customer Login</title>
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="EmployeePortal/css/style.css">
+</head>
 
-<a class="btn btn-outline-light btn-lg px-4" href="./EmployeePortal/Login.php">Are you a partner? Click here for the employee login!</a>
-<br />
-<br />
-<br />
-<a class="btn btn-outline-light btn-lg px-4" href="index.php">Click here to go back to the main website</a>
-<br />
+<body>
+    <nav class="navbar">
+        <span class="logo"><a href="index.php" class="styledLink">UH Zoo</a></span>
+        <ul class="navlist">
+            <li class="listItem">
+               <a href="index.php" class="nav-home">Back Home</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="form-container">
 
 
-<?php
-if (isset($_GET["error"])) {
-    if ($_GET["error"] == "emptyinput") {
-        echo "<p>You left one of the fields empty!</p>";
-    }
-    if ($_GET["error"] == "wronglogin") {
-        echo "<p>Incorrect Login Information!</p>";
-    }
-}
-?>
+    <section class="signup-form">
+        <form action="includes/login.inc.php" method="post">
+            <h3>Customer Login</h3>
+            <input type="text" name="username" placeholder="Username" class="box" required>
+            <input type="password" name="password" placeholder="Password" class="box" required>
+            <button type="submit" name="submit" class="btn">Log in</button>
+            <?php
+        if (isset($_GET["error"])) {
+            if ($_GET["error"] == "emptyinput") {
+                echo "<p>You left one of the fields empty!</p>";
+            }
+            if ($_GET["error"] == "wronglogin") {
+                echo "<p>Incorrect Login Information!</p>";
+            }
+        }
+        ?>
+            <p>New guest? Register with us today! <a href="GuestSignUp.php">Guest Registration</a></p>
+            <p>Are you an employee? <a href="./EmployeePortal/Login.php">Employee Login</a></p>
+        </form>
+    </section>
+
+
+        <!-- <form action="" method="post" enctype="multipart/form-data">
+            <h3>Login</h3>
+            <?php
+            // if (isset($message)) {
+            //     foreach ($message as $message) {
+            //         echo '<div class="message">' . $message . '</div>';
+            //     }
+            // }
+            ?>
+            <input type="text" name="username" placeholder="Username" class="box" required>
+            <input type="password" name="password" placeholder="Password" class="box" required>
+            <input type="submit" name="submit" value="Submit" class="btn">
+
+        </form> -->
+
+
+    </div>
+</body>
+</html>

@@ -3,9 +3,9 @@
 
 
 // GuestSignUp.php : If one of the guest sign up field is empty, return true
-function emptyInputSignup($fname, $lname,$user, $pass,$pwdrepeat){
+function emptyInputSignup($email, $fname, $lname,$user, $pass,$pwdrepeat){
     $result;
-    if(empty($fname)||empty($lname)||empty($user)||empty($pass)||empty($pwdrepeat))
+    if(empty($email) || empty($fname)||empty($lname)||empty($user)||empty($pass)||empty($pwdrepeat))
     {$result = true;}
     else{$result = false;}
     return $result;
@@ -33,15 +33,15 @@ function mismatchpassword($pass, $pwdrepeat) {
 
 // GuestSignUp.php : If a user tries to sign in with the same username that someone else already has
 function usertaken($conn, $user){  //SQLI
-    //    $sql = "SELECT * FROM Customer WHERE user_name = ? OR Email = ?;"; //This has email
-    $sql = "SELECT * FROM Customer WHERE user_name = ?;";
+    $sql = "SELECT * FROM Customer WHERE user_name = ? OR Email = ?;"; //This has email
+    //$sql = "SELECT * FROM Customer WHERE user_name = ?;";
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $sql)){
         header("location:../GuestSignUp.php?error=useralreadyexists");
         exit();
     }
     //mysqli_stmt_bind_param($stmt, "ss", $user, $email);  //This has email too
-    mysqli_stmt_bind_param($stmt, "s", $user);
+    mysqli_stmt_bind_param($stmt, "ss", $user, $email);
     mysqli_stmt_execute($stmt);
     $resultData=mysqli_stmt_get_result($stmt);
     if($row = mysqli_fetch_assoc($resultData)){
@@ -55,9 +55,9 @@ function usertaken($conn, $user){  //SQLI
 }
 
 // GuestSignUp.php : Creates a new customer row on the database with the information provided
-function createUser2($conn, $fname, $lname, $user, $pass){
-    //$sql = "INSERT INTO Customer ([first_name], [last_name], [user_name], [pass_word], [Email]) VALUES ('$fname', '$lname', '$user', '$pass', '$email');";
-    $sql = "INSERT INTO Customer ([first_name], [last_name], [user_name], [pass_word]) VALUES ('$fname', '$lname', '$user', '$pass');";
+function createUser2($conn, $fname, $lname, $user, $pass, $email){
+    $sql = "INSERT INTO customer (first_name, last_name, user_name, pass_word, email) VALUES ('$fname', '$lname', '$user', '$pass', '$email');";
+  //$sql = "INSERT INTO customer ([first_name], [last_name], [user_name], [pass_word]         ) VALUES ('$fname', '$lname', '$user', '$pass'          );";
     $result = mysqli_query($conn, $sql);
     if($result){ echo "Data insertion success!";}
     else{ echo "Insertion Error!";}
@@ -82,7 +82,7 @@ function login2($conn, $user, $pass){
         die("Connection failed: " . $conn->connect_error);
     }
     if(mysqli_num_rows($result) != 1){
-        header("location: LoginPage.php?error=wronglogin");
+        header("location: ../LoginPage.php?error=wronglogin");
         exit();
     }
     else{
@@ -94,6 +94,8 @@ function login2($conn, $user, $pass){
             $_SESSION['first_name'] = $rows['first_name'];
             $_SESSION['last_name'] = $rows['last_name'];
             $_SESSION['user_name'] = $rows['user_name'];
+            $_SESSION['pass_word'] = $rows['pass_word'];
+            $_SESSION['email'] = $rows['email'];
 
         // while($row = sqlsrv_fetch_array($result)){
         //     $_SESSION['id'] = $row['customer_id'];
@@ -101,7 +103,7 @@ function login2($conn, $user, $pass){
         //     $_SESSION['last_name'] = $row['last_name'];
         //     $_SESSION['user_name'] = $row['user_name'];
         // }
-        header("Location: ../index.php?msg=loggedin");
+        header("Location: ../GuestLanding.php?msg=loggedin");
         session_regenerate_id(true);
         session_write_close();
         exit();

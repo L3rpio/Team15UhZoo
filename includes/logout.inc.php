@@ -4,6 +4,8 @@ session_start();
 session_unset();
 session_destroy();
 
-header("location:../index.php?msg=loggedout");
+header("location:../index.php?msg=loggingOut");
+session_regenerate_id(true);
+session_write_close();
 exit();
-ob_end_clean();
+// ob_end_clean();

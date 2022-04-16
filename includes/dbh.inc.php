@@ -2,7 +2,6 @@
 //This script logs you into the database
 
 
-
 $serverName = "zoodbteam15-server.mysql.database.azure.com";
 $username = "zooadmin";
 $password = "Lovec++123";
@@ -13,5 +12,5 @@ if($conn == false){
     die("Connection failed: " . $conn->connect_error);
 }
 else {
-echo("Connection made");
+//echo("Connection made");
 }

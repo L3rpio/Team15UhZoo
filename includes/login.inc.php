@@ -7,7 +7,7 @@ if(isset($_POST["submit"])){
     require_once 'functions.inc.php';
 
     if(emptyInputLogin($user, $pass) !== false){
-        header("location: ../LoginPage.php?error=emptyinput");
+        header("location: LoginPage.php?error=emptyinput");
         exit();
     }
 
@@ -17,7 +17,7 @@ if(isset($_POST["submit"])){
     exit();
 }
 else{
-    header("location: LoginPage.php");
+    header("location: GuestLanding.php");
     session_regenerate_id(true);
     session_write_close();
     exit();
