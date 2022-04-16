@@ -86,9 +86,9 @@ function login2($conn, $user, $pass){
         exit();
     }
     else{
-        echo "User and password matched!";
         session_start();
         ob_start();
+        echo "User and password matched!";
         echo "1";
         $rows=mysqli_fetch_array($result);
             $_SESSION['id'] = $rows['customer_id'];
