@@ -96,7 +96,7 @@ function login2($conn, $user, $pass){
             $_SESSION['user_name'] = $rows['user_name'];
             $_SESSION['pass_word'] = $rows['pass_word'];
             $_SESSION['email'] = $rows['email'];
-
+        echo "2";
         // while($row = sqlsrv_fetch_array($result)){
         //     $_SESSION['id'] = $row['customer_id'];
         //     $_SESSION['first_name'] = $row['first_name'];
@@ -104,12 +104,16 @@ function login2($conn, $user, $pass){
         //     $_SESSION['user_name'] = $row['user_name'];
         // }
         header("Location: ../GuestLanding.php?msg=loggedin");
+        echo "3";
         session_regenerate_id(true);
+        echo "4";
         session_write_close();
+        echo "5";
         exit();
+        echo "6";
     }
 }
-
+echo "7";
 // LoginPage.php : If a user tries to login with nothing on a field
 function emptyInputLogin($user, $pass){
     $result;
@@ -120,7 +124,7 @@ function emptyInputLogin($user, $pass){
     else{ $result = false;}
     return $result;
 }
-
+echo "8";
 // function createUser($conn, $user, $email, $fname, $lname, $pass){
 //     $sql = "INSERT INTO Customer (first_name, last_name, user_name, pass_word) VALUES (?, ?, ?, ?) ";
 //     $stmt = mysqli_stmt_init($conn);
