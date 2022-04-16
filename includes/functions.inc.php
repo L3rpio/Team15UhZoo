@@ -88,6 +88,7 @@ function login2($conn, $user, $pass){
     else{
         echo "User and password matched!";
         session_start();
+        ob_start();
         echo "1";
         $rows=mysqli_fetch_array($result);
             $_SESSION['id'] = $rows['customer_id'];
@@ -110,10 +111,8 @@ function login2($conn, $user, $pass){
         session_write_close();
         echo "5";
         exit();
-        echo "6";
     }
 }
-echo "7";
 // LoginPage.php : If a user tries to login with nothing on a field
 function emptyInputLogin($user, $pass){
     $result;
@@ -124,7 +123,6 @@ function emptyInputLogin($user, $pass){
     else{ $result = false;}
     return $result;
 }
-echo "8";
 // function createUser($conn, $user, $email, $fname, $lname, $pass){
 //     $sql = "INSERT INTO Customer (first_name, last_name, user_name, pass_word) VALUES (?, ?, ?, ?) ";
 //     $stmt = mysqli_stmt_init($conn);
