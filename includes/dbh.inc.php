@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 //This script logs you into the database
 
 
