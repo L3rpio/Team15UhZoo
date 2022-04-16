@@ -3,51 +3,58 @@
 
 
 // GuestSignUp.php : If one of the guest sign up field is empty, return true
-function emptyInputSignup($fname, $lname,$user, $pass,$pwdrepeat){
+function emptyInputSignup($fname, $lname, $user, $pass, $pwdrepeat)
+{
     $result;
-    if(empty($fname)||empty($lname)||empty($user)||empty($pass)||empty($pwdrepeat))
-    {$result = true;}
-    else{$result = false;}
+    if (empty($fname) || empty($lname) || empty($user) || empty($pass) || empty($pwdrepeat)) {
+        $result = true;
+    } else {
+        $result = false;
+    }
     return $result;
 }
 
 // GuestSignUp.php : If the userID has characters that invalid, return true
-function invalidUID($user){
+function invalidUID($user)
+{
     $result;
-    if(!preg_match("/^[a-zA-Z0-9]*$/", $user)){
+    if (!preg_match("/^[a-zA-Z0-9]*$/", $user)) {
         $result = true;
-    }
-    else{
+    } else {
         $result = false;
     }
     return $result;
 }
 
 // GuestSignUp.php : If the customer's passwords do not match, return true
-function mismatchpassword($pass, $pwdrepeat) {
+function mismatchpassword($pass, $pwdrepeat)
+{
     $result;
-    if ($pass!== $pwdrepeat){$result=true;}
-    else{$result=false;}
+    if ($pass !== $pwdrepeat) {
+        $result = true;
+    } else {
+        $result = false;
+    }
     return $result;
 }
 
 // GuestSignUp.php : If a user tries to sign in with the same username that someone else already has
-function usertaken($conn, $user){  //SQLI
+function usertaken($conn, $user)
+{  //SQLI
     //    $sql = "SELECT * FROM Customer WHERE user_name = ? OR Email = ?;"; //This has email
     $sql = "SELECT * FROM Customer WHERE user_name = ?;";
     $stmt = mysqli_stmt_init($conn);
-    if(!mysqli_stmt_prepare($stmt, $sql)){
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location:../GuestSignUp.php?error=useralreadyexists");
         exit();
     }
     //mysqli_stmt_bind_param($stmt, "ss", $user, $email);  //This has email too
     mysqli_stmt_bind_param($stmt, "s", $user);
     mysqli_stmt_execute($stmt);
-    $resultData=mysqli_stmt_get_result($stmt);
-    if($row = mysqli_fetch_assoc($resultData)){
+    $resultData = mysqli_stmt_get_result($stmt);
+    if ($row = mysqli_fetch_assoc($resultData)) {
         return $row;
-    }
-    else{
+    } else {
         $result = false;
         return $result;
     }
@@ -55,12 +62,16 @@ function usertaken($conn, $user){  //SQLI
 }
 
 // GuestSignUp.php : Creates a new customer row on the database with the information provided
-function createUser2($conn, $fname, $lname, $user, $pass){
+function createUser2($conn, $fname, $lname, $user, $pass)
+{
     //$sql = "INSERT INTO Customer ([first_name], [last_name], [user_name], [pass_word], [Email]) VALUES ('$fname', '$lname', '$user', '$pass', '$email');";
     $sql = "INSERT INTO Customer ([first_name], [last_name], [user_name], [pass_word]) VALUES ('$fname', '$lname', '$user', '$pass');";
     $result = mysqli_query($conn, $sql);
-    if($result){ echo "Data insertion success!";}
-    else{ echo "Insertion Error!";}
+    if ($result) {
+        echo "Data insertion success!";
+    } else {
+        echo "Insertion Error!";
+    }
     // if($result === false){
     //     die( print_r( sqlsrv_errors(), true));
     //     }
@@ -75,25 +86,25 @@ function createUser2($conn, $fname, $lname, $user, $pass){
 }
 
 // LoginPage.php : Logs a user in using sessions
-function login2($conn, $user, $pass){
+function login2($conn, $user, $pass)
+{
     $query = "SELECT * FROM Customer WHERE user_name='{$user}' AND pass_word='{$pass}';";
-    $result = mysqli_query($conn, $query);  
-    if($result === false){
+    $result = mysqli_query($conn, $query);
+    if ($result === false) {
         die("Connection failed: " . $conn->connect_error);
     }
-    if(mysqli_num_rows($result) != 1){
+    if (mysqli_num_rows($result) != 1) {
         header("location: LoginPage.php?error=wronglogin");
         exit();
-    }
-    else{
+    } else {
         echo "User and password matched!";
         session_start();
         echo "1";
-        $rows=mysqli_fetch_array($result);
-            $_SESSION['id'] = $rows['customer_id'];
-            $_SESSION['first_name'] = $rows['first_name'];
-            $_SESSION['last_name'] = $rows['last_name'];
-            $_SESSION['user_name'] = $rows['user_name'];
+        $rows = mysqli_fetch_array($result);
+        $_SESSION['id'] = $rows['customer_id'];
+        $_SESSION['first_name'] = $rows['first_name'];
+        $_SESSION['last_name'] = $rows['last_name'];
+        $_SESSION['user_name'] = $rows['user_name'];
 
         // while($row = sqlsrv_fetch_array($result)){
         //     $_SESSION['id'] = $row['customer_id'];
@@ -101,7 +112,7 @@ function login2($conn, $user, $pass){
         //     $_SESSION['last_name'] = $row['last_name'];
         //     $_SESSION['user_name'] = $row['user_name'];
         // }
-        header("Location: ../index.php?msg=loggedin");
+        header("Location: ../CustomerPortal/Home.php");
         session_regenerate_id(true);
         session_write_close();
         exit();
@@ -109,13 +120,14 @@ function login2($conn, $user, $pass){
 }
 
 // LoginPage.php : If a user tries to login with nothing on a field
-function emptyInputLogin($user, $pass){
+function emptyInputLogin($user, $pass)
+{
     $result;
-    if(empty($user)|| empty($pass) )
-    {
+    if (empty($user) || empty($pass)) {
         $result = true;
+    } else {
+        $result = false;
     }
-    else{ $result = false;}
     return $result;
 }
 

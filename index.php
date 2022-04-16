@@ -50,8 +50,8 @@ session_start();
   <div class="menu">
     <ul>
       <li><a href="#">Home</a></li>
-      <li><a href="#">Customer Portal</a></li>
-      <li><a href="./EmployeePortal/Login.php">Employee Portal</a></li>
+      <li><a href="CustomerPortal/Home.php">Customer Portal</a></li>
+      <li><a href="./EmployeePortal/Home.php">Employee Portal</a></li>
       <li><a href="#">Manager Portal</a></li>
     </ul>
   </div>

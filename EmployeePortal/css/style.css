@@ -395,6 +395,7 @@ td {
 }
 
 .navbar {
+   display: flex;
    position: fixed;
     top: 0;
     height: 3.5rem;
@@ -404,11 +405,10 @@ td {
     -webkit-backdrop-filter: blur(16px) saturate(180%);
     box-shadow: var(--box-shadow);
     color: var(--white);
-    display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 4rem;
-    
+    z-index: 10;
 }
 
 .logo {
