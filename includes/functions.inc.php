@@ -110,6 +110,7 @@ function login2($conn, $user, $pass){
         echo "4";
         session_write_close();
         echo "5";
+        ob_end_clean();
         exit();
     }
 }
