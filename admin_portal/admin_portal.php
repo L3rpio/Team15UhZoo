@@ -33,7 +33,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container px-5">
         <a class="navbar-brand" href="../index.php">University of Houston Zoo</a>
-        <a class="navbar-brand" href="../reports/customer_reports.php">Customer Reports</a>
+        <a class="navbar-brand" href="../reports/customer_report.php">Customer Reports</a>
         <a class="navbar-brand" href="../reports/employeereports.hp">Employee Reports</a>
         <button
           class="navbar-toggler"
