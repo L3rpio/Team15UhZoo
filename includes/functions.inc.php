@@ -108,13 +108,14 @@ function createUser2($conn, $fname, $lname, $user, $email, $pass)
 // LoginPage.php : Logs a user in using sessions
 function login2($conn, $user, $pass)
 {
-    $query  = "SELECT * FROM Customer WHERE user_name='{$user}' AND pass_word='{$pass}';";
+    $base64pass = base64_encode($pass);
+    $query  = "SELECT * FROM Customer WHERE user_name='{$user}' AND pass_word='{$base64pass}';";
     $result = mysqli_query($conn, $query);
     if ($result === false) {
         die("Connection failed: " . $conn->connect_error);
     }
     if (mysqli_num_rows($result) != 1) {
-        header("location: LoginPage.php?error=wronglogin");
+        header("location: LoginPage.php?error=wrongloginpass=$pass");
         exit();
     } else {
         echo "User and password matched!";

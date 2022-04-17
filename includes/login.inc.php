@@ -11,7 +11,6 @@ if (isset($_POST["submit"])) {
 
 
     if (emptyInputLogin($user, $pass) !== false) {
-
         header("location: LoginPage.php?error=emptyinput");
         die();
         exit();
