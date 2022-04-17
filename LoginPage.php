@@ -38,7 +38,7 @@
                     }
                 }
                 ?>
-                <p>New guest? Register with us today! <a href="GuestSignUp.php">Guest Registration</a></p>
+                <p>New guest? <a href="GuestSignUp.php">Guest Registration</a></p>
                 <p>Are you an employee? <a href="./EmployeePortal/Login.php">Employee Login</a></p>
             </form>
         </section>

@@ -44,7 +44,7 @@
                     } else if ($_GET["error"] == "pwdmissmatch") {
                         echo "<p>Your two passwords do not match!</p>";
                     } else if ($_GET["error"] == "useralreadyexists") {
-                        echo "<p>Your username and/or email is taken! Try entering a different username.</p>";
+                        echo "<p>Your username and/or email is taken! Try entering a different one.</p>";
                     } else if ($_GET["error"] == "none") {
                         echo "<p>You have signed up!</p>";
                     }
