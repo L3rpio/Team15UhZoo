@@ -1,6 +1,5 @@
 <?php
 
-// ob_start();
 if (isset($_POST["submit"])) {
 
 // $email = $_POST["email"];
@@ -26,12 +25,15 @@ if (isset($_POST["submit"])) {
         header("location:../GuestSignUp.php?error=invalidUID");
         exit();
     }
-
+    if (bademail($email) !== false){
+        header("location:../GuestSignUp.php?error=bademail");
+        exit();
+    }
     if (mismatchpassword($pass, $pwdrepeat) !== false) {
         header("location:../GuestSignUp.php?error=pwdmissmatch");
         exit();
     }
-    if (usertaken($conn, $user) !== false) {
+    if (usertaken($conn, $user, $email) !== false) {
         header("location:../GuestSignUp.php?error=useralreadyexists");
         exit();
     }

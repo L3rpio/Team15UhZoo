@@ -13,6 +13,17 @@ function emptyInputSignup($fname, $lname, $user, $pass, $pwdrepeat)
     return $result;
 }
 
+// GuestSignUp.php : If the customer has a bad email, return true
+function bademail($email) {
+    $result;
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
+        $result=true;
+    }
+    else{ 
+        $result=false;}
+    return $result;
+}
+
 // GuestSignUp.php : If the userID has characters that invalid, return true
 function invalidUID($user)
 {
@@ -37,19 +48,16 @@ function mismatchpassword($pass, $pwdrepeat)
     return $result;
 }
 
-// GuestSignUp.php : If a user tries to sign in with the same username that someone else already has
-function usertaken($conn, $user)
+// GuestSignUp.php : Checks if a user tries to sign in with the same username that someone else already has
+function usertaken($conn, $user, $email)
 {
-    //SQLI
-    //    $sql = "SELECT * FROM Customer WHERE user_name = ? OR Email = ?;"; //This has email
-    $sql  = "SELECT * FROM customer WHERE user_name = ?;";
+    $sql = "SELECT * FROM Customer WHERE user_name = ? OR Email = ?;"; 
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location:../GuestSignUp.php?error=useralreadyexists");
         exit();
     }
-    //mysqli_stmt_bind_param($stmt, "ss", $user, $email);  //This has email too
-    mysqli_stmt_bind_param($stmt, "s", $user);
+    mysqli_stmt_bind_param($stmt, "ss", $user, $email); 
     mysqli_stmt_execute($stmt);
     $resultData = mysqli_stmt_get_result($stmt);
     if ($row = mysqli_fetch_assoc($resultData)) {
@@ -115,7 +123,7 @@ function login2($conn, $user, $pass)
         die("Connection failed: " . $conn->connect_error);
     }
     if (mysqli_num_rows($result) != 1) {
-        header("location: LoginPage.php?error=wrongloginpass=$pass");
+        header("location: LoginPage.php?error=wronglogin");
         exit();
     } else {
         echo "User and password matched!";
@@ -126,14 +134,9 @@ function login2($conn, $user, $pass)
         $_SESSION['first_name'] = $rows['first_name'];
         $_SESSION['last_name']  = $rows['last_name'];
         $_SESSION['user_name']  = $rows['user_name'];
+        $_SESSION['email']      = $rows['email'];
 
-        // while($row = sqlsrv_fetch_array($result)){
-        //     $_SESSION['id'] = $row['customer_id'];
-        //     $_SESSION['first_name'] = $row['first_name'];
-        //     $_SESSION['last_name'] = $row['last_name'];
-        //     $_SESSION['user_name'] = $row['user_name'];
-        // }
-        header("Location: ../index.php?msg=loggedin");
+        header("Location: ../GuestLanding.php?msg=loggedin");
         session_regenerate_id(true);
         session_write_close();
         exit();
@@ -167,15 +170,10 @@ function emptyInputLogin($user, $pass)
 //     exit();
 // }
 
-// // GuestSignUp.php : If the customer has a bad email, return true (Got rid of this, no email)
-// function bademail($email) {
-//     $result;
-//     if (!filter_var($email, FILTER_VALIDATE_EMAIL))
-//     {
-//         $result=true;
-//     }
-//     else{
-//         $result=false;
-//     }
-//     return $result;
-// }
+
+        // while($row = sqlsrv_fetch_array($result)){
+        //     $_SESSION['id'] = $row['customer_id'];
+        //     $_SESSION['first_name'] = $row['first_name'];
+        //     $_SESSION['last_name'] = $row['last_name'];
+        //     $_SESSION['user_name'] = $row['user_name'];
+        // }
