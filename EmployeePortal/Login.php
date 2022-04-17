@@ -8,12 +8,31 @@ if (isset($_POST['submit'])) {
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $pass = mysqli_real_escape_string($conn, md5($_POST['password']));
 
+    // first check if the username and password matches any of our employees
     $select = mysqli_query($conn, "SELECT * FROM `employee` WHERE user_name = '$username' AND pass_word = '$pass'") or die('query failed');
 
     if (mysqli_num_rows($select) > 0) {
         $row = mysqli_fetch_assoc($select);
         $_SESSION['user_id'] = $row['employee_id'];
-        header('location:Home.php');
+
+        // checking if this employee is a manager and redirecting to manager view if they are
+        $getManagers = mysqli_query($conn, "select * from workplace");
+        $managers = mysqli_fetch_all($getManagers, MYSQLI_ASSOC);
+        $isManager = false;
+        foreach ($managers as $manager){
+            if($row['employee_id'] === $manager['manager_id']){
+                $isManager = true;
+                break;
+            }
+        }
+
+        if($isManager){
+            $_SESSION['ismanager'] = true;
+            header('location: ../manager/manager.php');
+        } else {
+            header('location: Home.php');
+        }
+        
     } else {
         $message[] = 'Incorrect Username or Password!';
     }
@@ -45,7 +64,6 @@ if (isset($_POST['submit'])) {
         </ul>
     </nav>
     <div class="form-container">
-
         <form action="" method="post" enctype="multipart/form-data">
             <h3>Login</h3>
             <?php
