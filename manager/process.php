@@ -22,7 +22,9 @@ if(isset($_POST['savemanagerprofile'])){
   employee_first_name = '$firstname', 
   employee_last_name = '$lastname',
   employee_Address = '$addr',
-  employee_email = '$email' where employee_id = $id;";
+  employee_email = '$email',
+  hours_worked = $hoursWorked
+  where employee_id = $id;";
 
   $run = mysqli_query($conn, $updateManagerQuery);
   $_SESSION['message'] = 'Manager Updated';

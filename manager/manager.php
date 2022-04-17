@@ -32,7 +32,7 @@
   <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container px-5">
-        <a class="navbar-brand" href="../index2.php">University of Houston Zoo</a>
+        <a class="navbar-brand" href="../index.php">University of Houston Zoo</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -89,16 +89,23 @@
         die("Connection failed: " . $conn->connect_error);
       }
 
-      $getManagerSQL = "select * from employee where employee_id = 1";
+      $managerID = $_SESSION['user_id'];
+      $getManagerSQL = "select * from employee where employee_id = $managerID";
       $managerResult = mysqli_query($conn, $getManagerSQL);
       $manager = mysqli_fetch_all($managerResult, MYSQLI_ASSOC);
-      $managerID = $manager[0]["employee_id"];
       $managerFirstName = $manager[0]["employee_first_name"];
       $managerLasttName = $manager[0]["employee_last_name"];
       $managerAddr = $manager[0]["employee_Address"];
       $managerEmail = $manager[0]["employee_email"];
       $managerWage = $manager[0]["hourly_wage"];
+      $managerWorkPlaceID = $manager[0]["workplace_id"];
       $managerHoursWorked = $manager[0]["hours_worked"];
+      $profilePicture =$manager[0]['image'];
+
+      $getWorkPlaceName = "select * from workplace where workplace_id=$managerWorkPlaceID";
+      $workPlace = mysqli_query($conn, $getWorkPlaceName);
+      $workPlaceResult = mysqli_fetch_all($workPlace, MYSQLI_ASSOC);
+      $workPlaceName = $workPlaceResult[0]['workplace_name'];
 
     ?>
 
@@ -107,8 +114,18 @@
       <div class="row">
           <div class="col border-right">
               <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
-            </div>
+                <!-- fix me
+                   <?php 
+                  if($profilePicture === NULL){
+                    echo "<img class='rounded-circle mt-5' width='250px' alt='profilepicture' src='https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg'>";
+                  } else {
+                    echo "<img class='rounded-circle mt-5' width='250px' alt='profilepicture' src='$profilePicture'>";
+                  }
+                ?> 
+                -->
+                <img class='rounded-circle mt-5' width='250px' alt='profilepicture' src='https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg'>
+                <input type="file" name="profilepicture">
+              </div>
           </div>
           <div class="col border-right">
             
@@ -145,11 +162,11 @@
                       </div>
                       <div class="col-md-12">
                         <label class="labels">Hours Worked</label>
-                        <input type="number" class="form-control" name="hoursworked" value="<?php echo ($managerHoursWorked == 0 || $managerHoursWorked == NULL) ? 0: $managerHoursWorked; ?>" readonly>
+                        <input type="number" class="form-control" name="hoursworked" value="<?php echo ($managerHoursWorked == 0 || $managerHoursWorked == NULL) ? 0: $managerHoursWorked; ?>">
                       </div>
                       <div class="col-md-12">
                         <label class="labels">Work Place</label>
-                        <input type="text" class="form-control" readonly>
+                        <input type="text" class="form-control" value="<?php echo $workPlaceName ?>" readonly>
                       </div>
                   </div>
                   <div class="mt-5 text-center">
@@ -196,15 +213,19 @@
             </thead>
             <tbody>
             <?php 
-              $sql = "select * from employee";
+              $sql = "select * from employee where workplace_id=$managerWorkPlaceID";
               $result = mysqli_query($conn, $sql);
               $employees = mysqli_fetch_all($result, MYSQLI_ASSOC);
               mysqli_close($conn);
+              $expenses = [];
               foreach ($employees as $employee){
             ?>
               <tr>
                 <?php 
                   $employeeID  = $employee["employee_id"];
+                  if($employeeID == $managerID){
+                    continue;
+                  }
                   $employeeFirstName = $employee["employee_first_name"];
                   $employeeLastName = $employee["employee_last_name"];
                   $employeeAddr = $employee["employee_Address"];
@@ -212,6 +233,9 @@
                   $wage = $employee["hourly_wage"];
                   $paycheck = $employee["paycheck"];
                   $hoursWorked = $employee["hours_worked"];
+
+                  $expenses[] = $paycheck * $hoursWorked;
+
                   if($hoursWorked === NULL){
                     $hoursWorked = 0;
                   }
@@ -335,26 +359,140 @@
                     <?php } ?>
               </tbody>
           </table>
-          <div class="clearfix">
-            <!-- also not using total amount of entries -->
-            <!-- <div class="hint-text">
-              Showing <b>5</b> out of <b>25</b> entries
-            </div> -->
-            <!-- not using pagination for now -->
-            <!-- <ul class="pagination">
-              <li class="page-item disabled"><a href="#">Previous</a></li>
-              <li class="page-item"><a href="#" class="page-link">1</a></li>
-              <li class="page-item"><a href="#" class="page-link">2</a></li>
-              <li class="page-item active">
-                <a href="#" class="page-link">3</a>
-              </li>
-              <li class="page-item"><a href="#" class="page-link">4</a></li>
-              <li class="page-item"><a href="#" class="page-link">5</a></li>
-              <li class="page-item"><a href="#" class="page-link">Next</a></li>
-            </ul> -->
-          </div>
         </div>
       </div>
+    </div>
+    </div>
+
+    <div class="container-xl">
+      <div class="table-responsive">
+        <div class="table-wrapper">
+          <div class="table-title">
+            <div class="row">
+              <div class="col-sm-6">
+                <h2>Manage Money</h2>
+              </div>
+            </div>
+          </div>
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>Expense Name</th>
+                <th>Expense</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php foreach($expenses as $expense){
+                if($expense == 0){
+                  continue;
+                }  
+              ?>
+                <tr>
+                  <?php 
+                  echo "<td>Employee Paycheck</td>";
+                  echo "<td>$$expense</td>";
+                  ?>
+                <td>
+                  <a class="edit" href="#editEmployee<?php echo $employeeID; ?>" class="btn btn-info" data-toggle="modal">
+                    <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
+                  </a>
+                  <a class="delete" href="#deleteEmployee<?php echo $employeeID; ?>" class="btn btn-danger light-link" data-toggle="modal">
+                    <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+                  </a>
+                </td>
+              </tr>
+              <?php } ?>
+              <div id="editEmployee<?php echo $employeeID; ?>" class="modal fade">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <form action="process.php" method="post">
+                            <div class="modal-header">
+                              <h4 class="modal-title">Edit Employee</h4>
+                              <button
+                                type="button"
+                                class="close"
+                                data-dismiss="modal"
+                                aria-hidden="true"
+                              >
+                                &times;
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                            <div class="form-group hidden">
+                                <label>ID</label>
+                                <input type="number" name="id" value="<?php echo $employeeID; ?>" class="form-control" required />
+                              </div>
+                              <div class="form-group">
+                                <label>Hourly Wage</label>
+                                <input type="text" name="hourlywage" value="<?php echo $wage; ?>" class="form-control" required />
+                              </div>
+                              <div class="form-group">
+                                <label>Hours Worked</label>
+                                <input type="text" name="hoursworked" value="<?php echo $hoursWorked; ?>" class="form-control" required />
+                              </div>
+                              <div class="form-group">
+                                <label>Pay Status</label>
+                                <select name="paystatus" class="form-select" required>
+                                  <option selected value = 0>Unpaid</option>
+                                  <option value=2>Pending</option>
+                                  <option value=1>Paid</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="modal-footer">
+                              <input
+                                type="button"
+                                class="btn btn-default"
+                                data-dismiss="modal"
+                                value="Cancel"
+                              />
+                              <input type="submit" name="updateemployee" class="btn btn-info" value="Save" />
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                  </div>
+                    <!-- Delete Modal HTML -->
+                    <div id="deleteEmployee<?php echo $employeeID; ?>" class="modal fade">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <form action="process.php" method="post">
+                          <input type="number" name="id" value="<?php echo $employeeID; ?>" class="form-control" required hidden/>
+                            <div class="modal-header">
+                              <h4 class="modal-title">Delete Employee</h4>
+                              <button
+                                type="button"
+                                class="close"
+                                data-dismiss="modal"
+                                aria-hidden="true">
+                                &times;
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <p>Are you sure you want to delete this employee?</p>
+                              <p class="text-warning">
+                                <small>This action cannot be undone.</small>
+                              </p>
+                            </div>
+                            <div class="modal-footer">
+                              <input
+                                type="button"
+                                class="btn btn-default"
+                                data-dismiss="modal"
+                                value="Cancel"
+                              />
+                              <input type="submit" name="deleteemployee" class="btn btn-danger" value="Delete" />
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+              </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
     </div>
     <div id="addEmployeeModal" class="modal fade">
       <div class="modal-dialog">
