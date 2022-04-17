@@ -15,12 +15,12 @@
         <span class="logo"><a href="index.php" class="styledLink">UH Zoo</a></span>
         <ul class="navlist">
             <li class="listItem">
+
                 <a href="index.php" class="nav-home">Back Home</a>
             </li>
         </ul>
     </nav>
     <div class="form-container">
-
 
         <section class="signup-form">
             <form action="includes/login.inc.php" method="post">
@@ -42,6 +42,7 @@
                 <p>Are you an employee? <a href="./EmployeePortal/Login.php">Employee Login</a></p>
             </form>
         </section>
+
 
 
         <!-- <form action="" method="post" enctype="multipart/form-data">

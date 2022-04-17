@@ -1,5 +1,7 @@
 <?php
+
 if (isset($_POST["submit"])) {
+
     ob_start();
     $user = $_POST["username"];
     $pass = $_POST["password"];
@@ -7,7 +9,9 @@ if (isset($_POST["submit"])) {
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';
 
+
     if (emptyInputLogin($user, $pass) !== false) {
+
         header("location: LoginPage.php?error=emptyinput");
         die();
         exit();
@@ -18,7 +22,9 @@ if (isset($_POST["submit"])) {
     session_write_close();
     die();
     exit();
+
 } else {
+
     ob_start();
     header("location: GuestLanding.php");
     session_regenerate_id(true);
@@ -28,3 +34,4 @@ if (isset($_POST["submit"])) {
 }
 die();
 exit();
+

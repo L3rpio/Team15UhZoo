@@ -22,6 +22,7 @@
     <div class="form-container">
 
 
+
         <section class="signup-form">
             <form action="includes/signup.inc.php" method="post">
                 <h3>Guest Registration</h3>
@@ -52,6 +53,7 @@
                 <p>Already created an account? <a href="LoginPage.php">Customer Login</a></p>
             </form>
         </section>
+
 
 
 

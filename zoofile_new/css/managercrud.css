@@ -102,7 +102,39 @@ table.table .avatar {
   vertical-align: middle;
   margin-right: 10px;
 }
-
+.pagination {
+  float: right;
+  margin: 0 0 5px;
+}
+.pagination li a {
+  border: none;
+  font-size: 13px;
+  min-width: 30px;
+  min-height: 30px;
+  color: #999;
+  margin: 0 2px;
+  line-height: 30px;
+  border-radius: 2px !important;
+  text-align: center;
+  padding: 0 6px;
+}
+.pagination li a:hover {
+  color: #666;
+}
+.pagination li.active a,
+.pagination li.active a.page-link {
+  background: #03a9f4;
+}
+.pagination li.active a:hover {
+  background: #0397d6;
+}
+.pagination li.disabled i {
+  color: #ccc;
+}
+.pagination li i {
+  font-size: 16px;
+  padding-top: 6px;
+}
 .hint-text {
   float: left;
   margin-top: 10px;
@@ -147,38 +179,4 @@ table.table .avatar {
 
 .hidden {
   display: none;
-}
-
-.form-control:focus {
-  box-shadow: none;
-  border-color: #0cb035;
-}
-
-.profile-button {
-  background: #0cb035;
-  box-shadow: none;
-  border: none;
-}
-
-.profile-button:hover {
-  background: #0cb035;
-}
-
-.profile-button:focus {
-  background: #0cb035;
-  box-shadow: none;
-}
-
-.profile-button:active {
-  background: #0cb035;
-  box-shadow: none;
-}
-
-.back:hover {
-  color: #0cb035;
-  cursor: pointer;
-}
-
-.labels {
-  font-size: 11px;
 }

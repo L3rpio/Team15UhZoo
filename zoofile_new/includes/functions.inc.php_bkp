@@ -4,7 +4,7 @@
 // GuestSignUp.php : If one of the guest sign up field is empty, return true
 function emptyInputSignup($fname, $lname, $user, $pass, $pwdrepeat)
 {
-    $result = '';
+    $result;
     if (empty($fname) || empty($lname) || empty($user) || empty($pass) || empty($pwdrepeat)) {
         $result = true;
     } else {
@@ -16,7 +16,7 @@ function emptyInputSignup($fname, $lname, $user, $pass, $pwdrepeat)
 // GuestSignUp.php : If the userID has characters that invalid, return true
 function invalidUID($user)
 {
-    $result = '';
+    $result;
     if (!preg_match("/^[a-zA-Z0-9]*$/", $user)) {
         $result = true;
     } else {
@@ -28,7 +28,7 @@ function invalidUID($user)
 // GuestSignUp.php : If the customer's passwords do not match, return true
 function mismatchpassword($pass, $pwdrepeat)
 {
-    $result = '';
+    $result;
     if ($pass !== $pwdrepeat) {
         $result = true;
     } else {
@@ -42,7 +42,7 @@ function usertaken($conn, $user)
 {
     //SQLI
     //    $sql = "SELECT * FROM Customer WHERE user_name = ? OR Email = ?;"; //This has email
-    $sql  = "SELECT * FROM customer WHERE user_name = ?;";
+    $sql  = "SELECT * FROM Customer WHERE user_name = ?;";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location:../GuestSignUp.php?error=useralreadyexists");
@@ -142,7 +142,7 @@ function login2($conn, $user, $pass)
 // LoginPage.php : If a user tries to login with nothing on a field
 function emptyInputLogin($user, $pass)
 {
-    $result = '';
+    $result;
     if (empty($user) || empty($pass)) {
         $result = true;
     } else {
