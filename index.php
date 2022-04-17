@@ -52,7 +52,7 @@ session_start();
       <li><a href="#">Home</a></li>
       <li><a href="GuestLanding.php">Customer Portal</a></li>
 
-      <li><a href="./EmployeePortal/Login.php">Employee Portal</a></li>
+      <li><a href="./EmployeePortal/Home.php">Employee Portal</a></li>
 
       <li><a href="#">Manager Portal</a></li>
     </ul>
