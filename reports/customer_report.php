@@ -222,10 +222,12 @@ table.table .avatar {
 						  die("Connection failed: " . $conn->connect_error);
 						}
 						$sql="SELECT * FROM Customer WHERE date_added=curdate();";
+            $count=0;
 						$result = $conn-> query($sql);
            				if ($result-> num_rows > 0){
               				while($row= $result-> fetch_assoc()){
-                				echo "<tr><td>" . $row["first_name"] . "</td><td>" . $row["last_name"] . "</td><td>" . $row["user_name"] . "</td>";
+                        $count=$count+1;
+                				echo "<tr><td>" . $row["first_name"] . "</td><td>" . $row["last_name"] . "</td><td>" . $row["date_added"] . "</td></tr>";
                         // echo '<td> <a href="#editCustomerModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a> ' . " " . '<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872i;</></a> </td> </tr>';
               					}
             			}
@@ -234,6 +236,7 @@ table.table .avatar {
 						// 	echo $reslt[0];
 						// 	}
 						// }
+            echo "<tr><td>" . "New Customers Total " . $count . "</td></tr>"; 
 						mysqli_close($conn);
 						//die(mysqli_error($conn));
 						?>
