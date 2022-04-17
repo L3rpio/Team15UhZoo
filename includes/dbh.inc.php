@@ -9,10 +9,10 @@ $password = "Lovec++123";
 $database = "uh_zoo";
 
 $conn = new mysqli($serverName, $username, $password, $database);
-if($conn == false){
+if ($conn == false) {
     die("Connection failed: " . $conn->connect_error);
     exit();
-}
-else {
-//echo("Connection made");
+
+} else {
+    //echo("Connection made");
 }

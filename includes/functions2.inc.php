@@ -2,78 +2,74 @@
 
 ob_start();
 echo "1";
-function emptyInputSignup($email, $fname, $lname,$user, $pass,$pwdrepeat)
+function emptyInputSignup($email, $fname, $lname, $user, $pass, $pwdrepeat)
 {
     $result;
-    if(empty($email)|| empty($fname)|| empty($lname) || empty($user)|| empty($pass) || empty($pwdrepeat) )
-    {
+    if (empty($email) || empty($fname) || empty($lname) || empty($user) || empty($pass) || empty($pwdrepeat)) {
         $result = true;
+    } else {
+        $result = false;
     }
-    else{ $result = false;}
     return $result;
 }
 echo "2";
-function invalidUID($user){
+function invalidUID($user)
+{
     $result;
-    if(!preg_match("/^[a-zA-Z0-9]*$/", $user)){
+    if (!preg_match("/^[a-zA-Z0-9]*$/", $user)) {
         $result = true;
-    }
-    else{
+    } else {
         $result = false;
     }
     return $result;
 }
 echo "3";
-function bademail($email) {
+function bademail($email)
+{
     $result;
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL))
-    {
-        $result=true;
-    }
-    else{
-        $result=false;
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $result = true;
+    } else {
+        $result = false;
     }
     return $result;
 }
 echo "4";
-function mismatchpassword($pass, $pwdrepeat) {
+function mismatchpassword($pass, $pwdrepeat)
+{
     $result;
-    if ($pass!== $pwdrepeat)
-    {
-        $result=true;
-    }
-    else{
-        $result=false;
+    if ($pass !== $pwdrepeat) {
+        $result = true;
+    } else {
+        $result = false;
     }
     return $result;
 }
 
 echo "5";
-function login2($conn, $user, $pass){
+function login2($conn, $user, $pass)
+{
     $query = "SELECT * FROM [dbo].[Customer] WHERE user_name='{$user}' AND pass_word='{$pass}';";
-    $result = sqlsrv_query($conn, $query);  
-    if($result === false){
-    die( print_r( sqlsrv_errors(), true));
+    $result = sqlsrv_query($conn, $query);
+    if ($result === false) {
+        die(print_r(sqlsrv_errors(), true));
     }
-    if(sqlsrv_has_rows($result) != 1)
-    {
+    if (sqlsrv_has_rows($result) != 1) {
         header("location: LoginPage.php?error=wronglogin");
-    }
-    else
-    {
+    } else {
         echo "User and password matched!";
         #creates sessions
         session_start();
         echo "1";
-        $rows=sqlsrv_fetch_array($result);
+        $rows = sqlsrv_fetch_array($result);
         $_SESSION['id'][] = $rows['customer_id'];
         $_SESSION['first_name'][] = $rows['first_name'];
         $_SESSION['last_name'][] = $rows['last_name'];
         $_SESSION['user_name'][] = $rows['user_name'];
-            // $_SESSION['id'] = $row['customer_id'];
-            // $_SESSION['first_name'] = $row['first_name'];
-            // $_SESSION['last_name'] = $row['last_name'];
-            // $_SESSION['user_name'] = $row['user_name'];
+        // $_SESSION['id'] = $row['customer_id'];
+        // $_SESSION['first_name'] = $row['first_name'];
+        // $_SESSION['last_name'] = $row['last_name'];
+        // $_SESSION['user_name'] = $row['user_name'];
         // while($row = sqlsrv_fetch_array($result)){
         //     $_SESSION['id'] = $row['customer_id'];
         //     $_SESSION['first_name'] = $row['first_name'];
@@ -98,7 +94,8 @@ echo "6";
 
 
 echo "7";
-function createUser2($conn, $fname, $lname, $user, $pass, $email){
+function createUser2($conn, $fname, $lname, $user, $pass, $email)
+{
     //$sql = "INSERT INTO [dbo].[Customer] (first_name, last_name, user_name, pass_word, Email) VALUES (?, ?, ?, ?, ?) ";
     //$sql = "INSERT INTO [dbo].[Customer] (first_name, last_name, user_name, pass_word, Email) VALUES ($fname, $lname, $user, $pass, $email) ";
     $sql = "INSERT INTO [dbo].[Customer] ([first_name],
@@ -108,8 +105,11 @@ function createUser2($conn, $fname, $lname, $user, $pass, $email){
     [Email]) VALUES ('$fname', '$lname', '$user', '$pass', '$email');";
     $result = sqlsrv_query($conn, $sql);
 
-    if($result){ echo "Data insertion success!";}
-    else{ echo "Insertion Error!";}
+    if ($result) {
+        echo "Data insertion success!";
+    } else {
+        echo "Insertion Error!";
+    }
 
     // if($result === false){
     //     die( print_r( sqlsrv_errors(), true));
@@ -128,11 +128,11 @@ echo "8";
 function emptyInputLogin($user, $pass)
 {
     $result;
-    if(empty($user)|| empty($pass) )
-    {
+    if (empty($user) || empty($pass)) {
         $result = true;
+    } else {
+        $result = false;
     }
-    else{ $result = false;}
     return $result;
 }
 echo "9";

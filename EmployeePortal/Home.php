@@ -23,7 +23,7 @@ if (isset($_GET['logout'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>home</title>
+    <title>Home</title>
 
     <!-- custom css file link  -->
     <link rel="stylesheet" href="css/style.css">
@@ -124,6 +124,7 @@ if (isset($_GET['logout'])) {
                     </tbody>
                 </table>
             </div>
+            <a href="./Schedule.php" class="schedule-btn">View Schedule</a>
         </div>
 
     </div>
