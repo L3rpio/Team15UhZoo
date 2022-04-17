@@ -124,6 +124,7 @@ if (isset($_GET['logout'])) {
                     </tbody>
                 </table>
             </div>
+            <a href="./Schedule.php" class="schedule-btn">View Schedule</a>
         </div>
 
     </div>

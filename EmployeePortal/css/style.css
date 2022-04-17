@@ -123,9 +123,9 @@ color: #c9d5d8;
 }
 
 .btn,
-.delete-btn{
+.delete-btn, .schedule-btn {
    border-radius: var(--border-radius);
-   padding:0.45rem 1rem;
+   padding:0.35rem 1rem;
    color:var(--green);
    display: block;
    text-align: center;
@@ -156,9 +156,17 @@ color: #c9d5d8;
 
 .delete-btn:hover{
    transform: scale(1.05);
-   
 }
-
+.schedule-btn{
+   margin-top: 1rem;
+   background: var(--blue);
+   color: var(--med-blue);
+   transition-duration: 0.35s;
+   transition-timing-function: ease;
+}
+.schedule-btn:hover {
+   transform: scale(1.05);
+}
 .form-container form p{
    margin-top: 15px;
    font-size: 1rem;
@@ -365,6 +373,10 @@ td {
    padding: 1rem 2rem;
    font-size: 0.9rem;
    color:var(--dark-blue);
+}
+
+table tr td p{
+   text-transform: uppercase;
 }
 
 .status-pending {

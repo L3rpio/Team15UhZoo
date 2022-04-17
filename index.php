@@ -34,7 +34,7 @@ session_start();
       <a href="LoginPage.php">Login</a>
       <a href="GuestSignUp.php">Sign Up</a>
     </div>
-    <ul class="social">
+    <!-- <ul class="social">
       <li>
         <a href="#"><img src="https://i.ibb.co/x7P24fL/facebook.png" alt="" /></a>
       </li>
@@ -44,13 +44,13 @@ session_start();
       <li>
         <a href="#"><img src="https://i.ibb.co/ySwtH4B/instagram.png" alt="" /></a>
       </li>
-    </ul>
+    </ul> -->
   </section>
 
   <div class="menu">
     <ul>
       <li><a href="#">Home</a></li>
-      <li><a href="CustomerPortal/Home.php">Customer Portal</a></li>
+      <li><a href="GuestLanding.php">Customer Portal</a></li>
       <li><a href="./EmployeePortal/Home.php">Employee Portal</a></li>
       <li><a href="#">Manager Portal</a></li>
     </ul>
@@ -147,14 +147,14 @@ session_start();
                 Welcome to the Zoo of the University of Houston
                 <?php
 
-                if (isset($_GET["msg"])) {
-                  if ($_GET["msg"] == "loggedout") {
-                    echo "</br>";
-                    echo "</br>";
-                    echo "<p>Hello! You have logged out!</p>";
-                    echo "</br>";
-                  }
-                }
+                // if (isset($_GET["msg"])) {
+                //   if ($_GET["msg"] == "loggedout") {
+                //     echo "</br>";
+                //     echo "</br>";
+                //     echo "<p>Hello! You have logged out!</p>";
+                //     echo "</br>";
+                //   }
+                // }
                 // if(isset($_GET["msg"])){
                 //   if($_GET["msg"] == "loggedin"){
                 //       echo "</br>";
@@ -165,23 +165,23 @@ session_start();
                 // }
                 // echo 'HelloS ' . htmlspecialchars($_SESSION['user_name']) . '!';
                 // echo 'SESSION VarDump:' .var_dump($_SESSION);
-                if (isset($_SESSION['user_name'])) {
-                  echo "</br>";
-                  echo "</br>";
-                  echo "<p>Hello! You have logged in!</p>";
-                  echo "Username: ";
-                  echo $_SESSION['user_name'];
-                  echo "</br>";
-                  echo "First Name: ";
-                  echo $_SESSION['first_name'];
-                  echo "</br>";
-                  echo "Last Name: ";
-                  echo $_SESSION['last_name'];
-                  echo "</br>";
-                  echo "<a href='profile.php'>Profile Page</a>";
-                  echo "</br>";
-                  echo "<a href='includes/logout.inc.php'>Log Out</a>";
-                }
+                // if (isset($_SESSION['user_name'])) {
+                //   echo "</br>";
+                //   echo "</br>";
+                //   echo "<p>Hello! You have logged in!</p>";
+                //   echo "Username: ";
+                //   echo $_SESSION['user_name'];
+                //   echo "</br>";
+                //   echo "First Name: ";
+                //   echo $_SESSION['first_name'];
+                //   echo "</br>";
+                //   echo "Last Name: ";
+                //   echo $_SESSION['last_name'];
+                //   echo "</br>";
+                //   echo "<a href='profile.php'>Profile Page</a>";
+                //   echo "</br>";
+                //   echo "<a href='includes/logout.inc.php'>Log Out</a>";
+                // }
                 // echo 'HelloC ' . htmlspecialchars($_COOKIE["id"]) . '!';
                 // echo "</br>";
                 // echo "</br>";

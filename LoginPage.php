@@ -7,11 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UH Zoo: Customer Login</title>
     <!-- custom css file link  -->
-    <link rel="stylesheet" href="CustomerPortal/css/profile.css">
+    <link rel="stylesheet" href="EmployeePortal/css/style.css">
 </head>
 
 <body>
-    <nav class="customer-nav-login">
+    <nav class="navbar">
         <span class="logo"><a href="index.php" class="styledLink">UH Zoo</a></span>
         <ul class="navlist">
             <li class="listItem">
@@ -42,6 +42,24 @@
                 <p>Are you an employee? <a href="./EmployeePortal/Login.php">Employee Login</a></p>
             </form>
         </section>
+
+
+        <!-- <form action="" method="post" enctype="multipart/form-data">
+            <h3>Login</h3>
+            <?php
+            // if (isset($message)) {
+            //     foreach ($message as $message) {
+            //         echo '<div class="message">' . $message . '</div>';
+            //     }
+            // }
+            ?>
+            <input type="text" name="username" placeholder="Username" class="box" required>
+            <input type="password" name="password" placeholder="Password" class="box" required>
+            <input type="submit" name="submit" value="Submit" class="btn">
+
+        </form> -->
+
+
     </div>
 </body>
 

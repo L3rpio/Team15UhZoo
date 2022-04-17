@@ -4,7 +4,7 @@ ob_start();
 echo "1";
 function emptyInputSignup($email, $fname, $lname, $user, $pass, $pwdrepeat)
 {
-    $result = false;
+    $result;
     if (empty($email) || empty($fname) || empty($lname) || empty($user) || empty($pass) || empty($pwdrepeat)) {
         $result = true;
     } else {
@@ -15,7 +15,7 @@ function emptyInputSignup($email, $fname, $lname, $user, $pass, $pwdrepeat)
 echo "2";
 function invalidUID($user)
 {
-    $result = false;
+    $result;
     if (!preg_match("/^[a-zA-Z0-9]*$/", $user)) {
         $result = true;
     } else {
@@ -26,7 +26,7 @@ function invalidUID($user)
 echo "3";
 function bademail($email)
 {
-    $result = false;
+    $result;
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $result = true;
     } else {
@@ -37,7 +37,7 @@ function bademail($email)
 echo "4";
 function mismatchpassword($pass, $pwdrepeat)
 {
-    $result = false;
+    $result;
     if ($pass !== $pwdrepeat) {
         $result = true;
     } else {
@@ -127,7 +127,7 @@ function createUser2($conn, $fname, $lname, $user, $pass, $email)
 echo "8";
 function emptyInputLogin($user, $pass)
 {
-    $result = false;
+    $result;
     if (empty($user) || empty($pass)) {
         $result = true;
     } else {

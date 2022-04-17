@@ -132,7 +132,7 @@ function login2($conn, $user, $pass)
         //     $_SESSION['last_name'] = $row['last_name'];
         //     $_SESSION['user_name'] = $row['user_name'];
         // }
-        header("Location: ../CustomerPortal/Home.php");
+        header("Location: ../index.php?msg=loggedin");
         session_regenerate_id(true);
         session_write_close();
         exit();

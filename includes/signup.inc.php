@@ -35,6 +35,7 @@ if (isset($_POST["submit"])) {
 
     /*$insert = createUser2($conn, $fname, $lname, $user, $pass);
 if ($insert == true) {
+
 echo "Data insertion success!";
 } else {
 echo "Insertion Error!";
