@@ -185,7 +185,7 @@
           <div class="table-title">
             <div class="row">
               <div class="col-sm-6">
-                <h2>Manage Employees</h2>
+                <h2>Manage Employees at <?php echo $workPlaceName; ?></h2>
               </div>
               <div class="col-sm-6">
                 <a
