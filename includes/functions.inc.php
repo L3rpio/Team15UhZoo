@@ -108,16 +108,18 @@ function createUser2($conn, $fname, $lname, $user, $email, $pass)
 // LoginPage.php : Logs a user in using sessions
 function login2($conn, $user, $pass)
 {
-    $query  = "SELECT * FROM Customer WHERE user_name='{$user}' AND pass_word='{$pass}';";
+    $MD5pass = md5($pass);
+    $query  = "SELECT * FROM Customer WHERE user_name='{$user}' AND pass_word='{$MD5pass}';";
     $result = mysqli_query($conn, $query);
     if ($result === false) {
         die("Connection failed: " . $conn->connect_error);
     }
     if (mysqli_num_rows($result) != 1) {
-        header("location: LoginPage.php?error=wronglogin");
+        
+        header("location: ../LoginPage.php?error=wronglogin");
         exit();
     } else {
-        echo "User and password matched!";
+        //echo "User and password matched!";
         session_start();
         echo "1";
         $rows                   = mysqli_fetch_array($result);
@@ -132,7 +134,7 @@ function login2($conn, $user, $pass)
         //     $_SESSION['last_name'] = $row['last_name'];
         //     $_SESSION['user_name'] = $row['user_name'];
         // }
-        header("Location: ../index.php?msg=loggedin");
+        header("Location: ../GuestLanding.php?msg=loggedin");
         session_regenerate_id(true);
         session_write_close();
         exit();
