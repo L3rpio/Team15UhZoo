@@ -1,5 +1,3 @@
-
-
 <?php
 include 'includes/dbh.inc.php';
 session_start();
@@ -20,6 +18,7 @@ if (!isset($_SESSION['id'])) {
     <link rel="stylesheet" href="EmployeePortal/css/style.css">
 
 </head>
+
 <body>
     <nav class="navbar">
         <span class="logo"><a href="index.php" class="styledLink">UH Zoo</a></span>
@@ -40,7 +39,7 @@ if (!isset($_SESSION['id'])) {
         ?>
 
         <form action="" method="post" enctype="multipart/form-data">
-        <h3>Welcome, <?php echo $_SESSION['first_name']; ?>! How do you want to change your profile?</h3>
+            <h3>Welcome, <?php echo $_SESSION['first_name']; ?>! How do you want to change your profile?</h3>
             <?php
             // if ($fetch['image'] == '' || $fetch['image'] == NULL) {
             //     echo '<img src="images/defaultUser.jpg">';
@@ -82,7 +81,7 @@ if (!isset($_SESSION['id'])) {
                     Password change not implemented yet.
                 </div>
             </div>
-            <input type="submit" value="Submit Changes" name="update_profile" class="btn">
+            <input type="submit" value="Submit Changes" name="update_profile" class="main-button">
 
         </form>
 
@@ -91,5 +90,3 @@ if (!isset($_SESSION['id'])) {
 </body>
 
 </html>
-
-

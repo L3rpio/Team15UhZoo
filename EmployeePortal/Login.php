@@ -14,25 +14,7 @@ if (isset($_POST['submit'])) {
     if (mysqli_num_rows($select) > 0) {
         $row = mysqli_fetch_assoc($select);
         $_SESSION['user_id'] = $row['employee_id'];
-
-        // checking if this employee is a manager and redirecting to manager view if they are
-        $getManagers = mysqli_query($conn, "select * from workplace");
-        $managers = mysqli_fetch_all($getManagers, MYSQLI_ASSOC);
-        $isManager = false;
-        foreach ($managers as $manager){
-            if($row['employee_id'] === $manager['manager_id']){
-                $isManager = true;
-                break;
-            }
-        }
-
-        if($isManager){
-            $_SESSION['ismanager'] = true;
-            header('location: ../manager/manager.php');
-        } else {
-            header('location: Home.php');
-        }
-        
+        header('location:Home.php');
     } else {
         $message[] = 'Incorrect Username or Password!';
     }
@@ -59,7 +41,7 @@ if (isset($_POST['submit'])) {
         <span class="logo"><a href="../index.php" class="styledLink">UH Zoo</a></span>
         <ul class="navlist">
             <li class="listItem">
-                <a href="../index.php" class="nav-home">Back Home</a>
+                <a href="../index.php" class="nav-logout">Back Home</a>
             </li>
         </ul>
     </nav>
@@ -75,7 +57,7 @@ if (isset($_POST['submit'])) {
             ?>
             <input type="text" name="username" placeholder="Username" class="box" required>
             <input type="password" name="password" placeholder="Password" class="box" required>
-            <input type="submit" name="submit" value="Submit" class="btn">
+            <input type="submit" name="submit" value="Submit" class="main-button">
             <p>Just got hired? <a href="Register.php">Register now</a></p>
         </form>
 

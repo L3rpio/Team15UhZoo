@@ -16,7 +16,7 @@
         <ul class="navlist">
             <li class="listItem">
 
-                <a href="index.php" class="nav-home">Back Home</a>
+                <a href="index.php" class="nav-logout">Back Home</a>
             </li>
         </ul>
     </nav>
@@ -27,7 +27,7 @@
                 <h3>Customer Login</h3>
                 <input type="text" name="username" placeholder="Username" class="box" required>
                 <input type="password" name="password" placeholder="Password" class="box" required>
-                <button type="submit" name="submit" class="btn">Log in</button>
+                <button type="submit" name="submit" class="main-button">Log in</button>
                 <?php
                 if (isset($_GET["error"])) {
                     if ($_GET["error"] == "emptyinput") {

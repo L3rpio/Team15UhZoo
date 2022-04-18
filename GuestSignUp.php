@@ -15,7 +15,7 @@
         <span class="logo"><a href="index.php" class="styledLink">UH Zoo</a></span>
         <ul class="navlist">
             <li class="listItem">
-                <a href="index.php" class="nav-home">Back Home</a>
+                <a href="index.php" class="nav-logout">Back Home</a>
             </li>
         </ul>
     </nav>
@@ -32,7 +32,7 @@
                 <input type="text" name="email" placeholder="Email..." class="box" required>
                 <input type="password" name="password" placeholder="Password..." class="box" required>
                 <input type="password" name="passwordrepeat" placeholder="Repeat password..." class="box" required>
-                <button type="submit" name="submit" class="btn">Sign Up</button>
+                <button type="submit" name="submit" class="main-button">Sign Up</button>
                 <?php
                 if (isset($_GET["error"])) {
                     if ($_GET["error"] == "emptyinput") {
