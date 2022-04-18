@@ -188,6 +188,45 @@ table.table .avatar {
 	font-weight: normal;
 }	
 </style>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container px-5">
+        <a class="navbar-brand" href="../index.php"><b>University of Houston Zoo</b></a>
+        <a class="navbar-brand" href="../admin_portal/adminportal.php">Admin Portal</a>
+        <a class="navbar-brand" href="../reports/employee_reports.php">Employee Reports</a>
+        
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <!-- <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#!">Home</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact-us">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Customer Portal</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Employee Portal</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/manager/manager.php">Manager Portal</a>
+            </li>
+          </ul> -->
+        </div>
+      </div>
+    </nav>
 
 </head>
 <body>
@@ -222,10 +261,12 @@ table.table .avatar {
 						  die("Connection failed: " . $conn->connect_error);
 						}
 						$sql="SELECT * FROM Customer WHERE date_added=curdate();";
+            $count=0;
 						$result = $conn-> query($sql);
            				if ($result-> num_rows > 0){
               				while($row= $result-> fetch_assoc()){
-                				echo "<tr><td>" . $row["first_name"] . "</td><td>" . $row["last_name"] . "</td><td>" . $row["user_name"] . "</td>";
+                        $count=$count+1;
+                				echo "<tr><td>" . $row["first_name"] . "</td><td>" . $row["last_name"] . "</td><td>" . $row["date_added"] . "</td></tr>";
                         // echo '<td> <a href="#editCustomerModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a> ' . " " . '<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872i;</></a> </td> </tr>';
               					}
             			}
@@ -234,6 +275,7 @@ table.table .avatar {
 						// 	echo $reslt[0];
 						// 	}
 						// }
+            echo "<tr><td>" . "New Customers Total " . $count . "</td></tr>"; 
 						mysqli_close($conn);
 						//die(mysqli_error($conn));
 						?>

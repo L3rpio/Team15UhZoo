@@ -1,6 +1,5 @@
 <?php
 
-// ob_start();
 if (isset($_POST["submit"])) {
 
 // $email = $_POST["email"];
@@ -9,8 +8,8 @@ if (isset($_POST["submit"])) {
     $lname     = $_POST["lname"];
     $user      = $_POST["username"];
     $email     = $_POST["email"];
-    $pass      = base64_encode($_POST["password"]);
-    $pwdrepeat = base64_encode($_POST["passwordrepeat"]);
+    $pass      = md5($_POST["password"]);
+    $pwdrepeat = md5($_POST["passwordrepeat"]);
 
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';
@@ -26,12 +25,15 @@ if (isset($_POST["submit"])) {
         header("location:../GuestSignUp.php?error=invalidUID");
         exit();
     }
-
+    if (bademail($email) !== false){
+        header("location:../GuestSignUp.php?error=bademail");
+        exit();
+    }
     if (mismatchpassword($pass, $pwdrepeat) !== false) {
         header("location:../GuestSignUp.php?error=pwdmissmatch");
         exit();
     }
-    if (usertaken($conn, $user) !== false) {
+    if (usertaken($conn, $user, $email) !== false) {
         header("location:../GuestSignUp.php?error=useralreadyexists");
         exit();
     }
