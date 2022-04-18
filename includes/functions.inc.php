@@ -130,6 +130,7 @@ function login2($conn, $user, $pass)
         $_SESSION['first_name'] = $rows['first_name'];
         $_SESSION['last_name']  = $rows['last_name'];
         $_SESSION['user_name']  = $rows['user_name'];
+        $_SESSION['email']  = $rows['email'];
 
         // while($row = sqlsrv_fetch_array($result)){
         //     $_SESSION['id'] = $row['customer_id'];
