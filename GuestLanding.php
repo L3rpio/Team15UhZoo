@@ -21,7 +21,7 @@ if (!isset($_SESSION['id'])) {
         <span class="logo"><a href="GuestLanding.php" class="styledLink">UH Zoo</a></span>
         <ul class="navlist">
             <li class="listItem">
-                <a href="GuestProfileEdit.php" class="nav-btn">Update Profile</a>
+                <a href="GuestProfileEdit.php" class="styledLink">Update Profile</a>
             </li>
             <li class="listItem">
                 <a href="includes/logout.inc.php" class="nav-logout">Logout</a>
@@ -32,15 +32,15 @@ if (!isset($_SESSION['id'])) {
 
         <div class="profile">
             <?php
-                // $select = mysqli_query($conn, "SELECT * FROM `employee` WHERE employee_id = '$user_id'") or die('query failed');
-                // if (mysqli_num_rows($select) > 0) {
-                //     $fetch = mysqli_fetch_assoc($select);
-                // }
-                // if ($fetch['image'] == '') {
-                //     echo '<img src="images\defaultUser.jpg">';
-                // } else {
-                //     echo '<img src="uploaded_img/' . $fetch['image'] . '">';
-                // }
+            // $select = mysqli_query($conn, "SELECT * FROM `employee` WHERE employee_id = '$user_id'") or die('query failed');
+            // if (mysqli_num_rows($select) > 0) {
+            //     $fetch = mysqli_fetch_assoc($select);
+            // }
+            // if ($fetch['image'] == '') {
+            //     echo '<img src="images\defaultUser.jpg">';
+            // } else {
+            //     echo '<img src="uploaded_img/' . $fetch['image'] . '">';
+            // }
 
 
             ?>
@@ -53,7 +53,7 @@ if (!isset($_SESSION['id'])) {
                         <tr>
                             <td>
                                 <p>
-                                <a href="" class="">Click here to go to your tickets page (Or, you can embed the tickets page in this page)</a>
+                                    <a href="" class="">Click here to go to your tickets page (Or, you can embed the tickets page in this page)</a>
                                 </p>
                             </td>
                             <td>

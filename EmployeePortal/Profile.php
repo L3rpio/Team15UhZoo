@@ -55,6 +55,15 @@ if (isset($_POST['update_profile'])) {
     }
 }
 
+$isManager = false;
+
+$query = mysqli_query($conn, "SELECT * FROM `employee`, `workplace` WHERE '$user_id' = workplace.manager_id") or die('Query failed.');
+
+if (mysqli_num_rows($query) > 0) {
+    $isManager = true;
+    $_SESSION['ismanager'] = true;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -75,6 +84,13 @@ if (isset($_POST['update_profile'])) {
     <nav class="navbar">
         <span class="logo"><a href="../index.php" class="styledLink">UH Zoo</a></span>
         <ul class="navlist">
+            <?php
+            if ($isManager) {
+                echo '<li class="listItem">
+                <a href="../manager/manager.php" class="styledLink">Manager Portal</a>
+            </li>';
+            }
+            ?>
             <li class="listItem">
                 <a href="home.php" class="nav-logout">Go Back</a>
             </li>
@@ -128,7 +144,7 @@ if (isset($_POST['update_profile'])) {
                     <input type="password" name="confirm_pass" placeholder="Confirm New Password" class="box" required>
                 </div>
             </div>
-            <input type="submit" value="Submit Changes" name="update_profile" class="btn">
+            <input type="submit" value="Submit Changes" name="update_profile" class="main-button">
 
         </form>
 

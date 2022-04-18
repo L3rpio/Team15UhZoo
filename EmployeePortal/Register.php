@@ -70,7 +70,7 @@ if (isset($_POST['submit'])) {
         <span class="logo"><a href="../index.php" class="styledLink">UH Zoo</a></span>
         <ul class="navlist">
             <li class="listItem">
-                <a href="../index.php" class="nav-home">Back Home</a>
+                <a href="../index.php" class="nav-logout">Back Home</a>
             </li>
         </ul>
     </nav>
@@ -99,7 +99,7 @@ if (isset($_POST['submit'])) {
             <input type="password" name="password" placeholder="Enter Password" class="box" required>
             <input type="password" name="cpassword" placeholder="Confirm Password" class="box" required>
             <input type="file" name="image" class="file-box" accept="image/jpg, image/jpeg, image/png">
-            <input type="submit" name="submit" value="Submit" class="btn">
+            <input type="submit" name="submit" value="Submit" class="main-button">
             <p>Forgot you had an account? <a href="Login.php">Login now</a></p>
         </form>
 

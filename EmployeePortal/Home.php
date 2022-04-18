@@ -14,6 +14,17 @@ if (isset($_GET['logout'])) {
     header('location:Login.php');
 }
 
+
+$isManager = false;
+
+$query = mysqli_query($conn, "SELECT * FROM `employee`, `workplace` WHERE '$user_id' = manager_id") or die('Query failed.');
+
+if (mysqli_num_rows($query) > 0) {
+    $isManager = true;
+    $_SESSION['ismanager'] = true;
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -35,8 +46,15 @@ if (isset($_GET['logout'])) {
         <span class="logo"><a href="../index.php" class="styledLink">UH Zoo</a></span>
         <ul class="navlist">
             <li class="listItem">
-                <a href="Profile.php" class="nav-btn">Update Profile</a>
+                <a href="Profile.php" class="styledLink">Update Profile</a>
             </li>
+            <?php
+            if ($isManager) {
+                echo '<li class="listItem">
+                <a href="../manager/manager.php" class="styledLink">Manager Portal</a>
+            </li>';
+            }
+            ?>
             <li class="listItem">
                 <a href="home.php?logout=<?php echo $user_id; ?>" class="nav-logout">Logout</a>
             </li>
@@ -124,7 +142,7 @@ if (isset($_GET['logout'])) {
                     </tbody>
                 </table>
             </div>
-            <a href="./Schedule.php" class="schedule-btn">View Schedule</a>
+            <a href="./Schedule.php" class="main-button">View Schedule</a>
         </div>
 
     </div>
