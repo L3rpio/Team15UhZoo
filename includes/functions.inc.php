@@ -67,24 +67,26 @@ function createUser2($conn, $fname, $lname, $user, $email, $pass)
     //$sql = "INSERT INTO Customer ([first_name], [last_name], [user_name], [pass_word], [Email]) VALUES ('$fname', '$lname', '$user', '$pass', '$email');";
     $sql    = "INSERT INTO `customer`(`first_name`, `last_name`, `user_name`,`email`, `pass_word`) VALUES ('$fname', '$lname', '$user','$email','$pass');";
     $result = mysqli_query($conn, $sql);
-    if ($result) {
-        $to_email  = $email;
-        $mail_body = "Dear <b>" . $fname . ' ' . $lname . "</b>,<br><br>Thank you for register with UH Zoo.<br><br><b>Team UH Zoo</b>";
-        $subject   = "Registration";
-        $mail_head = "Registration Email";
-        $headers   = "MIME-Version: 1.0" . "\r\n";
-        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-        $headers .= 'From: UH Zoo <no-reply@uhzoo.com>' . "\r\n";
-        'Reply-To: ' . $email . '' . "\r\n" . 'X-Mailer: PHP/' . phpversion();
-        $send_mail = mail($to_email, $subject, $mail_body, $headers);
-        if ($send_mail) {
-            echo "Thank you for registering with us!";
-        } else {
-            echo "Unable to send an email!";
-        }
-    } else {
-        echo "Insertion Error!";
-    }
+
+    // Commenting this out for now to make signup work
+    // if ($result) {
+    //     $to_email  = $email;
+    //     $mail_body = "Dear <b>" . $fname . ' ' . $lname . "</b>,<br><br>Thank you for register with UH Zoo.<br><br><b>Team UH Zoo</b>";
+    //     $subject   = "Registration";
+    //     $mail_head = "Registration Email";
+    //     $headers   = "MIME-Version: 1.0" . "\r\n";
+    //     $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+    //     $headers .= 'From: UH Zoo <no-reply@uhzoo.com>' . "\r\n";
+    //     'Reply-To: ' . $email . '' . "\r\n" . 'X-Mailer: PHP/' . phpversion();
+    //     $send_mail = mail($to_email, $subject, $mail_body, $headers);
+    //     if ($send_mail) {
+    //         echo "Thank you for registering with us!";
+    //     } else {
+    //         echo "Unable to send an email!";
+    //     }
+    // } else {
+    //     echo "Insertion Error!";
+    // }
 
     /*if($result){
     return true;
@@ -92,6 +94,7 @@ function createUser2($conn, $fname, $lname, $user, $email, $pass)
     return false;
     }*/
 
+    header("Location: ../index.php");
     // if($result === false){
     //     die( print_r( sqlsrv_errors(), true));
     //     }

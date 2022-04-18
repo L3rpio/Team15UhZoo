@@ -25,18 +25,21 @@ if (isset($_POST["submit"])) {
         header("location:../GuestSignUp.php?error=invalidUID");
         exit();
     }
-    if (bademail($email) !== false){
-        header("location:../GuestSignUp.php?error=bademail");
-        exit();
-    }
+
     if (mismatchpassword($pass, $pwdrepeat) !== false) {
         header("location:../GuestSignUp.php?error=pwdmissmatch");
         exit();
     }
+    // if(bademail($email) !== false){
+    //     header("location:../GuestSignUp.php?error=bademail");
+    //     exit();
+    // }
+
     if (usertaken($conn, $user, $email) !== false) {
         header("location:../GuestSignUp.php?error=useralreadyexists");
         exit();
     }
+
     createUser2($conn, $fname, $lname, $user, $email, $pass);
 
     /*$insert = createUser2($conn, $fname, $lname, $user, $pass);
@@ -52,8 +55,3 @@ echo "Insertion Error!";
 }
 // ob_end_clean();
 
-// if(bademail($email) !== false){
-//     header("location:../GuestSignUp.php?error=bademail");
-//     exit();
-
-// }
