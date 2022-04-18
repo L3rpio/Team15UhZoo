@@ -53,7 +53,7 @@ if (!isset($_SESSION['id'])) {
                         <tr>
                             <td>
                                 <p>
-                                    <a href="" class="">Click here to go to your tickets page (Or, you can embed the tickets page in this page)</a>
+                                    <a href="ticket/ticket.php" class="">Click here to go to your tickets page!</a>
                                 </p>
                             </td>
                             <td>

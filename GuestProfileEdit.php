@@ -11,7 +11,7 @@ if (!isset($_SESSION['id'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>update profile</title>
+    <title>UH Zoo: update profile</title>
     <link rel="stylesheet" href="EmployeePortal/css/style.css">
 </head>
 <body>
@@ -81,8 +81,13 @@ if (!isset($_SESSION['id'])) {
                     ?>
                 </div>
             </div>
-            <input type="submit" value="Update Password" name="update_profile" class="btn">
-            <input type="submit" value="Delete Profile" name="update_profile" class="delete-btn">
+            <input type="submit" value="Update Password" name="update_profile" class="main-button">
+
+            <input type="submit" value="Delete Profile" name="Delete_profile" class="nav-logout">
+            <?php
+    
+
+            ?>
         </form>
     </div>
 </body>
