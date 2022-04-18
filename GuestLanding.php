@@ -45,23 +45,32 @@ header('location:LoginPage.php');
 
 
 ?>
-<h3>Welcome, <?php echo $_SESSION['first_name']; ?>!</h3>
+<h3>Welcome, <?php echo $_SESSION['first_name']. " ". $_SESSION['last_name'];?>!</h3>
 <div class="dashboard">
 <table class="home-table">
 <thead>
 </thead>
-<tbody>
-<tr>
-<td>
-<p>
-<a href="" class="">
-Click here to go to your tickets page (Or, you can embed the tickets page in this page)</a>
-</p>
-</td>
 
-</tr>
-</tbody>
-</table><center><a href="product.php"><button class="btn btn-success">Pre Order Food</button></a></center> 
+
+<a href="ticket/ticket.php" class="nav-btn">Order your tickets here!</a>
+</br>
+<a href="product.php" class="nav-btn">Pre Order Food here!</a>
+<!-- <tbody>
+    <tr>
+        <td>
+            <p>
+            <a href="GuestProfileEdit.php" class="nav-btn">Update Profile</a>
+               <a href="" class=""> Click here to go to your tickets!</a>
+            </p>
+        </td>
+    </tr>
+</tbody> -->
+
+
+<!-- </table><center><a href="product.php"><button class="btn btn-success">Pre Order Food</button></a></center>  -->
+
+<!-- 
+<a href="product.php" class=""> Pre Order Food here!</a> -->
 </div>
 </div>
 
