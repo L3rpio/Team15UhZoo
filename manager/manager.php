@@ -114,17 +114,7 @@
       <div class="row">
           <div class="col border-right">
               <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                <!-- fix me
-                   <?php 
-                  if($profilePicture === NULL){
-                    echo "<img class='rounded-circle mt-5' width='250px' alt='profilepicture' src='https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg'>";
-                  } else {
-                    echo "<img class='rounded-circle mt-5' width='250px' alt='profilepicture' src='$profilePicture'>";
-                  }
-                ?> 
-                -->
                 <img class='rounded-circle mt-5' width='250px' alt='profilepicture' src='https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg'>
-                <input type="file" name="profilepicture">
               </div>
           </div>
           <div class="col border-right">
