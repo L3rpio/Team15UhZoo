@@ -108,48 +108,8 @@ function createUser2($conn, $fname, $lname, $user, $email, $pass)
 // LoginPage.php : Logs a user in using sessions
 function login2($conn, $user, $pass)
 {
-
-
-  
-    $query  = "SELECT * FROM `customer` WHERE `user_name`='$user' AND `pass_word`='$pass'";
-
-
-    $result = mysqli_query($conn, $query);
-    if ($result === false) 
-    {
-        die("Connection failed: " . $conn->connect_error);
-    }
-    if (mysqli_num_rows($result) != 1) {
-
-  //echo "the sun";
-  //die;
-
-        header("location: LoginPage.php?error=wronglogin");
-        exit();
-    } else {
-
-
-        //echo "User and password matched!";
-        //die;
-        session_start();
-        echo "1";
-        $rows                   = mysqli_fetch_array($result);
-        $_SESSION['id']         = $rows['customer_id'];
-        $_SESSION['first_name'] = $rows['first_name'];
-        $_SESSION['last_name']  = $rows['last_name'];
-        $_SESSION['user_name']  = $rows['user_name'];
-
-        // while($row = sqlsrv_fetch_array($result)){
-        //     $_SESSION['id'] = $row['customer_id'];
-        //     $_SESSION['first_name'] = $row['first_name'];
         //     $_SESSION['last_name'] = $row['last_name'];
-        //     $_SESSION['user_name'] = $row['user_name'];
-        // }
-        header("Location: ../index.php?msg=loggedin");
-        session_regenerate_id(true);
-        session_write_close();
-        exit();
-    }
+
 }
 
 // LoginPage.php : If a user tries to login with nothing on a field
