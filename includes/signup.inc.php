@@ -8,8 +8,8 @@ if (isset($_POST["submit"])) {
     $lname     = $_POST["lname"];
     $user      = $_POST["username"];
     $email     = $_POST["email"];
-    $pass      = base64_encode($_POST["password"]);
-    $pwdrepeat = base64_encode($_POST["passwordrepeat"]);
+    $pass      = md5($_POST["password"]);
+    $pwdrepeat = md5($_POST["passwordrepeat"]);
 
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';
