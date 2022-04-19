@@ -87,7 +87,7 @@
          }
          
          // $managerID = $_SESSION['user_id']; use this on the next line after problem is sorted out
-         $getManagerSQL = "select * from employee where employee_id = 1";
+         $getManagerSQL = "select * from employee where employee_id = 3";
          $managerResult = mysqli_query($conn, $getManagerSQL);
          $manager = mysqli_fetch_all($managerResult, MYSQLI_ASSOC);
          $managerFirstName = $manager[0]["employee_first_name"];
