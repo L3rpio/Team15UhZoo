@@ -199,6 +199,7 @@
                         $sql = "select * from employee where workplace_id=$managerWorkPlaceID";
                         $result = mysqli_query($conn, $sql);
                         $employees = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                        print_r($employees);
                         foreach ($employees as $employee){
                         ?>
                      <tr>
