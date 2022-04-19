@@ -86,7 +86,7 @@
            die("Connection failed: " . $conn->connect_error);
          }
          
-         $managerID = $_SESSION['user_id'];
+         // $managerID = $_SESSION['user_id']; use this on the next line after problem is sorted out
          $getManagerSQL = "select * from employee where employee_id = 1";
          $managerResult = mysqli_query($conn, $getManagerSQL);
          $manager = mysqli_fetch_all($managerResult, MYSQLI_ASSOC);
@@ -160,7 +160,8 @@
                   </div>
          </form>
          </div>
-
+         </div>
+      </div>
       <div class="container-xl">
          <div class="table-responsive">
             <div class="table-wrapper">
@@ -506,7 +507,70 @@
             </div>
          </div>
       </div>
-      
+      <div class="container-xl <?php 
+         $isFoodServiceSQL = "select * from food_service where work_id=$managerWorkPlaceID";
+         $isFoodServiceResult = mysqli_query($conn, $isFoodServiceSQL);
+         $isFoodService = mysqli_fetch_all($isFoodServiceResult, MYSQLI_ASSOC);
+         $foodServiceID;
+         if(count($isFoodService) === 0){
+           echo "hidden";
+         } else {
+           $foodServiceID = $isFoodService[0]['service_id'];
+         }
+         ?>">
+         <div class="table-responsive">
+            <div class="table-wrapper">
+               <div class="table-title">
+                  <div class="row">
+                     <div class="col-sm-6">
+                        <h2>Orders</h2>
+                     </div>
+                  </div>
+               </div>
+               <table class="table table-striped table-hover">
+                  <thead>
+                     <tr>
+                        <th>Order ID</th>
+                        <th>Cost</th>
+                        <th>Item Name 1</th>
+                        <th>Item Name 2</th>
+                        <th>Item Name 3</th>
+                        <th>Customer ID</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <?php 
+                        if(count($isFoodService) > 0){
+                          $getOrdersSQL = "select * from orders where served_by=$foodServiceID";
+                          $getOrdersResult = mysqli_query($conn, $getOrdersSQL);
+                          $orders = mysqli_fetch_all($getOrdersResult, MYSQLI_ASSOC);
+                          mysqli_close($conn);
+                        
+                          foreach($orders as $order){
+                            $orderID = $order['order_id'];
+                            $orderCost = $order['cost'];
+                            $itemName1 = $order['itemname1'];
+                            $itemName2 = $order['itemname2'];
+                            $itemName3 = $order['itemname3'];
+                            $orderedBy = $order['ordered_by'];
+                        ?>
+                     <tr>
+                        <?php 
+                           echo "<td>$orderID</td>";
+                           echo "<td>$orderCost</td>";
+                           echo "<td>$itemName1</td>";
+                           echo "<td>$itemName2</td>";
+                           echo "<td>$itemName3</td>";
+                           echo "<td>$orderedBy</td>";
+                           }
+                           }
+                           ?>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
       <div id="addEmployeeModal" class="modal fade">
          <div class="modal-dialog">
             <div class="modal-content">
