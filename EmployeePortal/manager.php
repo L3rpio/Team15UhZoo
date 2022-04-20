@@ -504,6 +504,7 @@
          $getEnclosuresSQL = "select * from enclosure where work_id = $managerWorkPlaceID;";
          $getEnclosuresResult = mysqli_query($conn, $getEnclosuresSQL);
          $enclosures = mysqli_fetch_all($getEnclosuresResult, MYSQLI_ASSOC);
+         mysqli_close($conn);
          if(count($enclosures) === 0){
             echo "manage_animals.php";
          } else {

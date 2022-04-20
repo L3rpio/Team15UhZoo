@@ -63,7 +63,6 @@ if (mysqli_num_rows($query) > 0) {
         </ul>
     </nav>
     <div class="container">
-        <p><?php print_r($_SESSION) ?></p>
         <div class="profile">
             <?php
             $select = mysqli_query($conn, "SELECT * FROM `employee` WHERE employee_id = '$user_id'") or die('query failed');

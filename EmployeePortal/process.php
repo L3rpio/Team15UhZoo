@@ -8,7 +8,7 @@ if($conn == false){
 }
 
 session_start();
-
+print_r($_SESSION);
 // information processing for manager.php
 if(isset($_POST['savemanagerprofile'])){
   $id = $_POST['id'];
@@ -125,6 +125,4 @@ if(isset($_POST['deleteexpense'])){
   $_SESSION['msg_type'] = 'danger';
   header('location: manager.php');
 }
-
-// infomation processing for ticket.php
 ?>
