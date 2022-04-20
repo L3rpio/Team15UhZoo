@@ -101,7 +101,7 @@
          $workPlaceName = $workPlaceResult[0]['workplace_name'];
          
          ?>
-      <h1><?php echo $managerID; ?></h1>
+      <h1>Hello <?php echo $managerID; ?></h1>
       <div class="container rounded bg-white mt-5 mb-5">
          <form action="process.php" method="post">
             <div class="row">
