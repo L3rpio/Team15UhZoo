@@ -62,7 +62,7 @@
          </div>
       </nav>
       <?php 
-         
+         require_once 'process.php';
          if(isset($_SESSION['message'])): 
          ?>
       <div class="alert alert-<?=$_SESSION['msg_type']?>">
