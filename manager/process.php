@@ -125,7 +125,6 @@ if(isset($_POST['deleteexpense'])){
   $_SESSION['msg_type'] = 'danger';
   header('location: manager.php');
 }
-mysqli_close($conn);
 
 // infomation processing for ticket.php
 ?>
