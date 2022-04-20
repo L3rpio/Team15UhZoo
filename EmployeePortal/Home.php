@@ -53,7 +53,7 @@ if (mysqli_num_rows($query) > 0) {
             if ($isManager) {
                 $_SESSION['managerid'] = $user_id;
                 echo "<li class='listItem'>
-                <a href='manager.php' class='styledLink'>Manager Portal</a>
+                <a href='../manager/manager.php' class='styledLink'>Manager Portal</a>
             </li>";
             }
             ?>

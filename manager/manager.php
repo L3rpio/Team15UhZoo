@@ -62,7 +62,9 @@
          </div>
       </nav>
       <?php 
-         require_once 'process.php';
+         require_once 'connection.php';
+         require_once 'functions.php';
+         session_start();
          
          if(isset($_SESSION['message'])): 
          ?>
