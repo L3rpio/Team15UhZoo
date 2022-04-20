@@ -83,7 +83,7 @@
          }
          
          // $managerID = $_SESSION['user_id'];
-         $managerID = $_GET['id'];
+         $managerID = $_SESSION['managerid'];
          $getManagerSQL = "select * from employee where employee_id = $managerID";
          $managerResult = mysqli_query($conn, $getManagerSQL);
          $manager = mysqli_fetch_all($managerResult, MYSQLI_ASSOC);
