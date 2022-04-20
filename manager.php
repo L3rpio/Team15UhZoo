@@ -86,7 +86,7 @@
            die("Connection failed: " . $conn->connect_error);
          }
          
-         $managerID = $_SESSION['user_id']; use this on the next line after problem is sorted out
+         $managerID = $_SESSION['user_id'];
          $getManagerSQL = "select * from employee where employee_id = $managerID";
          $managerResult = mysqli_query($conn, $getManagerSQL);
          $manager = mysqli_fetch_all($managerResult, MYSQLI_ASSOC);
