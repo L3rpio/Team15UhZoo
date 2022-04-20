@@ -70,7 +70,7 @@
          if($conn == false){
            die("Connection failed: " . $conn->connect_error);
          }
-         $managerID = $_SESSION['user_id'];
+         $managerID = 1;
          $getManagerSQL = "select * from employee where employee_id=$managerID";
          $managerResult = mysqli_query($conn, $getManagerSQL);
          $manager = mysqli_fetch_all($managerResult, MYSQLI_ASSOC);
@@ -91,7 +91,7 @@
          ?>
       <div class="container rounded bg-white mt-5 mb-5">
       <p><?php print_r($_SESSION) ?></p>
-      <form action="process.php" method="post">
+      <form action="" method="post">
          <div class="row">
          <div class="col border-right">
             <div class="p-3 py-5">
