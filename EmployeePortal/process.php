@@ -10,7 +10,8 @@ if($conn == false){
 session_start();
 
 function getManagerID(){
-  return $_SESSION['user_id'];
+  $id = $_SESSION['user_id'];
+  return $id;
 }
 
 // information processing for manager.php

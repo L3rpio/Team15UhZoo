@@ -73,7 +73,7 @@
             ?>
       </div>
       <?php endif ?>
-      <p>Hello World. <?php print_r($_SESSION) ?></p>
+      <p>Hello World. <?php echo getManagerID(); ?></p>
       <?php 
          // $managerID = $_SESSION['user_id'];
          $managerID = getManagerID();
