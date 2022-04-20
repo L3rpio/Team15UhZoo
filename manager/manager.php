@@ -61,7 +61,6 @@
             </div>
          </div>
       </nav>
-      <p>Hello World. <?php echo $_SESSION['user_id'] ?></p>
       <?php 
          require_once 'process.php';
          
@@ -74,6 +73,7 @@
             ?>
       </div>
       <?php endif ?>
+      <p>Hello World. <?php print_r($_SESSION) ?></p>
       <?php 
          
          // $managerID = $_SESSION['user_id'];
