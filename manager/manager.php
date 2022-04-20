@@ -61,6 +61,7 @@
             </div>
          </div>
       </nav>
+      <p>Hello World. <?php echo $_SESSION['user_id'] ?></p>
       <?php 
          require_once 'process.php';
          
@@ -386,7 +387,6 @@
                         $getExpensesSQL = "select * from expense where expense_madeby=$managerWorkPlaceID";
                         $getExpensesResult = mysqli_query($conn, $getExpensesSQL);
                         $expenses = mysqli_fetch_all($getExpensesResult, MYSQLI_ASSOC);
-                        mysqli_close($conn);
                         
                         foreach($expenses as $expense){
                           $expenseID = $expense['expense_id'];
