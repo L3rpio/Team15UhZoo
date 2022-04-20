@@ -83,7 +83,7 @@
          }
          
          $managerID = $_SESSION['user_id'];
-         $getManagerSQL = "select * from employee where employee_id = $managerID";
+         $getManagerSQL = "select * from employee where employee_id = 1";
          $managerResult = mysqli_query($conn, $getManagerSQL);
          $manager = mysqli_fetch_all($managerResult, MYSQLI_ASSOC);
          $managerFirstName = $manager[0]["employee_first_name"];
@@ -101,6 +101,7 @@
          $workPlaceName = $workPlaceResult[0]['workplace_name'];
          
          ?>
+      <h1><?php echo $managerID; ?></h1>
       <div class="container rounded bg-white mt-5 mb-5">
          <form action="process.php" method="post">
             <div class="row">
