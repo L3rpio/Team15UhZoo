@@ -75,7 +75,7 @@
       <?php endif ?>
       <p>Hello World. <?php print_r($_SESSION) ?></p>
       <?php 
-         
+         session_start();
          // $managerID = $_SESSION['user_id'];
          $managerID = $_SESSION['managerid'];
          $getManagerSQL = "select * from employee where employee_id=$managerID";

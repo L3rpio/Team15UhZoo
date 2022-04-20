@@ -8,7 +8,11 @@ if($conn == false){
 }
 
 session_start();
-print_r($_SESSION);
+
+function getManagerID(){
+  return $_SESSION['user_id'];
+}
+
 // information processing for manager.php
 if(isset($_POST['savemanagerprofile'])){
   $id = $_POST['id'];
