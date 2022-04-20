@@ -8,6 +8,7 @@ if($conn == false){
 }
 
 session_start();
+print_r($_SESSION);
 
 // information processing for manager.php
 if(isset($_POST['savemanagerprofile'])){
