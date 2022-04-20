@@ -61,6 +61,7 @@
             </div>
          </div>
       </nav>
+      <p>This is supposed to be displaying maanger id</p>
       <?php 
          require_once 'process.php';
          
@@ -103,7 +104,6 @@
          
          ?>
       <h1>Hello <?php echo $managerID; ?></h1>
-      <p>This is supposed to be displaying maanger id</p>
       <div class="container rounded bg-white mt-5 mb-5">
          <form action="process.php" method="post">
             <div class="row">
