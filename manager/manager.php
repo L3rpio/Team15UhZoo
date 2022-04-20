@@ -84,7 +84,7 @@
          
          // $managerID = $_SESSION['user_id'];
          $managerID = $_SESSION['managerid'];
-         $getManagerSQL = "select * from employee where employee_id = $managerID";
+         $getManagerSQL = "select * from employee where employee_id=$managerID";
          $managerResult = mysqli_query($conn, $getManagerSQL);
          $manager = mysqli_fetch_all($managerResult, MYSQLI_ASSOC);
          $managerFirstName = $manager[0]["employee_first_name"];
@@ -103,6 +103,7 @@
          
          ?>
       <h1>Hello <?php echo $managerID; ?></h1>
+      <p>This is supposed to be displaying maanger id</p>
       <div class="container rounded bg-white mt-5 mb-5">
          <form action="process.php" method="post">
             <div class="row">
