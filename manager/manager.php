@@ -72,10 +72,9 @@
             ?>
       </div>
       <?php endif ?>
-      <p>Hello World. <?php echo getManagerID(); ?></p>
+      <p>Hello World. <?php echo $managerID ?></p>
       <?php 
          // $managerID = $_SESSION['user_id'];
-         $managerID = getManagerID();
          $getManagerSQL = "select * from employee where employee_id=$managerID";
          $managerResult = mysqli_query($conn, $getManagerSQL);
          $manager = mysqli_fetch_all($managerResult, MYSQLI_ASSOC);

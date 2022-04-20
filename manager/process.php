@@ -8,11 +8,7 @@ if($conn == false){
 }
 
 session_start();
-
-function getManagerID(){
-  $id = $_SESSION['user_id'];
-  return $id;
-}
+$managerID = $_SESSION['user_id'];
 
 print_r($_SESSION);
 
