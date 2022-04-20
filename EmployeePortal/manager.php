@@ -49,7 +49,7 @@
                     <a class="nav-link active" aria-current="page" href="manager.php">Manager Portal</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="../EmployeePortal/Home.php">Employee Portal</a>
+                    <a class="nav-link" href="Home.php">Employee Portal</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="manage_animals.php">Manage Animals</a>
