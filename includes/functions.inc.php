@@ -68,25 +68,24 @@ function createUser2($conn, $fname, $lname, $user, $email, $pass)
     $sql    = "INSERT INTO `customer`(`first_name`, `last_name`, `user_name`,`email`, `pass_word`) VALUES ('$fname', '$lname', '$user','$email','$pass');";
     $result = mysqli_query($conn, $sql);
 
-    // Commenting this out for now to make signup work
-    // if ($result) {
-    //     $to_email  = $email;
-    //     $mail_body = "Dear <b>" . $fname . ' ' . $lname . "</b>,<br><br>Thank you for register with UH Zoo.<br><br><b>Team UH Zoo</b>";
-    //     $subject   = "Registration";
-    //     $mail_head = "Registration Email";
-    //     $headers   = "MIME-Version: 1.0" . "\r\n";
-    //     $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-    //     $headers .= 'From: UH Zoo <no-reply@uhzoo.com>' . "\r\n";
-    //     'Reply-To: ' . $email . '' . "\r\n" . 'X-Mailer: PHP/' . phpversion();
-    //     $send_mail = mail($to_email, $subject, $mail_body, $headers);
-    //     if ($send_mail) {
-    //         echo "Thank you for registering with us!";
-    //     } else {
-    //         echo "Unable to send an email!";
-    //     }
-    // } else {
-    //     echo "Insertion Error!";
-    // }
+    if ($result) {
+        $to_email  = $email;
+        $mail_body = "Dear <b>" . $fname . ' ' . $lname . "</b>,<br><br>Thank you for register with UH Zoo.<br><br><b>Team UH Zoo</b>";
+        $subject   = "Registration";
+        $mail_head = "Registration Email";
+        $headers   = "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+        $headers .= 'From: UH Zoo <no-reply@uhzoo.com>' . "\r\n";
+        'Reply-To: ' . $email . '' . "\r\n" . 'X-Mailer: PHP/' . phpversion();
+        $send_mail = mail($to_email, $subject, $mail_body, $headers);
+        if ($send_mail) {
+            echo "Thank you for registering with us!";
+        } else {
+            echo "Unable to send an email!";
+        }
+    } else {
+        echo "Insertion Error!";
+    }
 
     /*if($result){
     return true;
@@ -106,6 +105,43 @@ function createUser2($conn, $fname, $lname, $user, $email, $pass)
     //     echo "User created!";
     //     header("Location: ../index.html");
     // }
+}
+
+// guestUpdate.inc.php : Updates the user password
+function updatepassword($conn, $user, $pass){
+    $MD5pass = md5($pass);
+    $query = "UPDATE customer SET pass_word = '{$MD5pass}' WHERE user_name = '{$user}';";
+    //$query  = "UPDATE * FROM Customer SET pass_word='{$MD5pass}' WHERE user_name='{$user}' ;";
+    $result = mysqli_query($conn, $query);
+    if ($result === false) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+}
+
+// guestUpdate.inc.php : Deletes the user
+function deleteuser($conn, $user){
+    $query = "DELETE FROM Customer WHERE user_name = '{$user}'";
+    $result = mysqli_query($conn, $query);
+    if ($result === false) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+}
+
+// guestUpdate.inc.php : if an old password is wrong, returns true
+function checkoldpassword($conn, $user, $pass){
+    $MD5pass = md5($pass);
+    $query  = "SELECT * FROM Customer WHERE user_name='{$user}' AND pass_word='{$MD5pass}';";
+    $result = mysqli_query($conn, $query);
+    if ($result === false) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+    if (mysqli_num_rows($result) != 1) {
+        
+        return true;
+    } 
+    else{
+        return false;
+    }
 }
 
 // LoginPage.php : Logs a user in using sessions

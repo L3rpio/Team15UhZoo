@@ -29,6 +29,7 @@
                 <input type="password" name="password" placeholder="Password" class="box" required>
                 <button type="submit" name="submit" class="main-button">Log in</button>
                 <?php
+
                 if (isset($_GET["error"])) {
                     if ($_GET["error"] == "emptyinput") {
                         echo "<p>You left one of the fields empty!</p>";
