@@ -1,5 +1,15 @@
 <!-- This section is to process all the forms on the manager page -->
 <?php
+
+  // connect to database
+  $serverName = "zoodbteam15-server.mysql.database.azure.com";
+  $username ="zooadmin";
+  $password= "Lovec++123";
+  $conn = new mysqli($serverName, $username, $password,"uh_zoo");
+  if($conn == false){
+    die("Connection failed: " . $conn->connect_error);
+  }
+
   // information processing for editing and saving the manager profile
   if(isset($_POST['savemanagerprofile'])){
     $id = $_POST['id'];
