@@ -79,7 +79,6 @@ print_r($_SESSION);
 
       <!-- php code for starting the session and getting a message when the manager updates, deletes, or adds information to a table -->
       <?php 
-         session_start();
          // see if SESSION variable for 'message' is set 
          if(isset($_SESSION['message'])): 
          ?>
