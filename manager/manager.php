@@ -115,61 +115,257 @@ print_r($_SESSION);
 
       <!-- html code for displaying the manager profile and the ability to update information -->
       <div class="container rounded bg-white mt-5 mb-5">
-      <form action="process.php" method="post">
-         <div class="row">
-         <div class="col border-right">
-            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-               <img class='rounded-circle mt-5' width='250px' alt='profilepicture' src='https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg'>
-            </div>
-         </div>
-         <div class="col border-right">
-            <div class="p-3 py-5">
-               <div class="d-flex justify-content-between align-items-center mb-3">
-                  <h4 class="text-right">Manager Profile</h4>
-               </div>
-               <div class="row mt-2">
-                  <div class="col-md-12">
-                     <label class="labels">ID</label>
-                     <input type="text" class="form-control" name="id" value="<?php echo $managerID; ?>" readonly>
-                  </div>
-                  <div class="col-md-6">
-                     <label class="labels">First Name</label>
-                     <input type="text" class="form-control" name="firstname" value="<?php echo $managerFirstName; ?>">
-                  </div>
-                  <div class="col-md-6">
-                     <label class="labels">Last Name</label>
-                     <input type="text" class="form-control" name="lastname" value="<?php echo $managerLasttName; ?>">
-                  </div>
-               </div>
-               <div class="row mt-3">
-                  <div class="col-md-12">
-                     <label class="labels">Address</label>
-                     <input type="text" class="form-control" name="address" value="<?php echo $managerAddr; ?>">
-                  </div>
-                  <div class="col-md-12">
-                     <label class="labels">Email</label>
-                     <input type="text" class="form-control" name="email" value="<?php echo $managerEmail; ?>">
-                  </div>
-                  <div class="col-md-12">
-                     <label class="labels">Hourly Wage</label>
-                     <input type="number" class="form-control" name="wage" value="<?php echo $managerWage; ?>" readonly>
-                  </div>
-                  <div class="col-md-12">
-                     <label class="labels">Hours Worked</label>
-                     <input type="number" class="form-control" name="hoursworked" value="<?php echo ($managerHoursWorked == 0 || $managerHoursWorked == NULL) ? 0: $managerHoursWorked; ?>">
-                  </div>
-                  <div class="col-md-12">
-                     <label class="labels">Work Place</label>
-                     <input type="text" class="form-control" value="<?php echo $workPlaceName ?>" readonly>
-                  </div>
-               </div>
-               <div class="mt-5 text-center">
-                  <input class="btn btn-success" type="submit" name="savemanagerprofile" value="Save Profile">
+         <form action="process.php" method="post">
+            <div class="row">
+            <div class="col border-right">
+               <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                  <img class='rounded-circle mt-5' width='250px' alt='profilepicture' src='https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg'>
                </div>
             </div>
-      </form>
+            <div class="col border-right">
+               <div class="p-3 py-5">
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                     <h4 class="text-right">Manager Profile</h4>
+                  </div>
+                  <div class="row mt-2">
+                     <div class="col-md-12">
+                        <label class="labels">ID</label>
+                        <input type="text" class="form-control" name="id" value="<?php echo $managerID; ?>" readonly>
+                     </div>
+                     <div class="col-md-6">
+                        <label class="labels">First Name</label>
+                        <input type="text" class="form-control" name="firstname" value="<?php echo $managerFirstName; ?>">
+                     </div>
+                     <div class="col-md-6">
+                        <label class="labels">Last Name</label>
+                        <input type="text" class="form-control" name="lastname" value="<?php echo $managerLasttName; ?>">
+                     </div>
+                  </div>
+                  <div class="row mt-3">
+                     <div class="col-md-12">
+                        <label class="labels">Address</label>
+                        <input type="text" class="form-control" name="address" value="<?php echo $managerAddr; ?>">
+                     </div>
+                     <div class="col-md-12">
+                        <label class="labels">Email</label>
+                        <input type="text" class="form-control" name="email" value="<?php echo $managerEmail; ?>">
+                     </div>
+                     <div class="col-md-12">
+                        <label class="labels">Hourly Wage</label>
+                        <input type="number" class="form-control" name="wage" value="<?php echo $managerWage; ?>" readonly>
+                     </div>
+                     <div class="col-md-12">
+                        <label class="labels">Hours Worked</label>
+                        <input type="number" class="form-control" name="hoursworked" value="<?php echo ($managerHoursWorked == 0 || $managerHoursWorked == NULL) ? 0: $managerHoursWorked; ?>">
+                     </div>
+                     <div class="col-md-12">
+                        <label class="labels">Work Place</label>
+                        <input type="text" class="form-control" value="<?php echo $workPlaceName ?>" readonly>
+                     </div>
+                  </div>
+                  <div class="mt-5 text-center">
+                     <input class="btn btn-success" type="submit" name="savemanagerprofile" value="Save Profile">
+                  </div>
+               </div>
+         </form>
       </div>
 
+      <!-- html code to display table about employees working under this manager -->
+      <div class="container-xl">
+         <div class="table-responsive">
+            <div class="table-wrapper">
+               <div class="table-title">
+                  <div class="row">
+                     <div class="col-sm-6">
+                        <h2>Manage Employees at <?php echo $workPlaceName; ?></h2>
+                     </div>
+                     <div class="col-sm-6">
+                        <a
+                           href="#addEmployeeModal"
+                           class="btn btn-success"
+                           data-toggle="modal"
+                           ><i class="material-icons">&#xE147;</i>
+                        <span>Add New Employee</span></a>
+                     </div>
+                  </div>
+               </div>
+               <table class="table table-striped table-hover">
+                  <thead>
+                     <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Address</th>
+                        <th>Hourly Wage</th>
+                        <th>Hours Worked</th>
+                        <th>Pay Check</th>
+                        <th>Pay Status</th>
+                        <th>Actions</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <?php 
+                        $sql = "select * from employee where workplace_id=$managerWorkPlaceID";
+                        $result = mysqli_query($conn, $sql);
+                        $employees = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                        foreach ($employees as $employee){
+                        ?>
+                     <tr>
+                        <?php 
+                           $employeeID  = $employee["employee_id"];
+                           if($employeeID == $managerID){
+                             continue;
+                           }
+                           $employeeFirstName = $employee["employee_first_name"];
+                           $employeeLastName = $employee["employee_last_name"];
+                           $employeeAddr = $employee["employee_Address"];
+                           $employeeEmail = $employee["employee_email"];
+                           $wage = $employee["hourly_wage"];
+                           $paycheck = $employee["paycheck"];
+                           $hoursWorked = $employee["hours_worked"];
+                           
+                           if($hoursWorked === NULL){
+                             $hoursWorked = 0;
+                           }
+                           $payStatus = $employee["paid_status"];
+                           echo "<td>" . $employeeID . "</td>";
+                           echo "<td>" . $employeeFirstName . " " . $employeeLastName . "</td>";
+                           echo "<td>" . $employeeEmail . "</td>";
+                           echo "<td>" . $employeeAddr . "</td>";
+                           echo "<td>$$wage</td>";
+                           echo "<td>" . $hoursWorked . "</td>";
+                           if($paycheck === NULL || $paycheck === 0){
+                             echo "<td>$0</td>";
+                           } else {
+                             echo "<td>$" . $paycheck . "</td>";
+                           }
+                           
+                           if($payStatus == 0 || $payStatus === NULL){
+                             echo "<td class='badge bg-danger'>Unpaid</td>";
+                           } else if($payStatus == 1){
+                             echo "<td class='badge bg-success'>Paid</td>";
+                           } else if($payStatus == 2){
+                             echo "<td class='badge bg-warning text-dark'>Payment Pending</td>";
+                           }
+                           
+                           ?>
+                        <td>
+                           <!-- <a href="manager.php?edit=" class="btn btn-info">Edit</a> -->
+                           <a class="edit" href="#editEmployee<?php echo $employeeID; ?>" class="btn btn-info" data-toggle="modal">
+                           <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
+                           </a>
+                           <a class="delete" href="#deleteEmployee<?php echo $employeeID; ?>" class="btn btn-danger light-link" data-toggle="modal">
+                           <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+                           </a>
+                        </td>
+                     </tr>
+                     <div id="editEmployee<?php echo $employeeID; ?>" class="modal fade">
+                        <div class="modal-dialog">
+                           <div class="modal-content">
+                              <form action="process.php" method="post">
+                                 <div class="modal-header">
+                                    <h4 class="modal-title">Edit Employee</h4>
+                                    <button
+                                       type="button"
+                                       class="close"
+                                       data-dismiss="modal"
+                                       aria-hidden="true"
+                                       >
+                                    &times;
+                                    </button>
+                                 </div>
+                                 <div class="modal-body">
+                                    <div class="form-group hidden">
+                                       <label>ID</label>
+                                       <input type="number" name="id" value="<?php echo $employeeID; ?>" class="form-control" required />
+                                    </div>
+                                    <div class="form-group">
+                                       <label>First Name</label>
+                                       <input type="text" name="firstname" value="<?php echo $employeeFirstName; ?>" class="form-control" required />
+                                    </div>
+                                    <div class="form-group">
+                                       <label>Last Name</label>
+                                       <input type="text" name="lastname" value="<?php echo $employeeLastName; ?>" class="form-control" required />
+                                    </div>
+                                    <div class="form-group">
+                                       <label>Email</label>
+                                       <input type="text" name="email" value="<?php echo $employeeEmail; ?>" class="form-control" required />
+                                    </div>
+                                    <div class="form-group">
+                                       <label>Address</label>
+                                       <input type="text" name="address" value="<?php echo $employeeAddr; ?>" class="form-control" required />
+                                    </div>
+                                    <div class="form-group">
+                                       <label>Hourly Wage</label>
+                                       <input type="text" name="hourlywage" value="<?php echo $wage; ?>" class="form-control" required />
+                                    </div>
+                                    <div class="form-group">
+                                       <label>Hours Worked</label>
+                                       <input type="text" name="hoursworked" value="<?php echo $hoursWorked; ?>" class="form-control" required />
+                                    </div>
+                                    <div class="form-group">
+                                       <label>Pay Status</label>
+                                       <select name="paystatus" class="form-select" required>
+                                          <option selected value = 0>Unpaid</option>
+                                          <option value=2>Pending</option>
+                                          <option value=1>Paid</option>
+                                       </select>
+                                    </div>
+                                 </div>
+                                 <div class="modal-footer">
+                                    <input
+                                       type="button"
+                                       class="btn btn-default"
+                                       data-dismiss="modal"
+                                       value="Cancel"
+                                       />
+                                    <input type="submit" name="updateemployee" class="btn btn-info" value="Save" />
+                                 </div>
+                              </form>
+                           </div>
+                        </div>
+                     </div>
+                     <!-- Delete Modal HTML -->
+                     <div id="deleteEmployee<?php echo $employeeID; ?>" class="modal fade">
+                        <div class="modal-dialog">
+                           <div class="modal-content">
+                              <form action="process.php" method="post">
+                                 <input type="number" name="id" value="<?php echo $employeeID; ?>" class="form-control" required hidden/>
+                                 <div class="modal-header">
+                                    <h4 class="modal-title">Delete Employee</h4>
+                                    <button
+                                       type="button"
+                                       class="close"
+                                       data-dismiss="modal"
+                                       aria-hidden="true">
+                                    &times;
+                                    </button>
+                                 </div>
+                                 <div class="modal-body">
+                                    <p>Are you sure you want to delete this employee?</p>
+                                    <p class="text-warning">
+                                       <small>This action cannot be undone.</small>
+                                    </p>
+                                 </div>
+                                 <div class="modal-footer">
+                                    <input
+                                       type="button"
+                                       class="btn btn-default"
+                                       data-dismiss="modal"
+                                       value="Cancel"
+                                       />
+                                    <input type="submit" name="deleteemployee" class="btn btn-danger" value="Delete" />
+                                 </div>
+                              </form>
+                           </div>
+                        </div>
+                     </div>
+                     <?php } ?>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
 
 
    </body>
