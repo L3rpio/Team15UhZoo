@@ -31,7 +31,7 @@
     $run = mysqli_query($conn, $updateManagerQuery);
     $_SESSION['message'] = 'Manager Updated';
     $_SESSION['msg_type'] = 'info';
-    header('location: manager.php');
+    header('location:manager.php');
   }
 
   // processing informatin to delete an employee

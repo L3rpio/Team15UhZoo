@@ -519,5 +519,61 @@ print_r($_SESSION);
          </div>
       </div>
 
+      <!-- Add new entry modals -->
+      <div id="addEmployeeModal" class="modal fade">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <form action="process.php" method="post">
+                  <div class="modal-header">
+                     <h4 class="modal-title">Add New Employee</h4>
+                     <button
+                        type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-hidden="true"
+                        >
+                     &times;
+                     </button>
+                  </div>
+                  <div class="modal-body">
+                     <div class="form-group hidden">
+                        <label>Workplace ID</label>
+                        <input type="number" name="workplaceID" class="form-control" value="<?php echo $managerWorkPlaceID ?>" required />
+                     </div>
+                     <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" name="firstname" class="form-control" required />
+                     </div>
+                     <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" name="lastname" class="form-control" required />
+                     </div>
+                     <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" name="email" class="form-control" required />
+                     </div>
+                     <div class="form-group">
+                        <label>Address</label>
+                        <textarea name="address" class="form-control" required></textarea>
+                     </div>
+                     <div class="form-group">
+                        <label>Hourly Wage</label>
+                        <input type="text" name="hourlywage" class="form-control" required />
+                     </div>
+                  </div>
+                  <div class="modal-footer">
+                     <input
+                        type="button"
+                        class="btn btn-default"
+                        data-dismiss="modal"
+                        value="Cancel"
+                        />
+                     <input type="submit" name="addemployee" class="btn btn-success" value="Add" />
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+
    </body>
 </html>
