@@ -1,16 +1,15 @@
 <?php 
-$serverName = "zoodbteam15-server.mysql.database.azure.com";
-$username ="zooadmin";
-$password= "Lovec++123";
-$conn = new mysqli($serverName, $username, $password,"uh_zoo");
-if($conn == false){
-  die("Connection failed: " . $conn->connect_error);
-}
-
-session_start();
-print_r($_SESSION);
-?>
-
+   $serverName = "zoodbteam15-server.mysql.database.azure.com";
+   $username ="zooadmin";
+   $password= "Lovec++123";
+   $conn = new mysqli($serverName, $username, $password,"uh_zoo");
+   if($conn == false){
+     die("Connection failed: " . $conn->connect_error);
+   }
+   
+   session_start();
+   print_r($_SESSION);
+   ?>
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -42,8 +41,7 @@ print_r($_SESSION);
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
    </head>
    <body>
-
-   <!-- html code for manager nav bar -->
+      <!-- html code for manager nav bar -->
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
          <div class="container px-5">
             <a class="navbar-brand" href="../index.php">University of Houston Zoo</a>
@@ -76,7 +74,6 @@ print_r($_SESSION);
             </div>
          </div>
       </nav>
-
       <!-- php code for starting the session and getting a message when the manager updates, deletes, or adds information to a table -->
       <?php 
          session_start();
@@ -85,91 +82,90 @@ print_r($_SESSION);
          ?>
       <div class="alert alert-<?=$_SESSION['msg_type']?>">
          <?php 
-         // if SESSION variable for 'message' is set then print it out near the top of the viewport
-            echo $_SESSION['message'];
-            unset($_SESSION['message']);
-            ?>
+            // if SESSION variable for 'message' is set then print it out near the top of the viewport
+               echo $_SESSION['message'];
+               unset($_SESSION['message']);
+               ?>
       </div>
       <?php endif ?>
-
       <!-- PHP code for getting information about the manager of this work place -->
       <?php 
-        $managerID = $_SESSION['user_id'];
-        $getManagerSQL = "select * from employee where employee_id=$managerID";
-        $managerResult = mysqli_query($conn, $getManagerSQL);
-        $manager = mysqli_fetch_all($managerResult, MYSQLI_ASSOC);
-        $managerFirstName = $manager[0]["employee_first_name"];
-        $managerLasttName = $manager[0]["employee_last_name"];
-        $managerAddr = $manager[0]["employee_Address"];
-        $managerEmail = $manager[0]["employee_email"];
-        $managerWage = $manager[0]["hourly_wage"];
-        $managerWorkPlaceID = $manager[0]["workplace_id"];
-        $managerHoursWorked = $manager[0]["hours_worked"];
-        $profilePicture =$manager[0]['image'];
-        
-        $getWorkPlaceName = "select * from workplace where workplace_id=$managerWorkPlaceID";
-        $workPlace = mysqli_query($conn, $getWorkPlaceName);
-        $workPlaceResult = mysqli_fetch_all($workPlace, MYSQLI_ASSOC);
-        $workPlaceName = $workPlaceResult[0]['workplace_name'];
-      ?>
-
+         $managerID = $_SESSION['user_id'];
+         $getManagerSQL = "select * from employee where employee_id=$managerID";
+         $managerResult = mysqli_query($conn, $getManagerSQL);
+         $manager = mysqli_fetch_all($managerResult, MYSQLI_ASSOC);
+         $managerFirstName = $manager[0]["employee_first_name"];
+         $managerLasttName = $manager[0]["employee_last_name"];
+         $managerAddr = $manager[0]["employee_Address"];
+         $managerEmail = $manager[0]["employee_email"];
+         $managerWage = $manager[0]["hourly_wage"];
+         $managerWorkPlaceID = $manager[0]["workplace_id"];
+         $managerHoursWorked = $manager[0]["hours_worked"];
+         $profilePicture =$manager[0]['image'];
+         
+         $getWorkPlaceName = "select * from workplace where workplace_id=$managerWorkPlaceID";
+         $workPlace = mysqli_query($conn, $getWorkPlaceName);
+         $workPlaceResult = mysqli_fetch_all($workPlace, MYSQLI_ASSOC);
+         $workPlaceName = $workPlaceResult[0]['workplace_name'];
+         ?>
       <!-- html code for displaying the manager profile and the ability to update information -->
       <div class="container rounded bg-white mt-5 mb-5">
          <form action="process.php" method="post">
             <div class="row">
-            <div class="col border-right">
-               <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                  <img class='rounded-circle mt-5' width='250px' alt='profilepicture' src='https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg'>
+               <div class="col border-right">
+                  <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                     <img class='rounded-circle mt-5' width='250px' alt='profilepicture' src='https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg'>
+                  </div>
+               </div>
+               <div class="col border-right">
+                  <div class="p-3 py-5">
+                     <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right">Manager Profile</h4>
+                     </div>
+                     <div class="row mt-2">
+                        <div class="col-md-12">
+                           <label class="labels">ID</label>
+                           <input type="text" class="form-control" name="id" value="<?php echo $managerID; ?>" readonly>
+                        </div>
+                        <div class="col-md-6">
+                           <label class="labels">First Name</label>
+                           <input type="text" class="form-control" name="firstname" value="<?php echo $managerFirstName; ?>">
+                        </div>
+                        <div class="col-md-6">
+                           <label class="labels">Last Name</label>
+                           <input type="text" class="form-control" name="lastname" value="<?php echo $managerLasttName; ?>">
+                        </div>
+                     </div>
+                     <div class="row mt-3">
+                        <div class="col-md-12">
+                           <label class="labels">Address</label>
+                           <input type="text" class="form-control" name="address" value="<?php echo $managerAddr; ?>">
+                        </div>
+                        <div class="col-md-12">
+                           <label class="labels">Email</label>
+                           <input type="text" class="form-control" name="email" value="<?php echo $managerEmail; ?>">
+                        </div>
+                        <div class="col-md-12">
+                           <label class="labels">Hourly Wage</label>
+                           <input type="number" class="form-control" name="wage" value="<?php echo $managerWage; ?>" readonly>
+                        </div>
+                        <div class="col-md-12">
+                           <label class="labels">Hours Worked</label>
+                           <input type="number" class="form-control" name="hoursworked" value="<?php echo ($managerHoursWorked == 0 || $managerHoursWorked == NULL) ? 0: $managerHoursWorked; ?>">
+                        </div>
+                        <div class="col-md-12">
+                           <label class="labels">Work Place</label>
+                           <input type="text" class="form-control" value="<?php echo $workPlaceName ?>" readonly>
+                        </div>
+                     </div>
+                     <div class="mt-5 text-center">
+                        <input class="btn btn-success" type="submit" name="savemanagerprofile" value="Save Profile">
+                     </div>
+                  </div>
                </div>
             </div>
-            <div class="col border-right">
-               <div class="p-3 py-5">
-                  <div class="d-flex justify-content-between align-items-center mb-3">
-                     <h4 class="text-right">Manager Profile</h4>
-                  </div>
-                  <div class="row mt-2">
-                     <div class="col-md-12">
-                        <label class="labels">ID</label>
-                        <input type="text" class="form-control" name="id" value="<?php echo $managerID; ?>" readonly>
-                     </div>
-                     <div class="col-md-6">
-                        <label class="labels">First Name</label>
-                        <input type="text" class="form-control" name="firstname" value="<?php echo $managerFirstName; ?>">
-                     </div>
-                     <div class="col-md-6">
-                        <label class="labels">Last Name</label>
-                        <input type="text" class="form-control" name="lastname" value="<?php echo $managerLasttName; ?>">
-                     </div>
-                  </div>
-                  <div class="row mt-3">
-                     <div class="col-md-12">
-                        <label class="labels">Address</label>
-                        <input type="text" class="form-control" name="address" value="<?php echo $managerAddr; ?>">
-                     </div>
-                     <div class="col-md-12">
-                        <label class="labels">Email</label>
-                        <input type="text" class="form-control" name="email" value="<?php echo $managerEmail; ?>">
-                     </div>
-                     <div class="col-md-12">
-                        <label class="labels">Hourly Wage</label>
-                        <input type="number" class="form-control" name="wage" value="<?php echo $managerWage; ?>" readonly>
-                     </div>
-                     <div class="col-md-12">
-                        <label class="labels">Hours Worked</label>
-                        <input type="number" class="form-control" name="hoursworked" value="<?php echo ($managerHoursWorked == 0 || $managerHoursWorked == NULL) ? 0: $managerHoursWorked; ?>">
-                     </div>
-                     <div class="col-md-12">
-                        <label class="labels">Work Place</label>
-                        <input type="text" class="form-control" value="<?php echo $workPlaceName ?>" readonly>
-                     </div>
-                  </div>
-                  <div class="mt-5 text-center">
-                     <input class="btn btn-success" type="submit" name="savemanagerprofile" value="Save Profile">
-                  </div>
-               </div>
          </form>
       </div>
-
       <!-- html code to display table about employees working under this manager -->
       <div class="container-xl">
          <div class="table-responsive">
@@ -366,7 +362,6 @@ print_r($_SESSION);
             </div>
          </div>
       </div>
-
       <!-- html code to display expenses table for this work place -->
       <div class="container-xl">
          <div class="table-responsive">
@@ -518,7 +513,6 @@ print_r($_SESSION);
             </div>
          </div>
       </div>
-
       <!-- Add new entry modals -->
       <div id="addEmployeeModal" class="modal fade">
          <div class="modal-dialog">
@@ -574,7 +568,6 @@ print_r($_SESSION);
             </div>
          </div>
       </div>
-
       <!-- second modal -->
       <div id="addExpenseModal" class="modal fade">
          <div class="modal-dialog">
@@ -626,6 +619,5 @@ print_r($_SESSION);
             </div>
          </div>
       </div>
-
    </body>
 </html>
