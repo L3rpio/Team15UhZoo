@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -230,6 +231,28 @@ table.table .avatar {
 
 </head>
 <body>
+	<form action="customer_report.php" method="post">
+		<input type"text" name="search" place="Search for members..."/>
+		<button type "submit" name="submit-search">Search</button>
+		<?php 
+		// if(isset($_POST['search'])){
+		// 	$searchq = $_POST['search'];
+		// 	$searchq =preg_replace("#[^0-9a-z]#i","",$searchq);
+		// 	$query = mysql_query("Select * FROM Customer WHERE first_name LIKE '%$searchq%' or last_name LIKE '%$searchq%'") or die("could not search");
+		// 	$count = mysql_num_rows($query);
+		// 	if($count == 0){
+		// 		$output ='There was no search results!';
+		// 	}
+		// 	else{
+		// 		while($row=mysql_fetch_array($query)){
+		// 			$fname = $row['first_name'];
+		// 			$lname = $row['last_name'];
+		// 			$id = $row['customer_id'];
+		// 		}
+		// 	}
+		// }
+		?>
+</form>
 <div class="container-xl">
 	<div class="table-responsive">
 		<div class="table-wrapper">
@@ -247,6 +270,7 @@ table.table .avatar {
 					<tr>
 						<th>First Name</th>
 						<th>Last Name</th>
+						<th>User Name</th>
 						<th>Date Added</th>
 					</tr>
 				</thead>
@@ -260,30 +284,39 @@ table.table .avatar {
 						if($conn == false){
 						  die("Connection failed: " . $conn->connect_error);
 						}
-						$sql="SELECT * FROM Customer WHERE date_added=curdate();";
-            $count=0;
-						$result = $conn-> query($sql);
-           				if ($result-> num_rows > 0){
-              				while($row= $result-> fetch_assoc()){
-                        $count=$count+1;
-                				echo "<tr><td>" . $row["first_name"] . "</td><td>" . $row["last_name"] . "</td><td>" . $row["date_added"] . "</td></tr>";
-                        // echo '<td> <a href="#editCustomerModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a> ' . " " . '<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872i;</></a> </td> </tr>';
-              					}
-            			}
-						// if($qry->rows > 0){
-						// 	while($reslt=mysqli_fetch_array($qry)){
-						// 	echo $reslt[0];
-						// 	}
-						// }
-            echo "<tr><td>" . "New Customers Total " . $count . "</td></tr>"; 
+						//$sql="SELECT * FROM Customer WHERE date_added=curdate();";
+						// $result = $conn-> query($sql);
+           				// if ($result-> num_rows > 0){
+              			// 	while($row= $result-> fetch_assoc()){
+                        // $count=$count+1;
+                		// 		echo "<tr><td>" . $row["first_name"] . "</td><td>" . $row["last_name"] . "</td><td>" . $row["date_added"] . "</td></tr>";
+                        // // echo '<td> <a href="#editCustomerModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a> ' . " " . '<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872i;</></a> </td> </tr>';
+              			// 		}
+            			// }
+
+
+						if(isset($_POST['submit-search'])){
+							$searchq = $_POST['search'];
+							$searchq =preg_replace("#[^0-9a-z]#i","",$searchq);
+							$query = $conn-> query("Select * FROM Customer WHERE first_name LIKE '%$searchq%' or last_name LIKE '%$searchq%';") or die("could not search");
+							//$count = mysql_num_rows($query);
+							
+							$count=0;
+							while($row=$query-> fetch_assoc()){
+								$fname = $row['first_name'];
+								$lname = $row['last_name'];
+								$id=$row['user_name'];
+								$dd =$row['date_added'];
+								$count=$count+1;
+								echo "<tr><td>"  . $fname . "</td><td>" . $lname . "</td><td>" . $id . "</td><td>" . $dd . "</td></tr>";
+							}
+							
+						}
+						
+            echo "<tr><td>" . "Total Customers in Search " . $count . "</td></tr>"; 
 						mysqli_close($conn);
-						//die(mysqli_error($conn));
+						
 						?>
-						<!--
-						<td>Thomas Hardy</td>
-						<td>thomashardy@mail.com</td>
-						<td>(171) 555-2222</td>
-						<td> -->
 					
 				</tbody>
 			</table>
