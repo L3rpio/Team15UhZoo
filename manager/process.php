@@ -42,6 +42,8 @@ print_r($_SESSION);
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
    </head>
    <body>
+
+   <!-- html code for manager nav bar -->
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
          <div class="container px-5">
             <a class="navbar-brand" href="../index.php">University of Houston Zoo</a>
@@ -74,6 +76,24 @@ print_r($_SESSION);
             </div>
          </div>
       </nav>
+
+      <!-- php code for starting the session and getting a message when the manager updates, deletes, or adds information to a table -->
+      <?php 
+         session_start();
+         // see if SESSION variable for 'message' is set 
+         if(isset($_SESSION['message'])): 
+         ?>
+      <div class="alert alert-<?=$_SESSION['msg_type']?>">
+         <?php 
+         // if SESSION variable for 'message' is set then print it out near the top of the viewport
+            echo $_SESSION['message'];
+            unset($_SESSION['message']);
+            ?>
+      </div>
+      <?php endif ?>
+
+
+
    </body>
 </html>
 
