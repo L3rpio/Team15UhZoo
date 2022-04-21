@@ -575,5 +575,57 @@ print_r($_SESSION);
          </div>
       </div>
 
+      <!-- second modal -->
+      <div id="addExpenseModal" class="modal fade">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <form action="process.php" method="post">
+                  <div class="modal-header">
+                     <h4 class="modal-title">Add New Expense</h4>
+                     <button
+                        type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-hidden="true"
+                        >
+                     &times;
+                     </button>
+                  </div>
+                  <div class="modal-body">
+                     <div class="form-group hidden">
+                        <label>Expense Made By</label>
+                        <input type="text" name="expenseMadeBy" class="form-control" value='<?php echo $managerWorkPlaceID; ?>' required />
+                     </div>
+                     <div class="form-group">
+                        <label>Expense Name</label>
+                        <input type="text" name="expensename" class="form-control" required />
+                     </div>
+                     <div class="form-group">
+                        <label>Expense Description</label>
+                        <textarea type="text" name="expensedescription" class="form-control" required></textarea> 
+                     </div>
+                     <div class="form-group">
+                        <label>Date Expense Accrued</label>
+                        <input type="date" name="dateexpense" class="form-control" required />
+                     </div>
+                     <div class="form-group">
+                        <label>Expense Amount</label>
+                        <input type="number" name="expenseamount" class="form-control" required></input>
+                     </div>
+                  </div>
+                  <div class="modal-footer">
+                     <input
+                        type="button"
+                        class="btn btn-default"
+                        data-dismiss="modal"
+                        value="Cancel"
+                        />
+                     <input type="submit" name="addexpense" class="btn btn-success" value="Add" />
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+
    </body>
 </html>
