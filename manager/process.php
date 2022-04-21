@@ -1,5 +1,6 @@
 <!-- This section is to process all the forms on the manager page -->
 <?php
+  session_start();
 
   // connect to database
   $serverName = "zoodbteam15-server.mysql.database.azure.com";
