@@ -69,7 +69,7 @@
       </div>
     </nav>
     <?php 
-      require_once 'admin_process.php';
+      print_r($_SESSION);
 
       if(isset($_SESSION['message'])): 
     ?>
@@ -110,6 +110,5 @@
       $workPlaceName = $workPlaceResult[0]['workplace_name'];
 
     ?>
-    <h1><?php echo $AdminID; ?></h1>
   </body>
 </html>
