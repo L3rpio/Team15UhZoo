@@ -110,7 +110,6 @@
                   </thead>
                   <tbody>
                      <?php 
-                          // $managerID = $_SESSION['user_id'];
                           $managerID = $_SESSION['user_id'];
                           $getWorkPlaceIDSQL = "select * from workplace where manager_id=$managerID;";
                           $getWorkPlaceResult = mysqli_query($conn, $getWorkPlaceIDSQL);
