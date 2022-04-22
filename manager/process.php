@@ -1,5 +1,6 @@
 <!-- This section is to process all the forms on the manager page -->
 <?php
+  ob_start();
   session_start();
 
   // connect to database
