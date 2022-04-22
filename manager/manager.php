@@ -385,6 +385,7 @@
             </div>
          </div>
       </div>
+      
       <!-- html code to display expenses table for this work place -->
       <div class="container-xl">
          <div class="table-responsive">
