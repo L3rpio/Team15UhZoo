@@ -30,44 +30,6 @@
     <script src="../js/admincrud.js"></script>
   </head>
   <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container px-5">
-	      <a class="navbar-brand" href="../index.php"><b>University of Houston Zoo</b></a>
-        <a class="navbar-brand" href="../reports/customer_report.php">Customer Reports</a>
-        <a class="navbar-brand" href="../reports/employee_reports.php">Employee Reports</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <!-- <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#!">Home</a>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
-            <li class="nav-item">
-              <a class="nav-link" href="#contact-us">Contact</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Customer Portal</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Employee Portal</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/admin/admin.php">Manager Portal</a>
-            </li>
-          </ul> -->
-        </div>
-      </div>
-    </nav>
     <?php 
       session_start();
       print_r($_SESSION);
