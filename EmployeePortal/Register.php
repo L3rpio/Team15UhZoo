@@ -14,36 +14,40 @@ if (isset($_POST['submit'])) {
     $image_tmp_name = $_FILES['image']['tmp_name'];
     $image_folder = 'uploaded_img/' . $image;
 
-    $select = mysqli_query($conn, "SELECT * FROM `employee` WHERE employee_email = '$email' AND employee_id = '$id'") or die('Query failed.');
-
-    $query = mysqli_query($conn, "SELECT * FROM `employee` WHERE employee_id = '$id' AND (user_name is not null AND pass_word is not null)") or die('Query failed.');
-
-    if (mysqli_num_rows($select) == 0) {
-        $message[] = "Employee credentials are invalid.";
-    } else if (mysqli_num_rows($query) > 0) {
-        $message[] = "Employee already exists. Please Login.";
+    if (stripos($username, 'admin') !== false) {
+        $message[] = "ADMIN cannot be in your username.";
     } else {
-        if ($pass != $cpass) {
-            $message[] = 'Passwords did not match!';
-        } elseif ($image_size > 2000000) {
-            $message[] = 'image size is too large!';
-        } else {
-            if (!empty($image)) {
-                $update = mysqli_query($conn, "UPDATE `employee` SET user_name = '$username', pass_word = '$pass', image = '$image' WHERE employee_id = '$id'") or die('query failed');
+        $select = mysqli_query($conn, "SELECT * FROM `employee` WHERE employee_email = '$email' AND employee_id = '$id'") or die('Query failed.');
 
-                if ($update) {
-                    move_uploaded_file($image_tmp_name, $image_folder);
+        $query = mysqli_query($conn, "SELECT * FROM `employee` WHERE employee_id = '$id' AND (user_name is not null AND pass_word is not null)") or die('Query failed.');
+
+        if (mysqli_num_rows($select) == 0) {
+            $message[] = "Employee credentials are invalid.";
+        } else if (mysqli_num_rows($query) > 0) {
+            $message[] = "Employee already exists. Please Login.";
+        } else {
+            if ($pass != $cpass) {
+                $message[] = 'Passwords did not match!';
+            } elseif ($image_size > 2000000) {
+                $message[] = 'image size is too large!';
+            } else {
+                if (!empty($image)) {
+                    $update = mysqli_query($conn, "UPDATE `employee` SET user_name = '$username', pass_word = '$pass', image = '$image' WHERE employee_id = '$id'") or die('query failed');
+
+                    if ($update) {
+                        move_uploaded_file($image_tmp_name, $image_folder);
+                        $success[] = 'Registered Successfully!';
+                        header('location:Login.php');
+                    } else {
+                        $message[] = 'Registration failed!';
+                    }
+                } else if (empty($image)) {
+                    mysqli_query($conn, "UPDATE `employee` SET user_name = '$username', pass_word = '$pass' WHERE employee_id = '$id'") or die('query failed');
+
                     $success[] = 'Registered Successfully!';
-                    header('location:Login.php');
                 } else {
                     $message[] = 'Registration failed!';
                 }
-            } else if (empty($image)) {
-                mysqli_query($conn, "UPDATE `employee` SET user_name = '$username', pass_word = '$pass' WHERE employee_id = '$id'") or die('query failed');
-
-                $success[] = 'Registered Successfully!';
-            } else {
-                $message[] = 'Registration failed!';
             }
         }
     }
