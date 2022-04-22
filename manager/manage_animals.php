@@ -59,7 +59,6 @@
          </div>
       </nav>
       <?php 
-         require_once 'process.php';
          
          if(isset($_SESSION['message'])): 
          ?>
