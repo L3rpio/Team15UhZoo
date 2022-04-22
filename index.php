@@ -54,7 +54,6 @@ session_start();
 
       <li><a href="./EmployeePortal/Home.php">Employee Portal</a></li>
 
-      <li><a href="#">Manager Portal</a></li>
     </ul>
   </div>
 

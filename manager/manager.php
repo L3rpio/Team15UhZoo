@@ -58,17 +58,36 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                     <a class="nav-link" href="Home.php">Employee Portal</a>
+                     <a class="nav-link" href="../EmployeePortal/Home.php">Employee Portal</a>
                   </li>
                   <li class="nav-item">
                      <a class="nav-link active" aria-current="page" href="manager.php">Manager Portal</a>
                   </li>
-                  <li class="nav-item">
-                     <a class="nav-link" href="manage_animals.php">Manage Animals</a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link" href="manage_orders.php">Manage Orders</a>
-                  </li>
+                  <?php 
+                  // php code to check if the manager is a manager for an enclosure or food_service
+                  $id = $_SESSION['user_id'];
+                  $enclosureManager = false;
+                  $sql = "select * from workplace where workplace_id=$id";
+                  $sqlResult = mysqli_query($conn, $sql);
+                  $result = mysqli_fetch_all($sqlResult, MYSQLI_ASSOC);
+                  $workID = $result[0]['workplace_id'];
+                  $sql = "select * from enclosure where work_id=$workID";
+                  $sqlResult = mysqli_query($conn, $sql);
+                  if(mysqli_num_rows($sqlResult) > 0){
+                     $enclosureManager = true;
+                  }
+
+                  if($enclosureManager){
+                     echo "<li class='nav-item'>";
+                     echo "<a class='nav-link' href='manage_animals.php'>Manage Animals</a>";
+                     echo "</li>";
+
+                  } else {
+                     echo "<li class='nav-item'>";
+                     echo "<a class='nav-link' href='manage_orders.php'>Manage Orders</a>";
+                     echo "</li>";
+                  }
+                  ?>
                </ul>
             </div>
          </div>
