@@ -8,6 +8,15 @@ if (isset($_POST['submit'])) {
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $pass = mysqli_real_escape_string($conn, md5($_POST['password']));
 
+    //first check if the employee is an admin
+    $admin = mysqli_query($conn, "SELECT * FROM `admin` WHERE username = '$username' AND password = '$pass'") or die('query failed');
+
+    if (mysqli_num_rows($admin) > 0) {
+        $row = mysqli_fetch_assoc($admin);
+        $_SESSION['user_id'] = $row['id'];
+        header('location: ../admin_portal/admin_portal.php');
+    }
+
     // first check if the username and password matches any of our employees
     $select = mysqli_query($conn, "SELECT * FROM `employee` WHERE user_name = '$username' AND pass_word = '$pass'") or die('query failed');
 
