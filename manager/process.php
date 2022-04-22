@@ -73,6 +73,7 @@
     $wage = $_POST['hourlywage'];
     $hoursWorked = $_POST['hoursworked'];
     $payStatus = $_POST['paystatus'];
+    $workDays = $_POST['workDays'];
 
     $updateQuery = "update employee set 
     employee_first_name='$fname',
@@ -81,7 +82,8 @@
     employee_email='$email', 
     hourly_wage=$wage, 
     hours_worked=$hoursWorked, 
-    paid_status=$payStatus
+    paid_status=$payStatus,
+    work_days = '$workDays'
     where employee_id = $id;";
     $run = mysqli_query($conn, $updateQuery);
     $_SESSION['message'] = 'Employee updated!';

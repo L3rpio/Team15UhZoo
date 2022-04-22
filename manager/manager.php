@@ -213,6 +213,7 @@
                         <th>Hourly Wage</th>
                         <th>Hours Worked</th>
                         <th>Pay Check</th>
+                        <th>Work Days</th>
                         <th>Pay Status</th>
                         <th>Actions</th>
                      </tr>
@@ -237,7 +238,7 @@
                            $wage = $employee["hourly_wage"];
                            $paycheck = $employee["paycheck"];
                            $hoursWorked = $employee["hours_worked"];
-                           
+                           $workDays = $employee['work_days'];
                            if($hoursWorked === NULL){
                              $hoursWorked = 0;
                            }
@@ -253,7 +254,7 @@
                            } else {
                              echo "<td>$" . $paycheck . "</td>";
                            }
-                           
+                           echo "<td>$workDays</td>";
                            if($payStatus == 0 || $payStatus === NULL){
                              echo "<td class='badge bg-danger'>Unpaid</td>";
                            } else if($payStatus == 1){
@@ -324,6 +325,10 @@
                                           <option value=2>Pending</option>
                                           <option value=1>Paid</option>
                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                       <label>Work Days</label>
+                                       <input type="text" name="workDays" value="<?php echo $workDays; ?>" class="form-control" required />
                                     </div>
                                  </div>
                                  <div class="modal-footer">
