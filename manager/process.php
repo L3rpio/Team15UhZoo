@@ -30,6 +30,7 @@
     where employee_id = $id;";
 
     $run = mysqli_query($conn, $updateManagerQuery);
+    echo "saving";
     $_SESSION['message'] = 'Manager Updated';
     $_SESSION['msg_type'] = 'info';
     header('location:manager.php');
@@ -130,5 +131,27 @@
     $_SESSION['message'] = 'Expense deleted!';
     $_SESSION['msg_type'] = 'danger';
     header('location: manager.php');
+  }
+
+  // information processing for adding an animal
+  if(isset($_POST['addAnimal'])){
+    $enclosureNum = $_POST['enclosureNum'];
+    $gender = $_POST['gender'];
+    $species = $_POST['species'];
+    $date = date('Y-m-d');
+    $sql = "insert into animal(gender, species, enclosure_num, date_added) values('$gender', '$species', $enclosureNum, '$date')";
+    $run = mysqli_query($conn, $sql);
+    $_SESSION['message'] = 'Animal added!';
+    $_SESSION['msg_type'] = 'success';
+    header('location: manage_animals.php');
+  }
+  
+  // information processing for deleting an animal
+  if(isset($_POST['deleteAnimal'])){
+    $id = $_POST['animalId'];
+    $run = mysqli_query($conn, "delete from animal where animal_id = $id");
+    $_SESSION['message'] = 'Animal has been deleted!';
+    $_SESSION['msg_type'] = 'danger';
+    header('location: manage_animals.php');
   }
 ?>
