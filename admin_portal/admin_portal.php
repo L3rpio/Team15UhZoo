@@ -66,6 +66,9 @@
                   <li class="nav-item">
                      <a class="nav-link" href="../reports/employee_reports.php">Employee Report</a>
                   </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="../reports/notifications.php">Notifications</a>
+                  </li>
                </ul>
             </div>
          </div>

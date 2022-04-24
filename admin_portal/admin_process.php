@@ -130,7 +130,9 @@
     $run = mysqli_query($conn, $sql);
     $_SESSION['message'] = 'Customer has been updated!';
     $_SESSION['msg_type'] = 'info';
-    header('location: admin_portal.php');
+    $URL="admin_portal.php";
+    echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
+    echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
   }
 
   if(isset($_POST['deleteCustomer'])){
