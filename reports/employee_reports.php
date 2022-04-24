@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- needs to have credentials updated for new db log in-->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -187,11 +188,16 @@ table.table .avatar {
 .modal form label {
 	font-weight: normal;
 }	
+.nameInputContainer{
+	display:flex;
+	align-items:center;
+	justify-content:center;
+}
 </style>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container px-5">
         <a class="navbar-brand" href="../index.php"><b>University of Houston Zoo</b></a>
-        <a class="navbar-brand" href="../admin_portal/adminportal.php">Admin Portal</a>
+        <a class="navbar-brand" href="../admin_portal/admin_portal.php">Admin Portal</a>
         <a class="navbar-brand" href="../reports/customer_report.php">Customer Reports</a>
         
         <button
@@ -229,6 +235,16 @@ table.table .avatar {
     </nav>
 </head>
 <body>
+<form action="employee_reports.php" method="post">
+		<div class="nameInputContainer">
+			<input type"text" name="byname" placeholder="First name or last name"/>
+			<input type"text" name="user" placeholder="user name"/>
+			<input type"text" name="pay" placeholder="minimum pay rate"/>
+			<input type"text" name= "dates" placeholder="Hired (YYYY-MM-DD)"/>
+			<button type "submit" name="submit-search">Search</button>
+
+		</div>
+</form>
 <div class="container-xl">
 	<div class="table-responsive">
 		<div class="table-wrapper">
@@ -246,43 +262,108 @@ table.table .avatar {
 					<tr>
 						<th>First Name</th>
 						<th>Last Name</th>
-            <th>Pay Rate</th>
-            <th>Paid Status</th>
+						<th>User Name</th>
+            			<th>Pay Rate</th>
+            			<th>Paid Status</th>
 						<th>Date Hired</th>
 					</tr>
 				</thead>
 				<tbody>
-					
-						<?php
+				<?php
 						$serverName = "zoodbteam15-server.mysql.database.azure.com";
 						$username ="zooadmin";
 						$password= "Lovec++123";
+						// $serverName = "http://51.79.49.230/~uhzoocom";
+						// $username = "uhzoocom_dev";
+						// $password = "EWDa3stHU";
 						$conn = new mysqli($serverName, $username, $password,"uh_zoo");
 						if($conn == false){
 						  die("Connection failed: " . $conn->connect_error);
 						}
-						$sql="SELECT * FROM Employee ORDER By date_hired ASC;";
-            $count=0;
-						$result = $conn-> query($sql);
-           				if ($result-> num_rows > 0){
-              				while($row= $result-> fetch_assoc()){
-                        $count=$count+1;
-                				echo "<tr><td>" . $row["employee_first_name"] . "</td><td>" . $row["employee_last_name"] . "</td><td>" . $row["hourly_wage"] . "</td>";
-                        if ( $row["paid_status"] == 0){
-                          echo "<td> NOT PAID"  . "</td><td>" . $row["date_hired"] . "</td></tr>";
-                        }
-                        else if ( $row["paid_status"] == 1){
-                          echo "<td> PENDING"  . "</td><td>" . $row["date_hired"] . "</td></tr>";
-                        }
-                        else if ( $row["paid_status"] == 2){
-                          echo "<td> PAID"  . "</td><td>" . $row["date_hired"] . "</td></tr>";
-                        }
-                       
-              					}
-            			}
-            echo "<tr><td>" . "Total Employees " . $count . "</td></tr>"; 
+						$count=0;
+						//$sql="SELECT * FROM Customer WHERE date_added=curdate();";
+						// $result = $conn-> query($sql);
+           				// if ($result-> num_rows > 0){
+              			// 	while($row= $result-> fetch_assoc()){
+                        // $count=$count+1;
+                		// 		echo "<tr><td>" . $row["first_name"] . "</td><td>" . $row["last_name"] . "</td><td>" . $row["date_added"] . "</td></tr>";
+                        // // echo '<td> <a href="#editCustomerModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a> ' . " " . '<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872i;</></a> </td> </tr>';
+              			// 		}
+            			// }
+						echo "For Professor and TA: name searches by exact match with first name or last name
+								user name searches by exact user names, hourly wage searches for wages equal to or greater and dates hired searches by that date and beyond.";
+
+						if(isset($_POST['submit-search'])){
+							$searchq = $_POST['byname'];
+							$searchq2= $_POST['user'];
+							$searchq4=$_POST['pay'];
+							$searchq5= $_POST['dates'];
+							// $searchq =preg_replace("#[^0-9a-z]#i","",$searchq);
+							// $searchq2 =preg_replace("#[^0-9a-z]#i","",$searchq2);
+							// $searchq3 =preg_replace("#[^0-9a-z]#i","",$searchq3);
+							$squery="";
+							
+							if (!empty($searchq)){
+								
+								$squery= "Select * FROM Employee WHERE employee_first_name = '$searchq' or employee_last_name = '$searchq'";
+							}
+							if(!empty($searchq2)){
+								if(!empty($squery)){
+									$squery=$squery . " and user_name LIKE '$searchq2'";
+								}
+								else {
+									$squery="Select * FROM Employee WHERE user_name LIKE '$searchq2'";
+								}
+							}
+							if(!empty($searchq4)){
+								if(!empty($squery)){
+									$squery=$squery . " and hourly_wage >=$searchq4";
+								}
+								else{
+									$squery="Select * FROM Employee WHERE hourly_wage >= $searchq4";
+								}
+							}
+							if(!empty($searchq5)){
+								if(!empty($squery)){
+									$squery=$squery . " and date_hired >='$searchq5'";
+								}
+								else{
+									$squery="Select * FROM Employee WHERE date_hired >= '$searchq5'";
+								}
+							}
+							
+							if(!empty($squery)){
+								
+								$squery=$squery . ";";
+								$query = $conn-> query($squery);
+								
+								while($row=$query-> fetch_assoc()){
+									$fname = $row['employee_first_name'];
+									$lname = $row['employee_last_name'];
+									$id=$row['user_name'];
+									$payr=$row['hourly_wage'];
+									$pays;
+									if($row['paid_status']==0){
+										$pays="NOT PAID";
+									}
+									else if ($row['paid_status']==1){
+										$pays="PENDING";
+									}
+									else if ($row['paid_status']==2){
+										$pays="PAID";
+									}
+									$dd =$row['date_hired'];
+									$count=$count+1;
+									echo "<tr><td>"  . $fname . "</td><td>" . $lname . "</td><td>" . $id . "</td><td>" . $payr . "</td><td>" . $pays . "</td><td>" . $dd . "</td></tr>";
+								}
+							}
+							
+						}
+						
+            			echo "<tr><td>" . "Total Employees in Search " . $count . "</td></tr>"; 
 						mysqli_close($conn);
-						?>
+						
+					?>
 				</tbody>
 			</table>
 		</div>

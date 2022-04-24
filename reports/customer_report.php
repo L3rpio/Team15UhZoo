@@ -1,5 +1,6 @@
 
 <!DOCTYPE html>
+<!-- needs new credentials for new db  -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -188,11 +189,17 @@ table.table .avatar {
 .modal form label {
 	font-weight: normal;
 }	
+
+.nameInputContainer{
+	display:flex;
+	align-items:center;
+	justify-content:center;
+}
 </style>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container px-5">
         <a class="navbar-brand" href="../index.php"><b>University of Houston Zoo</b></a>
-        <a class="navbar-brand" href="../admin_portal/adminportal.php">Admin Portal</a>
+        <a class="navbar-brand" href="../admin_portal/admin_portal.php">Admin Portal</a>
         <a class="navbar-brand" href="../reports/employee_reports.php">Employee Reports</a>
         
         <button
@@ -232,8 +239,13 @@ table.table .avatar {
 </head>
 <body>
 	<form action="customer_report.php" method="post">
-		<input type"text" name="search" place="Search for members..."/>
-		<button type "submit" name="submit-search">Search</button>
+		<div class="nameInputContainer">
+			<input type"text" name="byname" placeholder="First name or last name"/>
+			<input type"text" name="user" placeholder="user name"/>
+			<input type"text" name= "dates" placeholder="YYYY-MM-DD"/>
+			<button type "submit" name="submit-search">Search</button>
+
+		</div>
 		<?php 
 		// if(isset($_POST['search'])){
 		// 	$searchq = $_POST['search'];
@@ -280,10 +292,14 @@ table.table .avatar {
 						$serverName = "zoodbteam15-server.mysql.database.azure.com";
 						$username ="zooadmin";
 						$password= "Lovec++123";
-						$conn = new mysqli($serverName, $username, $password,"uh_zoo");
+						//$serverName ="http://51.79.49.230/phpmyadmin/index.php?route=/database/structure&server=1&db=uhzoocom_db";
+						//$username= "uhzoocom_dev";
+						//$password= "hjd9fG9g5x";
+						$conn = new mysqli($serverName, $username, $password,"uhzoocom_db");
 						if($conn == false){
 						  die("Connection failed: " . $conn->connect_error);
 						}
+						$count=0;
 						//$sql="SELECT * FROM Customer WHERE date_added=curdate();";
 						// $result = $conn-> query($sql);
            				// if ($result-> num_rows > 0){
@@ -293,27 +309,57 @@ table.table .avatar {
                         // // echo '<td> <a href="#editCustomerModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a> ' . " " . '<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872i;</></a> </td> </tr>';
               			// 		}
             			// }
-
+						
 
 						if(isset($_POST['submit-search'])){
-							$searchq = $_POST['search'];
-							$searchq =preg_replace("#[^0-9a-z]#i","",$searchq);
-							$query = $conn-> query("Select * FROM Customer WHERE first_name LIKE '%$searchq%' or last_name LIKE '%$searchq%';") or die("could not search");
-							//$count = mysql_num_rows($query);
+							$searchq = $_POST['byname'];
+							$searchq2= $_POST['user'];
+							$searchq3= $_POST['dates'];
+							// $searchq =preg_replace("#[^0-9a-z]#i","",$searchq);
+							// $searchq2 =preg_replace("#[^0-9a-z]#i","",$searchq2);
+							// $searchq3 =preg_replace("#[^0-9a-z]#i","",$searchq3);
+							$squery="";
 							
-							$count=0;
-							while($row=$query-> fetch_assoc()){
-								$fname = $row['first_name'];
-								$lname = $row['last_name'];
-								$id=$row['user_name'];
-								$dd =$row['date_added'];
-								$count=$count+1;
-								echo "<tr><td>"  . $fname . "</td><td>" . $lname . "</td><td>" . $id . "</td><td>" . $dd . "</td></tr>";
+							if (!empty($searchq)){
+								
+								$squery= "Select * FROM Customer WHERE first_name = '$searchq' or last_name = '$searchq'";
+							}
+							if(!empty($searchq2)){
+								if(!empty($squery)){
+									$squery=$squery . " and user_name LIKE '$searchq2'";
+								}
+								else {
+									$squery="Select * FROM Customer WHERE user_name LIKE '$searchq2'";
+								}
+							}
+							if(!empty($searchq3)){
+								if(!empty($squery)){
+									$squery=$squery . " and date_added >='$searchq3'";
+								}
+								else{
+									$squery="Select * FROM Customer WHERE date_added >= '$searchq3'";
+								}
+							}
+							
+							if(!empty($squery)){
+								echo "For Professor and TA: name searches by exact match with first name or last name
+								user name searches by exact user names and dates added searches by that date and beyond.";
+								$squery=$squery . ";";
+								$query = $conn-> query($squery);
+								
+								while($row=$query-> fetch_assoc()){
+									$fname = $row['first_name'];
+									$lname = $row['last_name'];
+									$id=$row['user_name'];
+									$dd =$row['date_added'];
+									$count=$count+1;
+									echo "<tr><td>"  . $fname . "</td><td>" . $lname . "</td><td>" . $id . "</td><td>" . $dd . "</td></tr>";
+								}
 							}
 							
 						}
 						
-            echo "<tr><td>" . "Total Customers in Search " . $count . "</td></tr>"; 
+            			echo "<tr><td>" . "Total Customers in Search " . $count . "</td></tr>"; 
 						mysqli_close($conn);
 						
 						?>
