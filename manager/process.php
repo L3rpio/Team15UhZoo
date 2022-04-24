@@ -105,7 +105,9 @@
     $run = mysqli_query($conn, $insertQuery);
     $_SESSION['message'] = 'Expense added!';
     $_SESSION['msg_type'] = 'success';
-    header('location: manager.php');
+    $URL="manager.php";
+    echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
+    echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
   }
 
   // information processing for updating an expense at work place
@@ -122,7 +124,9 @@
     $run = mysqli_query($conn, $updateSQL);
     $_SESSION['message'] = 'Expense edited!';
     $_SESSION['msg_type'] = 'info';
-    header('location: manager.php');
+    $URL="manager.php";
+    echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
+    echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
   }
 
 
@@ -132,7 +136,9 @@
     $run = mysqli_query($conn, "delete from expense where expense_id = $id");
     $_SESSION['message'] = 'Expense deleted!';
     $_SESSION['msg_type'] = 'danger';
-    header('location: manager.php');
+    $URL="manager.php";
+    echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
+    echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
   }
 
   // information processing for adding an animal
@@ -145,7 +151,9 @@
     $run = mysqli_query($conn, $sql);
     $_SESSION['message'] = 'Animal added!';
     $_SESSION['msg_type'] = 'success';
-    header('location: manage_animals.php');
+    $URL="manage_animals.php";
+    echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
+    echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
   }
   
   // information processing for deleting an animal
@@ -154,6 +162,8 @@
     $run = mysqli_query($conn, "delete from animal where animal_id = $id");
     $_SESSION['message'] = 'Animal has been deleted!';
     $_SESSION['msg_type'] = 'danger';
-    header('location: manage_animals.php');
+    $URL="manage_animals.php";
+    echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
+    echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
   }
 ?>
