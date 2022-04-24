@@ -1,8 +1,5 @@
 # Team15UhZoo
 
-Our database:
-![alt text](https://github.com/L3rpio/Team15UhZoo/blob/main/er.jpg?raw=true)
-
 In our web application, we have 4 user authentication types. Customer, Employee, Manager, and Admin. 
 Customer and Employee can only edit their own usernames and passwords in their respetive portals.
 In addition, customers can buy tickets and foods from their customer portal page. 
