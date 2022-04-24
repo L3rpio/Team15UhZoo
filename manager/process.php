@@ -33,7 +33,9 @@
     echo "saving";
     $_SESSION['message'] = 'Manager Updated';
     $_SESSION['msg_type'] = 'info';
-    header('location:manager.php');
+    $URL="manager.php";
+    echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
+    echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
   }
 
   // processing informatin to delete an employee
@@ -42,7 +44,9 @@
     $run = mysqli_query($conn, "delete from employee where employee_id = $id");
     $_SESSION['message'] = 'Employee has been deleted!';
     $_SESSION['msg_type'] = 'danger';
-    header('location: manager.php');
+    $URL="manager.php";
+    echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
+    echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
   }
 
   // information processing for adding an employee
@@ -60,7 +64,9 @@
     $run = mysqli_query($conn, $insertQuery);
     $_SESSION['message'] = 'Employee added!';
     $_SESSION['msg_type'] = 'success';
-    header('location: manager.php');
+    $URL="manager.php";
+    echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
+    echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
   }
 
   // information processing for updating employees
@@ -88,7 +94,9 @@
     $run = mysqli_query($conn, $updateQuery);
     $_SESSION['message'] = 'Employee updated!';
     $_SESSION['msg_type'] = 'warning';
-    header('location: manager.php');
+    $URL="manager.php";
+    echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
+    echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
 
   }
 
