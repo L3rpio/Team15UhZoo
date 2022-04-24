@@ -197,11 +197,10 @@
   }
 
   if(isset($_POST['deleteWP'])){
-    $name = $_POST['name'];;
     $id = $_POST['id'];
-    $type = $_POST['type'];
+    $mID = $_POST['manager'];
 
-    $sql = "delete from workplace where workplace_id=$id;";
+    $sql = "update employee set workplace_id = 5 where employee_id = $mID";
     $run = mysqli_query($conn, $sql);
     
     // check if the current work place being deleted is an enclosure
@@ -218,9 +217,11 @@
       $run = mysqli_query($conn, $sql);
       $runResult = mysqli_fetch_all($run, MYSQLI_ASSOC);
       $serviceID = $runResult[0]["service_id"];
-      $sql = "delete from food_service where service_id  = $enclosureID";
-      $run = mysqli_query($conn, $run);
+      $sql = "delete from food_service where service_id = $serviceID";
+      $run = mysqli_query($conn, $sql);
     }
+    $sql = "delete from workplace where workplace_id=$id;";
+    $run = mysqli_query($conn, $sql);
     $_SESSION['message'] = 'Work place has been deleted!';
     $_SESSION['msg_type'] = 'danger';
     header('location: admin_portal.php');

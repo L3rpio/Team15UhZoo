@@ -474,9 +474,14 @@
                            <a class="edit" href="#editWP<?php echo $wpID; ?>" class="btn btn-info" data-toggle="modal">
                               <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
                            </a>
-                           <a class="delete" href="#deleteWP<?php echo $wpID; ?>" class="btn btn-danger light-link" data-toggle="modal">
+                           <!-- have to use button form because modal was not working for this one specifically -->
+                           <form action="admin_process.php" method="post" id="#deleteWP<?php echo $wpID; ?>">
+                              <input type="number" name="id" value="<?php echo $wpID; ?>" class="form-control" required hidden/>
+                              <input type="number" name="manager" value="<?php echo $mID; ?>" class="form-control" required hidden/>  
+                           </form>
+                           <button type="submit" name="deleteWP" form="#deleteWP<?php echo $wpID; ?>" class="btn btn-danger">
                               <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
-                           </a>
+                           </button>
                         </td>
                      </tr>
                      <div id="editWP<?php echo $wpID; ?>" class="modal fade">
@@ -515,41 +520,6 @@
                                        value="Cancel"
                                        />
                                     <input type="submit" name="updateWP" class="btn btn-info" value="Save" />
-                                 </div>
-                              </form>
-                           </div>
-                        </div>
-                     </div>
-
-                     <div id="deleteWP<?php echo $wpID; ?>" class="modal fade">
-                        <div class="modal-dialog">
-                           <div class="modal-content">
-                              <form action="admin_process.php" method="post">
-                                 <input type="number" name="id" value="<?php echo $wpID; ?>" class="form-control" required hidden/>
-                                 <div class="modal-header">
-                                    <h4 class="modal-title">Delete Work Place</h4>
-                                    <button
-                                       type="button"
-                                       class="close"
-                                       data-dismiss="modal"
-                                       aria-hidden="true">
-                                    &times;
-                                    </button>
-                                 </div>
-                                 <div class="modal-body">
-                                    <p>Are you sure you want to delete this work place?</p>
-                                    <p class="text-warning">
-                                       <small>This action cannot be undone.</small>
-                                    </p>
-                                 </div>
-                                 <div class="modal-footer">
-                                    <input
-                                       type="button"
-                                       class="btn btn-default"
-                                       data-dismiss="modal"
-                                       value="Cancel"
-                                       />
-                                    <input type="submit" name="deleteWP" class="btn btn-danger" value="Delete" />
                                  </div>
                               </form>
                            </div>
