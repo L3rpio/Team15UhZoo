@@ -446,7 +446,7 @@
                            <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
                            </a>
                            <a class="delete" href="#deleteExpense<?php echo $expenseID; ?>" class="btn btn-danger light-link" data-toggle="modal">
-                           <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+                              <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
                            </a>
                         </td>
                      </tr>

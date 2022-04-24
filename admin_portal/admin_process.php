@@ -133,6 +133,15 @@
     header('location: admin_portal.php');
   }
 
+  if(isset($_POST['deleteCustomer'])){
+    $id = $_POST['id'];
+    $sql = "delete from customer where customer_id = $id";
+    $run = mysqli_query($conn, $sql);
+    $_SESSION['message'] = 'Customer has been deleted!';
+    $_SESSION['msg_type'] = 'danger';
+    header('location: admin_portal.php');
+  }
+
   // information processing for work place
   if(isset($_POST['updateWP'])){
     $id = $_POST['id'];
@@ -184,6 +193,36 @@
 
     $_SESSION['message'] = 'Work place has been added!';
     $_SESSION['msg_type'] = 'success';
+    header('location: admin_portal.php');
+  }
+
+  if(isset($_POST['deleteWP'])){
+    $name = $_POST['name'];;
+    $id = $_POST['id'];
+    $type = $_POST['type'];
+
+    $sql = "delete from workplace where workplace_id=$id;";
+    $run = mysqli_query($conn, $sql);
+    
+    // check if the current work place being deleted is an enclosure
+    $sql = "select * from enclosure where work_id = $id";
+    $run = mysqli_query($conn, $sql);
+
+    if(mysqli_num_rows($run) > 0){
+      $runResult = mysqli_fetch_all($run, MYSQLI_ASSOC);
+      $enclosureID = $runResult[0]["enclosure_id"];
+      $sql = "delete from enclosure where enclosure_id  = $enclosureID";
+      $run = mysqli_query($conn, $run);
+    } else {
+      $sql = "select * from food_service where work_id = $id";
+      $run = mysqli_query($conn, $sql);
+      $runResult = mysqli_fetch_all($run, MYSQLI_ASSOC);
+      $serviceID = $runResult[0]["service_id"];
+      $sql = "delete from food_service where service_id  = $enclosureID";
+      $run = mysqli_query($conn, $run);
+    }
+    $_SESSION['message'] = 'Work place has been deleted!';
+    $_SESSION['msg_type'] = 'danger';
     header('location: admin_portal.php');
   }
 ?>
